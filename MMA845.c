@@ -142,7 +142,8 @@ void MMAInit(void) {
   MMAStandby();
   MMARegWrite(XYZ_DATA_CFG_REG, ((MMARegRead(XYZ_DATA_CFG_REG) & ~FS_MASK) | FULL_SCALE_2G)); //2G Fullscale
   MMARegWrite(CTRL_REG4, 0);
-  //MMARegWrite(CTRL_REG4, INT_EN_DRDY_MASK);
+  MMARegWrite(CTRL_REG4, INT_EN_DRDY_MASK);
+  MMARegWrite(0x2E, INT_EN_DRDY_MASK); //Set the interrupt to route to INT1
   //MMARegWrite(0x2E, INT_EN_DRDY_MASK); //Set the interrupt to route to INT1
   MMARegWrite(CTRL_REG1, (MMARegRead(CTRL_REG1) & ~DR_MASK) | DATA_RATE_80MS); // Active ODR
   MMARegWrite(CTRL_REG1, (MMARegRead(CTRL_REG1) & ~FREAD_MASK)); // 14-bit reads

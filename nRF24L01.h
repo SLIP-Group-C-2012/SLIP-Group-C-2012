@@ -49,6 +49,7 @@
 #define NRF_RX_PW_P4    0x15
 #define NRF_RX_PW_P5    0x16
 #define NRF_FIFO_STATUS 0x17
+#define NRF_FEATURE     0x1D
 
 /* Bit Mnemonics */
 /*
@@ -101,4 +102,5 @@
 #define NRF_FLUSH_TX      0xE1
 #define NRF_FLUSH_RX      0xE2
 #define NRF_REUSE_TX_PL   0xE3
+#define NRF_W_TX_PAYLOAD_NOACK  0xB0
 #define NRF_NOP           0xFF

@@ -9,4 +9,6 @@ void MMAStandby(void);
 void MMAActive(void);
 void MMAInit(void);
 
+
+
 #endif // __MMA845_H

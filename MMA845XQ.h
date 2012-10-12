@@ -229,6 +229,13 @@ uint8_t MMARegRead(uint8_t reg);
 //void MMARegWriteN(uint8_t reg1, uint8_t n, uint8_t *array);
 void MMARegReadN(uint8_t reg1, uint8_t n, uint8_t *array);
 
+typedef struct {
+  int16_t x;
+  int16_t y;
+  int16_t z;
+} Accel_Vector_Type __attribute__ ((packed));
+#define Accel_Vector_Len 6
+
 //void MMA_IRQHandler(void);
 
 #ifdef __cplusplus

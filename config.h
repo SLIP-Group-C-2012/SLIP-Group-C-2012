@@ -2,6 +2,7 @@
 #define PROSP_H
 #define NODE_ID 1
 #define NODE_CH 2
+#define BASESTATION
 
 // #define DEMO_MODE
 
