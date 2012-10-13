@@ -12,7 +12,6 @@
 #include "config.h"
 #include "NRF24.h"
 #include "nRF24L01.h"
-#include "MMA845XQ.h"
 #include "nrf24_config.h"
 
 
@@ -33,7 +32,7 @@ void InitRGBLEDPWM(void)
 {
   CMU_ClockEnable(cmuClock_TIMER0, true);
   /* Select CC channel parameters */
-  TIMER_InitCC_TypeDef timerCCInit = 
+  TIMER_InitCC_TypeDef timerCCInit =
   {
     .eventCtrl  = timerEventEveryEdge,
     .edge       = timerEdgeBoth,
@@ -53,8 +52,8 @@ void InitRGBLEDPWM(void)
   TIMER_InitCC(TIMER0, 1, &timerCCInit);
   //TIMER_InitCC(TIMER0, 2, &timerCCInit);
 
-//  TIMER3->ROUTE |= (TIMER_ROUTE_CC0PEN | TIMER_ROUTE_CC1PEN | TIMER_ROUTE_CC2PEN | TIMER_ROUTE_LOCATION_LOC0); 
-  
+//  TIMER3->ROUTE |= (TIMER_ROUTE_CC0PEN | TIMER_ROUTE_CC1PEN | TIMER_ROUTE_CC2PEN | TIMER_ROUTE_LOCATION_LOC0);
+
   TIMER0->ROUTE = TIMER_ROUTE_CC0PEN | TIMER_ROUTE_CC1PEN | TIMER_ROUTE_LOCATION_LOC0;
   /* Set Top Value */
   TIMER_TopSet(TIMER0, RGB_PWM_TIMER_TOP);
@@ -64,7 +63,7 @@ void InitRGBLEDPWM(void)
   TIMER_CompareBufSet(TIMER0, 1, RGB_PWM_TIMER_TOP + 1);
   //TIMER_CompareBufSet(TIMER3, 2, RGB_PWM_TIMER_TOP + 1);
 
-  /* Select timer parameters */  
+  /* Select timer parameters */
   TIMER_Init_TypeDef timerInit =
   {
     .enable     = true,
@@ -83,7 +82,7 @@ void InitRGBLEDPWM(void)
   ///* Enable overflow interrupt */
   TIMER_IntEnable(TIMER0, TIMER_IF_OF);
 
-  
+
   TIMER_IntClear(TIMER0, TIMER_IF_OF);
   /* Enable TIMER0 interrupt vector in NVIC */
   NVIC_EnableIRQ(TIMER0_IRQn);
@@ -103,19 +102,19 @@ void IO_Init(void)
     RTC_Init_TypeDef rtcInits = RTC_INIT_DEFAULT;
     ADC_Init_TypeDef adcInit = ADC_INIT_DEFAULT;
     volatile uint32_t test = 0;
-    
+
     /* Enable LE clock and LFXO oscillator */
     CMU->HFCORECLKEN0 |= CMU_HFCORECLKEN0_LE;
     CMU->OSCENCMD |= CMU_OSCENCMD_LFXOEN;
     /* Wait until LFXO ready */
     /* Note that this could be done more energy friendly with an interrupt in EM1 */
     while (!(CMU->STATUS & CMU_STATUS_LFXORDY)) ;
-    
+
     /* Select LFXO as clock source for LFACLK */
     CMU->LFCLKSEL = (CMU->LFCLKSEL & ~_CMU_LFCLKSEL_LFA_MASK) | CMU_LFCLKSEL_LFA_LFXO;
 
     CMU->OSCENCMD = CMU_OSCENCMD_LFRCOEN;
-    
+
     /* Enable GPIO clock */
     CMU->HFPERCLKEN0 |= CMU_HFPERCLKEN0_GPIO;
       /* Initialize USART */
@@ -125,7 +124,7 @@ void IO_Init(void)
     GPIO->P[4].MODEL =
               GPIO_P_MODEL_MODE2_PUSHPULL
             | GPIO_P_MODEL_MODE3_INPUT;
-    
+
 
 
 
@@ -162,13 +161,13 @@ void IO_Init(void)
     CMU->HFPERCLKEN0 |= CMU_HFPERCLKEN0_I2C0;
     /* Enable signals SDA, SCL */
     I2C0->ROUTE |= I2C_ROUTE_SDAPEN | I2C_ROUTE_SCLPEN | I2C_ROUTE_LOCATION_LOC3;
-    
+
     /* Enable clock for LETIMER0 */
     CMU->LFACLKEN0 |= CMU_LFACLKEN0_LETIMER0;
-    
+
     /* Enable clock for RTC */
     CMU->LFACLKEN0 |= CMU_LFACLKEN0_RTC;
-    
+
 
     CMU->HFPERCLKEN0 |= CMU_HFPERCLKEN0_USART2;
     usartInit.msbf = true;
@@ -178,7 +177,7 @@ void IO_Init(void)
     //USART_Enable(USART1, usartEnable);
     USART2->ROUTE = (USART2->ROUTE & ~_USART_ROUTE_LOCATION_MASK) | USART_ROUTE_LOCATION_LOC1;
     /* Enable signals TX, RX, CLK */
-    USART2->ROUTE |= USART_ROUTE_TXPEN | USART_ROUTE_RXPEN | USART_ROUTE_CLKPEN;    
+    USART2->ROUTE |= USART_ROUTE_TXPEN | USART_ROUTE_RXPEN | USART_ROUTE_CLKPEN;
 
     GPIO_PinModeSet(gpioPortA, 0, gpioModeWiredAnd, 1);
     GPIO_PinModeSet(gpioPortA, 1, gpioModeWiredAnd, 1);
@@ -197,7 +196,7 @@ void IO_Init(void)
     // MMA_INT
     GPIO_PinModeSet(gpioPortA, 15, gpioModeInput, 0);
     GPIO_IntConfig(gpioPortA, 15, false, true, true);
-    
+
     // NRF_INT
     GPIO_IntConfig(gpioPortB, 0, false, true, true);
 
@@ -220,6 +219,6 @@ void IO_Init(void)
    // RTC_Init(&rtcInit);
     //test = NRF_Status();
     //buf[0] = test;
-    
-    test = MMARegRead(WHO_AM_I_REG);
+
+    //test = MMARegRead(WHO_AM_I_REG);
 }

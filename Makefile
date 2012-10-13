@@ -35,7 +35,7 @@ AR      = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-ar$(QUOTE)
 OBJCOPY = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-objcopy$(QUOTE)
 DUMP    = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-objdump$(QUOTE) --disassemble
 GDB     = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-gdb$(QUOTE)
-                                                      
+
 ####################################################################
 # Flags                                                            #
 ####################################################################
@@ -49,7 +49,7 @@ DEPFLAGS = -MMD -MP -MF $(@:.o=.d)
 CFLAGS += -std=c99 -D$(DEVICE) -mcpu=cortex-m3 -mthumb -ffunction-sections -fno-short-enums -fdata-sections \
 -mfix-cortex-m3-ldrd -fomit-frame-pointer -Wall -fwide-exec-charset=UTF-16LE -fshort-wchar $(DEPFLAGS)
 
-ASMFLAGS += -Ttext 0x0                        
+ASMFLAGS += -Ttext 0x0
 
 LDFLAGS += -Xlinker -Map=$(LST_DIR)/$(PROJECTNAME).map -mcpu=cortex-m3 -mthumb \
 -TCMSIS/CM3/DeviceSupport/EnergyMicro/EFM32/startup/cs3/efm32gg.ld -L"$(TOOLDIR)/arm-none-eabi/lib/thumb2" \
@@ -88,10 +88,10 @@ efm32lib/src/efm32_emu.c \
 efm32lib/src/efm32_adc.c \
 efm32lib/src/efm32_rtc.c \
 NRF24.c \
-MMA845.c \
+radio.c \
 syscalls.c \
 config.c \
-main.c 
+main.c
 #i2cdrv.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
@@ -123,7 +123,7 @@ all:      debug
 debug:    CFLAGS += -DDEBUG -O0 -g3
 debug:    $(OBJ_DIR) $(LST_DIR) $(EXE_DIR) $(EXE_DIR)/$(PROJECTNAME).bin
 
-release:  CFLAGS += -DNDEBUG -O3 
+release:  CFLAGS += -DNDEBUG -O3
 release:  $(OBJ_DIR) $(LST_DIR) $(EXE_DIR) $(EXE_DIR)/$(PROJECTNAME).bin
 
 # Create directories
