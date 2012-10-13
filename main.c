@@ -163,7 +163,7 @@ int main(void)
     //nrf_status = NRF_Status();
     while (NRF_Interrupt>0) 
     {
-      
+      printf("Receive interrupt\n");
       NRF_CE_lo;
       nrf_status = NRF_ReadRegister(NRF_STATUS);
       GPIO->P[RXEN_PORT].DOUT &= ~(1 << RXEN_PIN); 
@@ -195,7 +195,7 @@ int main(void)
     }
     if (MMA_Capture>0) {
 
-  
+      printf("Acc interrupt\n");
       MMARegReadN(OUT_X_MSB_REG, 6, buf);
       accelReading.x = buf[0]<<8 | buf[1];
       accelReading.y = buf[2]<<8 | buf[3];
