@@ -82,47 +82,51 @@ int init_config(void)
     uart_init(UART1); // for printf
 }
 
-#define SENDER (1)
-
 /**************************************************************************//**
  * @brief  Main function
  *****************************************************************************/
+
+#define SENDER (0)
+
 int main(void)
 {
     char data[32];
+    volatile int j;
 
-    char ping[32] = "asd";
+    char ping[32] = "ping";
     char pong[32] = "pong";
 
     int i = 0;
 
     init_config();
 
-#if SENDER
-    printf("I'm sender v2\n");
-#else
-    printf("I'm receiver\n");
-#endif
+    printf("I'm %s\n", SENDER ? "sender" : "receiver");
 
-    radio_setup(0,0);
+    radio_setup(2, BANDW_2MB, POW_MAX);
 
     while(1)
     {
         i++;
+
+        if (i % 30000 == 0)
+        {
+            if (SENDER)
+            {
+                printf("Send: '%s'\n", ping);
+                radio_sendPacket((uint8_t *) ping, 32);
+            }
+        }
 
         if (radio_receivePacket((uint8_t *) data, 32))
         {
             printf("Received: '%s'\n", data);
 
             if (strcmp(data, ping) == 0)
+            {
                 radio_sendPacket((uint8_t *) pong, 32);
+                printf("Answer1: '%s'\n", pong);
+            }
         }
-
-#if SENDER
-        if (i % 3000 == 0) radio_sendPacket((uint8_t *) ping, 32);
-#endif
-
-
     }
 }
 

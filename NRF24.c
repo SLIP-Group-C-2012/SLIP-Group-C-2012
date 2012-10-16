@@ -11,7 +11,7 @@
 void NRF_Delay()
 {
   volatile int i;
-  for (i = 0; i < 100000; i++);
+  for (i = 0; i < 100000; i++) {};
 }
 uint8_t NRF_Status(void)
 {
@@ -148,11 +148,11 @@ void NRF_EnableRX(void)
   NRF_WriteRegister(NRF_STATUS, 0x7E);
   NRF_WriteRegister(NRF_CONFIG, 0x0F);
   NRF_SendCommand(NRF_FLUSH_RX, 0xFF);
-  for (int i =0; i < 1; i++) {
+  for (int i =0; i < 2; i++) {
     NRF_Delay();
   }
   NRF_CE_hi;
-  for (int i =0; i < 1; i++) {
+  for (int i =0; i < 2; i++) {
     NRF_Delay();
   }
   NRF_SendCommand(NRF_FLUSH_RX, 0xFF);
