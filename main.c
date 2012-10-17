@@ -120,7 +120,7 @@ char * readString()
 
 int main(void)
 {
-    char data[32];
+    char data[32] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     int v = 0;
     int p_ti = 0;
 
@@ -137,8 +137,7 @@ int main(void)
         data[0] = v;
 
         printf("%d. Send %d", p_ti, v);
-        for (j = 0; j < 1000; j++) {}
-        //radio_sendPacket32((uint8_t *) data);
+        radio_sendPacket32((uint8_t *) data);
 
         p_ti++;
 

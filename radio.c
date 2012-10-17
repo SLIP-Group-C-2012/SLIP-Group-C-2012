@@ -9,9 +9,9 @@
 #define MAX_LEGAL_CHANNEL (90) // maximal allowed channel
 #define PACKET_SIZE (32)
 
-int packet_received = 0; // is there a packet to be shown
-int enable_receive = 0; // whether to enable receive mode after last packet has been sent
-int packet_wait = 0; // for waiting for last packet to be sent
+volatile int packet_received = 0; // is there a packet to be shown
+volatile int enable_receive = 0; // whether to enable receive mode after last packet has been sent
+volatile int packet_wait = 0; // for waiting for last packet to be sent
 uint8_t packet[PACKET_SIZE];
 
 uint8_t radio_mode;
@@ -21,14 +21,14 @@ static volatile int NRF_Interrupt = 0;
 void toStandByI(void)
 {
     NRF_CE_lo;
-    NRF_Delay(); // IS THIS NECESSARY?
+    //NRF_Delay(); // IS THIS NECESSARY?
 }
 
 void receiveModeEnable(void)
 {
-    NRF_Delay(); // give enough time to TX last packet if there is one
+    //NRF_Delay(); // give enough time to TX last packet if there is one
 
-    toStandByI(); // return to standby
+    //toStandByI(); // return to standby
 
     NRF_WriteRegister(NRF_STATUS, 0x7E); // reset status register
     NRF_SendCommand(NRF_FLUSH_RX, 0xFF); // Flush RX FIFO
@@ -38,6 +38,7 @@ void receiveModeEnable(void)
     NRF_Delay();
 
     radio_mode = MODE_RECEIVE;
+    enable_receive = 0;
 }
 
 void toStandByII(void)
@@ -50,7 +51,8 @@ void toStandByII(void)
     NRF_SendCommand(NRF_FLUSH_TX, 0xFF); // Flush TX FIFO
 
     radio_mode = MODE_SEND;
-    enable_receive = 0;
+
+    printf("TX mode\n");
 }
 
 void radio_handleInterrupt(void)
