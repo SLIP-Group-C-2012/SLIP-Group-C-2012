@@ -122,6 +122,7 @@ int main(void)
 {
     char data[32];
     int v = 0;
+    int p_ti = 0;
 
     init_config();
 
@@ -131,18 +132,23 @@ int main(void)
 
     while(1)
     {
-        volatile j;
+        volatile int j;
 
         data[0] = v;
-        radio_sendPacket((uint8_t *) data, 32);
-        printf("Send %d", v);
-        for(j = 0; j < 100; j++) {};
 
-        if (radio_receivePacket((uint8_t *) data, 32))
+        printf("%d. Send %d", p_ti, v);
+        for (j = 0; j < 1000; j++) {}
+        //radio_sendPacket32((uint8_t *) data);
+
+        p_ti++;
+
+        if (radio_receivePacket32((uint8_t *) data))
         {
             printf("Received %d\n", data[0]);
             v = data[0]+1;
         }
+
+        radio_loop();
     }
 }
 

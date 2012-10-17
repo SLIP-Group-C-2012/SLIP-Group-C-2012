@@ -7,6 +7,12 @@
 #define MODE_SEND (2)
 
 #define MAX_LEGAL_CHANNEL (90) // maximal allowed channel
+#define PACKET_SIZE (32)
+
+int packet_received = 0; // is there a packet to be shown
+int enable_receive = 0; // whether to enable receive mode after last packet has been sent
+int packet_wait = 0; // for waiting for last packet to be sent
+uint8_t packet[PACKET_SIZE];
 
 uint8_t radio_mode;
 
@@ -44,6 +50,7 @@ void toStandByII(void)
     NRF_SendCommand(NRF_FLUSH_TX, 0xFF); // Flush TX FIFO
 
     radio_mode = MODE_SEND;
+    enable_receive = 0;
 }
 
 void radio_handleInterrupt(void)
@@ -85,9 +92,7 @@ void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power)
     NRF_WriteRegister(NRF_STATUS, 0x70); // clear radio interrupts
 }
 
-int packet_wait = 0;
-
-void radio_sendPacket(uint8_t * data, uint8_t size)
+void radio_sendPacket32(uint8_t * data)
 {
     volatile int j;
 
@@ -95,10 +100,10 @@ void radio_sendPacket(uint8_t * data, uint8_t size)
 
     packet_wait = 1;
 
-    //if (radio_mode != MODE_SEND)
-    //    toStandByII();
+    if (radio_mode != MODE_SEND)
+        toStandByII();
 
-    NRF_SendPayload(NRF_W_TX_PAYLOAD_NOACK, size, data);
+    NRF_SendPayload(NRF_W_TX_PAYLOAD_NOACK, PACKET_SIZE, data);
 
     NRF_CE_hi;
     for (j = 0; j < 500; j++) {};
@@ -106,9 +111,19 @@ void radio_sendPacket(uint8_t * data, uint8_t size)
 
 }
 
-uint8_t radio_receivePacket(uint8_t * data, uint8_t size)
+uint8_t radio_receivePacket32(uint8_t * data)
 {
-    uint8_t read = 0;
+    enable_receive = 1;
+    if (packet_received) {
+        memcpy(data, packet, PACKET_SIZE);
+        packet_received = 0;
+        return 1;
+    } else return 0;
+}
+
+void radio_loop(void)
+{
+
     uint8_t nrf_status;
 
     while (NRF_Interrupt>0)
@@ -121,21 +136,19 @@ uint8_t radio_receivePacket(uint8_t * data, uint8_t size)
         if (nrf_status & 0x10)
         {
             NRF_WriteRegister(NRF_STATUS, 0x10);
-            //printf("nrf_status MAX_RT\n");
         } else if (nrf_status & 0x20)
         {
             NRF_WriteRegister(NRF_STATUS, 0x20);
-            printf(" OK\n");
 
-            if (radio_mode != MODE_RECEIVE)
+            if (enable_receive && radio_mode != MODE_RECEIVE)
                 receiveModeEnable();
 
             packet_wait = 0;
         } else if (nrf_status & 0x40)
         {
             NRF_WriteRegister(NRF_STATUS, 0x70);
-            NRF_ReceivePayload(NRF_R_RX_PAYLOAD, size, data);
-            read = 1;
+            NRF_ReceivePayload(NRF_R_RX_PAYLOAD, PACKET_SIZE, packet);
+            packet_received = 1;
 
             NRF_SendCommand(NRF_FLUSH_RX, 0xFF);
 
@@ -147,9 +160,5 @@ uint8_t radio_receivePacket(uint8_t * data, uint8_t size)
         INT_Disable();
         NRF_Interrupt--;
         INT_Enable();
-
-        if (read) continue;
     }
-
-    return read;
 }
