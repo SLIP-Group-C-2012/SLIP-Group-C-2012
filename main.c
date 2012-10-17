@@ -80,52 +80,68 @@ int init_config(void)
     InitRGBLEDPWM();
     TIMER_IntClear(TIMER0, TIMER_IF_OF);
     uart_init(UART1); // for printf
+
+    // for interrupts
+    UART1->IEN = UART_IEN_RXDATAV;
+    NVIC_EnableIRQ(UART1_RX_IRQn);
+}
+
+char test[32];
+int c = 0;
+
+void UART1_RX_IRQHandler(void) // INTERRUPT I NEED FOR UART 1
+{
+    char c = UART1->RXDATA;
 }
 
 /**************************************************************************//**
  * @brief  Main function
  *****************************************************************************/
 
-#define SENDER (0)
+char input[32];
+
+char echo[32] = "echo";
+
+char * readString()
+{
+    int i = 0;
+
+    while (i < 31)
+    {
+        _read(0, &input[i], 1);
+        if (input[i] == 0 || input[i] == 13 || input[i] == 10) break;
+        i++;
+    }
+
+    input[i] = 0;
+
+    return input;
+}
 
 int main(void)
 {
     char data[32];
-    volatile int j;
-
-    char ping[32] = "ping";
-    char pong[32] = "pong";
-
-    int i = 0;
+    int v = 0;
 
     init_config();
 
-    printf("I'm %s\n", SENDER ? "sender" : "receiver");
+    printf("I'm %s\n", "transciever");
 
     radio_setup(2, BANDW_2MB, POW_MAX);
 
     while(1)
     {
-        i++;
+        volatile j;
 
-        if (i % 30000 == 0)
-        {
-            if (SENDER)
-            {
-                printf("Send: '%s'\n", ping);
-                radio_sendPacket((uint8_t *) ping, 32);
-            }
-        }
+        data[0] = v;
+        radio_sendPacket((uint8_t *) data, 32);
+        printf("Send %d", v);
+        for(j = 0; j < 100; j++) {};
 
         if (radio_receivePacket((uint8_t *) data, 32))
         {
-            printf("Received: '%s'\n", data);
-
-            if (strcmp(data, ping) == 0)
-            {
-                radio_sendPacket((uint8_t *) pong, 32);
-                printf("Answer1: '%s'\n", pong);
-            }
+            printf("Received %d\n", data[0]);
+            v = data[0]+1;
         }
     }
 }

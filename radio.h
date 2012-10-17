@@ -9,6 +9,8 @@
 
 void radio_handleInterrupt(void);
 
+void radio_loop(void);
+
 void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power);
 
 void radio_sendPacket(uint8_t * data, uint8_t size);

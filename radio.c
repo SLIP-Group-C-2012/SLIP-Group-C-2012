@@ -31,18 +31,12 @@ void receiveModeEnable(void)
 
     NRF_Delay();
 
-    RXEN_hi;
-
     radio_mode = MODE_RECEIVE;
-
-    printf("RECV MODE ENABLED\n");
 }
 
 void toStandByII(void)
 {
     toStandByI(); // return to standby
-
-    RXEN_lo; // turn of receiver
 
     NRF_WriteRegister(NRF_STATUS, 0x7E); // reset status register
     NRF_WriteRegister(NRF_CONFIG, 0x0E); // PRIM_RX LO & PWR_UP
@@ -50,8 +44,6 @@ void toStandByII(void)
     NRF_SendCommand(NRF_FLUSH_TX, 0xFF); // Flush TX FIFO
 
     radio_mode = MODE_SEND;
-
-    printf("SEND MODE ENABLED\n");
 }
 
 void radio_handleInterrupt(void)
@@ -60,14 +52,14 @@ void radio_handleInterrupt(void)
     {
         NRF_Interrupt++;
         GPIO->IFC = (1 << NRF_INT_PIN);
-
-        if (radio_mode == MODE_RECEIVE) printf("Interrupt :)\n");
     }
 }
 
 void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power)
 {
     uint8_t addr_array[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
+
+    RXEN_hi; // enable amp
 
     if (channel > MAX_LEGAL_CHANNEL) return; // keeps police happy
 
@@ -93,14 +85,25 @@ void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power)
     NRF_WriteRegister(NRF_STATUS, 0x70); // clear radio interrupts
 }
 
+int packet_wait = 0;
+
 void radio_sendPacket(uint8_t * data, uint8_t size)
 {
-    if (radio_mode != MODE_SEND)
-        toStandByII();
+    volatile int j;
+
+    while (packet_wait) {};
+
+    packet_wait = 1;
+
+    //if (radio_mode != MODE_SEND)
+    //    toStandByII();
 
     NRF_SendPayload(NRF_W_TX_PAYLOAD_NOACK, size, data);
 
-    //RXEN_hi;
+    NRF_CE_hi;
+    for (j = 0; j < 500; j++) {};
+    NRF_CE_lo;
+
 }
 
 uint8_t radio_receivePacket(uint8_t * data, uint8_t size)
@@ -108,28 +111,38 @@ uint8_t radio_receivePacket(uint8_t * data, uint8_t size)
     uint8_t read = 0;
     uint8_t nrf_status;
 
-    if (radio_mode != MODE_RECEIVE)
-        receiveModeEnable();
-
     while (NRF_Interrupt>0)
     {
 
         NRF_CE_lo;
         nrf_status = NRF_ReadRegister(NRF_STATUS);
-        GPIO->P[RXEN_PORT].DOUT &= ~(1 << RXEN_PIN);
+        RXEN_lo;
 
-        if (nrf_status & 0x40)
+        if (nrf_status & 0x10)
         {
-            //printf("nrf_status DATA\n");
+            NRF_WriteRegister(NRF_STATUS, 0x10);
+            //printf("nrf_status MAX_RT\n");
+        } else if (nrf_status & 0x20)
+        {
+            NRF_WriteRegister(NRF_STATUS, 0x20);
+            printf(" OK\n");
+
+            if (radio_mode != MODE_RECEIVE)
+                receiveModeEnable();
+
+            packet_wait = 0;
+        } else if (nrf_status & 0x40)
+        {
             NRF_WriteRegister(NRF_STATUS, 0x70);
             NRF_ReceivePayload(NRF_R_RX_PAYLOAD, size, data);
             read = 1;
 
             NRF_SendCommand(NRF_FLUSH_RX, 0xFF);
 
-            GPIO->P[RXEN_PORT].DOUT |= (1 << RXEN_PIN);
-            NRF_CE_hi;
-        }
+        } else printf("Interrupt 0x%x\n", nrf_status);
+
+        NRF_CE_hi;
+        RXEN_hi;
 
         INT_Disable();
         NRF_Interrupt--;
