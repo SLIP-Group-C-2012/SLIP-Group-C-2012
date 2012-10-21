@@ -87,11 +87,13 @@ efm32lib/src/efm32_int.c \
 efm32lib/src/efm32_emu.c \
 efm32lib/src/efm32_adc.c \
 efm32lib/src/efm32_rtc.c \
+efm32lib/src/efm32_prs.c \
 NRF24.c \
 radio.c \
 syscalls.c \
 config.c \
-main.c
+adc_basic.c
+#main.c
 #i2cdrv.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
