@@ -92,7 +92,7 @@ NRF24.c \
 radio.c \
 syscalls.c \
 config.c \
-adc_basic.c
+flash_to_ram.c
 #main.c
 #i2cdrv.c \
 #fatfs/src/diskio.c \

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * @file
- * @brief DMA Basic ADC transfer example
+ * @brief DMA Flash to RAM transfer example
  * @author Energy Micro AS
  * @version 2.01
  ******************************************************************************
@@ -35,9 +35,17 @@
 #include "efm32_prs.h"
 #include "efm32_timer.h"
 #include "efm32_int.h"
+
+
+/*#include "efm32.h"
+#include "efm32_chip.h"
+#include "efm32_dma.h"
+#include "efm32_cmu.h"
+#include "efm32_emu.h"
+#include "efm32_int.h"*/
 //#include "dmactrl.h"
 
-#define DMA_CHANNEL_ADC       0
+#define DMA_CHANNEL_FLASHTORAM       0
 
 /* DMA callback structure */
 DMA_CB_TypeDef cb;
@@ -45,21 +53,18 @@ DMA_CB_TypeDef cb;
 /* Transfer Flag */
 volatile bool transferActive;
 
-/* ADC Transfer Data */
-#define ADCSAMPLES                        20
-volatile uint16_t ramBufferAdcData[ADCSAMPLES];
-#define ADCSAMPLESPERSEC              100000
+/* Flash Transfer Data */
+const uint32_t flashData[] = {0,1,2,3,4,5,6,7,8,9};
+#define FLASHDATA_SIZE (sizeof(flashData)/sizeof(uint32_t))
+volatile uint32_t ramBufferFlashData[FLASHDATA_SIZE];
 
 
 
 /**************************************************************************//**
- * @brief  Call-back called when transfer is complete
+ * @brief  Call-back called when flash transfer is complete
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-  /* Stopping ADC by stopping TIMER0 */
-   TIMER_Enable(TIMER0, false);
-  
   /* Clearing flag to indicate that transfer is complete */
   transferActive = false;  
 }
@@ -73,15 +78,12 @@ void setupCmu(void)
 {
   /* Enable clocks */
   CMU_ClockEnable(cmuClock_DMA, true);  
-  CMU_ClockEnable(cmuClock_ADC0, true);  
-  CMU_ClockEnable(cmuClock_TIMER0, true); 
-  CMU_ClockEnable(cmuClock_PRS, true); 
 }
 
 
 
 /**************************************************************************//**
- * @brief Configure DMA for ADC RAM Transfer
+ * @brief Configure DMA for Flash to RAM transfer
  *****************************************************************************/
 void setupDma(void)
 {
@@ -92,77 +94,34 @@ void setupDma(void)
   /* Initializing the DMA */
   dmaInit.hprot        = 0;
   //dmaInit.controlBlock = dmaControlBlock;
-  dmaInit.controlBlock = 0;	// don't know what this does >.>
+  dmaInit.controlBlock = 0; // total hack
   
   DMA_Init(&dmaInit);
-    
-  /* Setting up call-back function */  
+
+  /* Setting call-back function */  
   cb.cbFunc  = transferComplete;
   cb.userPtr = NULL;
 
   /* Setting up channel */
   chnlCfg.highPri   = false;
   chnlCfg.enableInt = true;
-  chnlCfg.select    = DMAREQ_ADC0_SINGLE;
-  chnlCfg.cb        = &cb;
-  DMA_CfgChannel(DMA_CHANNEL_ADC, &chnlCfg);
+  chnlCfg.select    = 0;
+  chnlCfg.cb        = &(cb);
+  DMA_CfgChannel(DMA_CHANNEL_FLASHTORAM, &chnlCfg);
 
   /* Setting up channel descriptor */
-  descrCfg.dstInc  = dmaDataInc2;
-  descrCfg.srcInc  = dmaDataIncNone;
-  descrCfg.size    = dmaDataSize2;
+  descrCfg.dstInc  = dmaDataInc4;
+  descrCfg.srcInc  = dmaDataInc4;
+  descrCfg.size    = dmaDataSize4;
   descrCfg.arbRate = dmaArbitrate1;
   descrCfg.hprot   = 0;
-  DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg);
-    
-  /* Setting flag to indicate that transfer is in progress
-   * will be cleared by call-back function. */
-  transferActive = true;
-  
-  /* Starting transfer. Using Basic since every transfer must be initiated
-   * by the ADC. */
-  DMA_ActivateBasic(DMA_CHANNEL_ADC,
-                    true,
-                    false,
-                    (void *)&ramBufferAdcData,
-                    (void *)&(ADC0->SINGLEDATA),
-                    ADCSAMPLES - 1);
+  DMA_CfgDescr(DMA_CHANNEL_FLASHTORAM, true, &descrCfg);
 }
-
-
-
-/**************************************************************************//**
- * @brief Configure TIMER to trigger ADC through PRS at a set sample rate
- *****************************************************************************/
-void setupAdc(void)
-{
-  ADC_Init_TypeDef        adcInit       = ADC_INIT_DEFAULT;
-  ADC_InitSingle_TypeDef  adcInitSingle = ADC_INITSINGLE_DEFAULT;
-  
-  /* Configure ADC single mode to sample Ref/2 */
-  adcInit.prescale = ADC_PrescaleCalc(7000000, 0); /* Set highest allowed prescaler */
-  ADC_Init(ADC0, &adcInit);
-  
-  adcInitSingle.input     =  adcSingleInpVrefDiv2;  /* Reference */
-  adcInitSingle.prsEnable = true;                  
-  adcInitSingle.prsSel    = adcPRSSELCh0;           /* Triggered by PRS CH0 */
-  ADC_InitSingle(ADC0, &adcInitSingle);
-  
-  /* Connect PRS channel 0 to TIMER overflow */
-  PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
-  
-  /* Configure TIMER to trigger 100 kHz sampling rate */
-  TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
-  TIMER_Enable(TIMER0, true);
-}
-
-
 
 /**************************************************************************//**
  * @brief  Main function
- * This exmaple sets up the TIMER to trigger the ADC through PRS at a set
- * interval. The ADC then sets a DMA request and the DMA fetches each sample
- * until the a set number of samples have been received. 
+ * This example shows how to copy a block of data from the flash to RAM using
+ * a DMA auto transfer.
  *****************************************************************************/
 int main(void)
 { 
@@ -173,16 +132,33 @@ int main(void)
   UART1->ROUTE = UART_ROUTE_LOCATION_LOC3 | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
-  printf("happy days!\n");
+
+  printf("FLASHDATA_SIZE: %d\n", FLASHDATA_SIZE);
+  
+
+  printf("ramBufferFlashData: ");
+  int i;
+  for (i = 0; i < FLASHDATA_SIZE; i++)
+    printf("%d ", ramBufferFlashData);
+  printf("\n");
   
   /* Configuring clocks in the Clock Management Unit (CMU) */
   setupCmu();
   
-  /* Configure DMA transfer from ADC to RAM */      
+  /* Configure DMA transfer from Flash to RAM */      
   setupDma();
   
-  /* Configure ADC Sampling and TIMER trigger through PRS. Start TIMER as well */
-  setupAdc();
+  /* Setting flag to indicate that transfer is in progress
+  *  will be cleared by call-back function */
+  transferActive = true;
+  
+  /* Starting the transfer. Using Auto (all data is transfered at once) */
+  DMA_ActivateAuto(DMA_CHANNEL_FLASHTORAM,
+                       true,
+                       (void *)&ramBufferFlashData,
+                       (void *)&flashData,
+                       FLASHDATA_SIZE - 1);
+  
   
   /* Wait in EM1 in until DMA is finished and callback is called */
   /* Disable interrupts until flag is checked in case DMA finishes after flag 
@@ -196,6 +172,14 @@ int main(void)
    INT_Enable();
    INT_Disable();
   }
+  
+  printf("happy days!\n");
+  
+  printf("ramBufferFlashData: ");
+  for (i = 0; i < FLASHDATA_SIZE; i++)
+    printf("%d ", ramBufferFlashData);
+  printf("\n");
+  
   INT_Enable();
  
   /* Cleaning up after DMA transfers */
