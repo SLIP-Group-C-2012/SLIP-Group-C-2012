@@ -36,6 +36,20 @@
 #include "efm32_timer.h"
 #include "efm32_int.h"
 
+// From the abyss;
+/* DMA control block, must be aligned to 256. */
+#if defined (__ICCARM__)
+#pragma data_alignment=256
+DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2];
+#elif defined (__CC_ARM)
+DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2] __attribute__
+((aligned(256)));
+#elif defined (__GNUC__)
+DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2] __attribute__
+((aligned(256)));
+#else
+#error Undefined toolkit, need to define alignment
+#endif 
 
 /*#include "efm32.h"
 #include "efm32_chip.h"
@@ -93,8 +107,8 @@ void setupDma(void)
   
   /* Initializing the DMA */
   dmaInit.hprot        = 0;
-  //dmaInit.controlBlock = dmaControlBlock;
-  dmaInit.controlBlock = 0; // total hack
+  dmaInit.controlBlock = dmaControlBlock;
+  //dmaInit.controlBlock = 0; // total hack
   
   DMA_Init(&dmaInit);
 
