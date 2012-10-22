@@ -35,21 +35,7 @@
 #include "efm32_prs.h"
 #include "efm32_timer.h"
 #include "efm32_int.h"
-
-// From the abyss;
-/* DMA control block, must be aligned to 256. */
-/*#if defined (__ICCARM__)
-#pragma data_alignment=256
-DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2];
-#elif defined (__CC_ARM)
-DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2] __attribute__
-((aligned(256)));
-#elif defined (__GNUC__)
-DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2] __attribute__
-((aligned(256)));
-#else
-#error Undefined toolkit, need to define alignment
-#endif*/
+#include "dmactrl.h"
 
 /*#include "efm32.h"
 #include "efm32_chip.h"
@@ -81,6 +67,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 {
   /* Clearing flag to indicate that transfer is complete */
   transferActive = false;  
+  printf("transfer complete!\n");
 }
 
 
@@ -147,13 +134,13 @@ int main(void)
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
 
-  printf("FLASHDATA_SIZE: %d\n", FLASHDATA_SIZE);
+  //printf("FLASHDATA_SIZE: %d\n", FLASHDATA_SIZE);
   
 
   printf("ramBufferFlashData: ");
   int i;
   for (i = 0; i < FLASHDATA_SIZE; i++)
-    printf("%d ", ramBufferFlashData);
+    printf("%u ", ramBufferFlashData[i]);
   printf("\n");
   
   /* Configuring clocks in the Clock Management Unit (CMU) */
@@ -191,7 +178,7 @@ int main(void)
   
   printf("ramBufferFlashData: ");
   for (i = 0; i < FLASHDATA_SIZE; i++)
-    printf("%d ", ramBufferFlashData);
+    printf("%u ", (unsigned int) ramBufferFlashData[i]);
   printf("\n");
   
   INT_Enable();

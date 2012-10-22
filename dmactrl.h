@@ -36,7 +36,9 @@
 #ifndef __DMACTRL_H
 #define __DMACTRL_H
 
-#include "em_dma.h"
+//#include "em_dma.h" // we've included this in our dma file 
+#include "efm32_dma.h"
+
 
 /***************************************************************************//**
  * @addtogroup Drivers

@@ -92,6 +92,7 @@ NRF24.c \
 radio.c \
 syscalls.c \
 config.c \
+dmactrl.c \
 flash_to_ram.c
 #main.c
 #i2cdrv.c \
