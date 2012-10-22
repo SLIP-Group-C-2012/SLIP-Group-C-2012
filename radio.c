@@ -52,7 +52,7 @@ void toStandByII(void)
 
     radio_mode = MODE_SEND;
 
-    printf("TX mode\n");
+    //printf("TX mode\n");
 }
 
 void radio_handleInterrupt(void)
@@ -154,7 +154,7 @@ void radio_loop(void)
 
             NRF_SendCommand(NRF_FLUSH_RX, 0xFF);
 
-        } else printf("Interrupt 0x%x\n", nrf_status);
+        }// else printf("Interrupt 0x%x\n", nrf_status);
 
         NRF_CE_hi;
         RXEN_hi;

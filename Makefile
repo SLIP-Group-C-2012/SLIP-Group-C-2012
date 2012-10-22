@@ -89,6 +89,7 @@ efm32lib/src/efm32_adc.c \
 efm32lib/src/efm32_rtc.c \
 NRF24.c \
 radio.c \
+serial_input.c \
 syscalls.c \
 config.c \
 main.c

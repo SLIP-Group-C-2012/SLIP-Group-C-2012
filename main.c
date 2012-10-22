@@ -1,30 +1,3 @@
-/**************************************************************************//**
- * @file
- * @brief Simple LCD blink demo for EFM32_Gxxx_STK
- * @author Energy Micro AS
- * @version 2.1.2
- ******************************************************************************
- * @section License
- * <b>(C) Copyright 2009 Energy Micro AS, http://www.energymicro.com</b>
- ******************************************************************************
- *
- * This source code is the property of Energy Micro AS. The source and compiled
- * code may only be used on Energy Micro "EFM32" microcontrollers.
- *
- * This copyright notice may not be removed from the source code nor changed.
- *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Energy Micro AS has no
- * obligation to support this Software. Energy Micro AS is providing the
- * Software "AS IS", with no express or implied warranties of any kind,
- * including, but not limited to, any implied warranties of merchantability
- * or fitness for any particular purpose or warranties against infringement
- * of any proprietary rights of a third party.
- *
- * Energy Micro AS will not be liable for any consequential, incidental, or
- * special damages, or any other relief, or for any claim by any third party,
- * arising from your use of this Software.
- *
- *****************************************************************************/
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -33,11 +6,11 @@
 #include "efm32_emu.h"
 #include "efm32_gpio.h"
 #include "efm32_i2c.h"
-#include "efm32_usart.h"
 #include "efm32_rtc.h"
 #include "efm32_cmu.h"
 #include "efm32_adc.h"
 #include "efm32_timer.h"
+#include "serial_input.h"
 
 #include "config.h"
 #include "radio.h"
@@ -86,67 +59,50 @@ int init_config(void)
     NVIC_EnableIRQ(UART1_RX_IRQn);
 }
 
-char test[32];
-int c = 0;
-
-void UART1_RX_IRQHandler(void) // INTERRUPT I NEED FOR UART 1
-{
-    char c = UART1->RXDATA;
-}
-
 /**************************************************************************//**
  * @brief  Main function
  *****************************************************************************/
 
-char input[32];
-
-char echo[32] = "echo";
-
-char * readString()
-{
-    int i = 0;
-
-    while (i < 31)
-    {
-        _read(0, &input[i], 1);
-        if (input[i] == 0 || input[i] == 13 || input[i] == 10) break;
-        i++;
-    }
-
-    input[i] = 0;
-
-    return input;
-}
-
 int main(void)
 {
-    char data[32] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    int v = 0;
-    int p_ti = 0;
+    char data[32] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; // for sending
+    char comp_in[32]; // for receiving from PC
+    int v = 0; // value that I keep
+    volatile unsigned long p_ti = 0; // for counting loop
 
-    init_config();
+    init_config(); // init things for printf, interrupts, etc
 
     printf("I'm %s\n", "transciever");
 
+    // turn on the radio on channel 2, with bandwidth 2MB and using maximum power
     radio_setup(2, BANDW_2MB, POW_MAX);
 
     while(1)
     {
-        volatile int j;
+        p_ti++; // count loop iterations
 
-        data[0] = v;
+        // send a packet occasionally
+        if (p_ti % 500 == 0)
+        {
+            data[0] = v;
+            //printf("%d. Send %d\n", p_ti, v);
+            radio_sendPacket32((uint8_t *) data);
+        }
 
-        printf("%d. Send %d", p_ti, v);
-        radio_sendPacket32((uint8_t *) data);
-
-        p_ti++;
-
+        // demonstrate receiving of a packet
         if (radio_receivePacket32((uint8_t *) data))
         {
             printf("Received %d\n", data[0]);
             v = data[0]+1;
         }
 
+        // demonstrate getting a command from the pc async
+        if (serial_getString((uint8_t *) comp_in))
+        {
+            printf("Computer said '%s'\n", comp_in);
+        }
+
+        // we should have this in our main loop always. It helps radio service itself.
         radio_loop();
     }
 }
