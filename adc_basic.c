@@ -35,7 +35,7 @@
 #include "efm32_prs.h"
 #include "efm32_timer.h"
 #include "efm32_int.h"
-//#include "dmactrl.h"
+#include "dmactrl.h"
 
 #define DMA_CHANNEL_ADC       0
 
@@ -60,8 +60,10 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   /* Stopping ADC by stopping TIMER0 */
    TIMER_Enable(TIMER0, false);
   
+  printf("transfer complete!\n");
+  
   /* Clearing flag to indicate that transfer is complete */
-  transferActive = false;  
+  transferActive = false;
 }
 
 
@@ -91,8 +93,8 @@ void setupDma(void)
   
   /* Initializing the DMA */
   dmaInit.hprot        = 0;
-  //dmaInit.controlBlock = dmaControlBlock;
-  dmaInit.controlBlock = 0;	// don't know what this does >.>
+  dmaInit.controlBlock = dmaControlBlock;
+  //dmaInit.controlBlock = 0;	// don't know what this does >.>
   
   DMA_Init(&dmaInit);
     
@@ -197,6 +199,14 @@ int main(void)
    INT_Disable();
   }
   INT_Enable();
+ 
+  int i;
+  printf("ramBufferAdcData: ");
+  for (i = 0; i < ADCSAMPLES; i++)
+    printf("%u ", (unsigned int) ramBufferAdcData[i]);
+  printf("\n");
+  
+  printf("happy days!\n"); 
  
   /* Cleaning up after DMA transfers */
   DMA_Reset();
