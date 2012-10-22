@@ -175,7 +175,12 @@ int main(void)
   UART1->ROUTE = UART_ROUTE_LOCATION_LOC3 | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
-  printf("happy days!\n");
+  
+  int i;
+  printf("ramBufferAdcData: ");
+  for (i = 0; i < ADCSAMPLES; i++)
+    printf("%u ", (unsigned int) ramBufferAdcData[i]);
+  printf("\n");
   
   /* Configuring clocks in the Clock Management Unit (CMU) */
   setupCmu();
@@ -200,7 +205,6 @@ int main(void)
   }
   INT_Enable();
  
-  int i;
   printf("ramBufferAdcData: ");
   for (i = 0; i < ADCSAMPLES; i++)
     printf("%u ", (unsigned int) ramBufferAdcData[i]);
