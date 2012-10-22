@@ -38,7 +38,7 @@
 
 // From the abyss;
 /* DMA control block, must be aligned to 256. */
-#if defined (__ICCARM__)
+/*#if defined (__ICCARM__)
 #pragma data_alignment=256
 DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2];
 #elif defined (__CC_ARM)
@@ -49,7 +49,7 @@ DMA_DESCRIPTOR_TypeDef dmaControlBlock[DMA_CHAN_COUNT * 2] __attribute__
 ((aligned(256)));
 #else
 #error Undefined toolkit, need to define alignment
-#endif 
+#endif*/
 
 /*#include "efm32.h"
 #include "efm32_chip.h"
