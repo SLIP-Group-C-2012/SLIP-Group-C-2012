@@ -94,7 +94,9 @@ radio.c \
 syscalls.c \
 config.c \
 dmactrl.c \
-adc_ping_pong.c
+audio.c \
+audio_rec.c
+#adc_ping_pong.c
 #flash_to_ram.c
 #main.c
 #i2cdrv.c \
