@@ -46,7 +46,7 @@ GDB     = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-gdb$(QUOTE)
 DEPFLAGS = -MMD -MP -MF $(@:.o=.d)
 
 # Add -Wa,-ahld=$(LST_DIR)/$(@F:.o=.lst) to CFLAGS to produce assembly list files
-CFLAGS += -std=c99 -D$(DEVICE) -mcpu=cortex-m3 -mthumb -ffunction-sections -fno-short-enums -fdata-sections \
+CFLAGS += -std=c99 -D$(DEVICE) -DOPAMP_PRESENT -DOPAMP_COUNT=1 -mcpu=cortex-m3 -mthumb -ffunction-sections -fno-short-enums -fdata-sections \
 -mfix-cortex-m3-ldrd -fomit-frame-pointer -Wall -fwide-exec-charset=UTF-16LE -fshort-wchar $(DEPFLAGS)
 
 ASMFLAGS += -Ttext 0x0
@@ -83,6 +83,7 @@ efm32lib/src/efm32_usart.c \
 efm32lib/src/efm32_i2c.c \
 efm32lib/src/efm32_dma.c \
 efm32lib/src/efm32_timer.c \
+efm32lib/src/efm32_opamp.c \
 efm32lib/src/efm32_int.c \
 efm32lib/src/efm32_emu.c \
 efm32lib/src/efm32_adc.c \
@@ -93,7 +94,7 @@ radio.c \
 syscalls.c \
 config.c \
 dmactrl.c \
-adc_basic.c
+adc_ping_pong.c
 #flash_to_ram.c
 #main.c
 #i2cdrv.c \

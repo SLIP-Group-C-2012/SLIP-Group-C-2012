@@ -1,6 +1,6 @@
 /*****************************************************************************
  * @file
- * @brief DMA Basic ADC transfer example
+ * @brief DMA Ping-Pong ADC transfer example
  * @author Energy Micro AS
  * @version 2.01
  ******************************************************************************
@@ -47,9 +47,31 @@ DMA_CB_TypeDef cb;
 volatile bool transferActive;
 
 /* ADC Transfer Data */
+#define ADC_PINGPONG_TRANSFERS            10
 #define ADCSAMPLES                        20
-volatile uint16_t ramBufferAdcData[ADCSAMPLES];
-#define ADCSAMPLESPERSEC              100000
+volatile uint16_t ramBufferAdcData1[ADCSAMPLES];
+volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
+#define ADCSAMPLESPERSEC              8000
+
+
+
+/**************************************************************************//**
+ * @brief  ADC Interrupt handler
+ *****************************************************************************/
+void ADC0_IRQHandler(void)
+{
+  /* Clear interrupt flag */
+  ADC_IntClear(ADC0, ADC_IFC_SINGLEOF);
+  
+  printf("ADC IRQ\n");
+  
+  while(1){
+    /* ERROR: ADC Result overflow has occured
+     * This indicates that the DMA is not able to keep up with the ADC sample
+     * rate and that a samples has been written to the ADC result registers
+     * before the DMA was able to fetch the previous result */ 
+  }
+}
 
 
 
@@ -58,33 +80,60 @@ volatile uint16_t ramBufferAdcData[ADCSAMPLES];
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-  /* Stopping ADC by stopping TIMER0 */
-   TIMER_Enable(TIMER0, false);
+  static int transfernumber = 0;
+  uint16_t *data;
+  if (primary) data = &ramBufferAdcData1;
+  else data = &ramBufferAdcData2;
   
-  printf("transfer complete!\n");
+  //printf("transfer %d buffer %d [%d %d %d ... %d]\n", transfernumber, primary, data[0], data[1], data[2], data[ADCSAMPLES - 1]);
   
-  /* Clearing flag to indicate that transfer is complete */
-  transferActive = false;
+  /* Keeping track of the number of transfers */
+  transfernumber++;
+  
+  /* Let the transfer be repeated a few times to illustrate re-activation */
+  if (transfernumber < (ADC_PINGPONG_TRANSFERS)) 
+  {
+    /* Re-activate the DMA */
+    DMA_RefreshPingPong(channel,
+                        primary,
+                        false,
+                        NULL,
+                        NULL,
+                        ADCSAMPLES - 1,
+                        false);
+  }
+  
+  else
+  {
+    /* Stopping ADC */
+    ADC_Reset(ADC0);
+       
+    /* Clearing Flag */
+    transferActive = false;
+    
+    printf("transfer complete!\n");
+  } 
 }
 
 
 
 /**************************************************************************//**
- * @brief  Enable clocks
+ * @brief  Enabling clocks
  *****************************************************************************/
 void setupCmu(void)
 {
-  /* Enable clocks */
-  CMU_ClockEnable(cmuClock_DMA, true);  
-  CMU_ClockEnable(cmuClock_ADC0, true);  
   CMU_ClockEnable(cmuClock_TIMER0, true); 
   CMU_ClockEnable(cmuClock_PRS, true); 
+  
+  /* Enabling clocks */
+  CMU_ClockEnable(cmuClock_DMA,  true);  
+  CMU_ClockEnable(cmuClock_ADC0, true);  
 }
 
 
 
 /**************************************************************************//**
- * @brief Configure DMA for ADC RAM Transfer
+ * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
 void setupDma(void)
 {
@@ -95,11 +144,9 @@ void setupDma(void)
   /* Initializing the DMA */
   dmaInit.hprot        = 0;
   dmaInit.controlBlock = dmaControlBlock;
-  //dmaInit.controlBlock = 0;	// don't know what this does >.>
-  
   DMA_Init(&dmaInit);
-    
-  /* Setting up call-back function */  
+  
+  /* Setup call-back function */  
   cb.cbFunc  = transferComplete;
   cb.userPtr = NULL;
 
@@ -117,60 +164,64 @@ void setupDma(void)
   descrCfg.arbRate = dmaArbitrate1;
   descrCfg.hprot   = 0;
   DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg);
-    
-  /* Setting flag to indicate that transfer is in progress
-   * will be cleared by call-back function. */
-  transferActive = true;
+  DMA_CfgDescr(DMA_CHANNEL_ADC, false, &descrCfg);
   
-  /* Starting transfer. Using Basic since every transfer must be initiated
-   * by the ADC. */
-  DMA_ActivateBasic(DMA_CHANNEL_ADC,
-                    true,
-                    false,
-                    (void *)&ramBufferAdcData,
-                    (void *)&(ADC0->SINGLEDATA),
-                    ADCSAMPLES - 1);
+  /* Setting flag to indicate that transfer is in progress
+    will be cleared by call-back function */
+  transferActive = true;
+
+  /* Enabling PingPong Transfer*/  
+  DMA_ActivatePingPong(DMA_CHANNEL_ADC,
+                          false,
+                          (void *)&ramBufferAdcData1,
+                          (void *)&(ADC0->SINGLEDATA),
+                          ADCSAMPLES - 1,
+                          (void *)&ramBufferAdcData2,
+                          (void *)&(ADC0->SINGLEDATA),
+                          ADCSAMPLES - 1);
 }
 
 
-
 /**************************************************************************//**
- * @brief Configure TIMER to trigger ADC through PRS at a set sample rate
+ * @brief Configure ADC to sample Vref/2 repeatedly at 10.5/13 Msamples/s
  *****************************************************************************/
-// Taken from Mike's opamp code
-static void setupADC(void)
+void setupAdc(void)
 {
-    ADC_Init_TypeDef       init       = ADC_INIT_DEFAULT;
-    ADC_InitSingle_TypeDef singleInit = ADC_INITSINGLE_DEFAULT;
-
-    init.timebase = ADC_TimebaseCalc(0);
-    init.prescale = ADC_PrescaleCalc(7000000, 0);
-    ADC_Init(ADC0, &init);
-
-    singleInit.reference = adcRefVDD;
-    singleInit.input     = adcSingleInpCh1;
-    singleInit.rep   = false; 
-    singleInit.prsEnable = true;
-    singleInit.prsSel = adcPRSSELCh0;
- 
-    ADC_InitSingle(ADC0, &singleInit);
-    
-    // -------------------------------------------------------------------------
-    /* Connect PRS channel 0 to TIMER overflow */
-  PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
+  ADC_Init_TypeDef        adcInit       = ADC_INIT_DEFAULT;
+  ADC_InitSingle_TypeDef  adcInitSingle = ADC_INITSINGLE_DEFAULT;
   
+  /* Configure ADC single mode to sample Vref/2 at 10.5 MHz */
+  /* With a 21 MHz clock, this gives the DMA 26 cycles to fetch each result */
+  adcInit.prescale = ADC_PrescaleCalc(8000, 0); /* Prescale to 10.5 MHz */
+  ADC_Init(ADC0, &adcInit);
+  
+  adcInitSingle.input =  adcRefVDD; /* Reference */
+  adcInitSingle.rep   = true;
+  adcInitSingle.prsEnable = true;
+  adcInitSingle.prsSel = adcPRSSELCh0; 
+  ADC_InitSingle(ADC0, &adcInitSingle);
+  
+  /* Enable ADC single overflow interrupt to indicate lost samples */
+  ADC_IntEnable(ADC0, ADC_IEN_SINGLEOF);
+  NVIC_EnableIRQ(ADC0_IRQn);
+  
+  /* Start repetitive ADC single conversions */
+  ADC_Start(ADC0, adcStartSingle);
+  
+  // -------------------------------------------------------------------------
+  /* Connect PRS channel 0 to TIMER overflow */
+  PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
+
   /* Configure TIMER to trigger 100 kHz sampling rate */
   TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
   TIMER_Enable(TIMER0, true);
 }
 
-
-
 /**************************************************************************//**
  * @brief  Main function
- * This exmaple sets up the TIMER to trigger the ADC through PRS at a set
- * interval. The ADC then sets a DMA request and the DMA fetches each sample
- * until the a set number of samples have been received. 
+ * The ADC is set up to sample at full speed with a clock speed of half
+ * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
+ * using ping-pong transfer.
  *****************************************************************************/
 int main(void)
 { 
@@ -178,42 +229,21 @@ int main(void)
   CHIP_Init();
   SystemCoreClockUpdate();
   IO_Init();
-  UART1->ROUTE = UART_ROUTE_LOCATION_LOC3 | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
+  UART1->ROUTE = UART_ROUTE_LOCATION_LOC3
+        | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
+  printf("started\n");
   
-  int i;
-  printf("ramBufferAdcData: ");
-  for (i = 0; i < ADCSAMPLES; i++)
-    printf("%u ", (unsigned int) ramBufferAdcData[i]);
-  printf("\n");
-  
-  /* Configuring clocks in the Clock Management Unit (CMU) */
+  /* Configuring clocks in the Clock Management Unit (CMU) */  CMU_ClockEnable(cmuClock_TIMER0, true); 
+  CMU_ClockEnable(cmuClock_PRS, true); 
   setupCmu();
   
-  /* Configure DMA transfer from ADC to RAM */      
+  /* Configure DMA transfer from ADC to RAM using ping-pong */      
   setupDma();
   
-  /* Configure ADC Sampling and TIMER trigger through PRS. Start TIMER as well */
-  setupADC();
-  
-      // Begin taken from Mike's code
-    /*Define the configuration for OPA1*/
-    OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
-    
-    /*Send the output to ADC*/
-    configuration.outMode = opaOutModeAll;
-    configuration.outPen =  DAC_OPA1MUX_OUTPEN_OUT4;
-
-    /*Enable OPA1*/
-    OPAMP_Enable(DAC0, OPA1, &configuration);
-    // End taken from Mike's code
-    
-              /*Start ADC*/
-        ADC_Start(ADC0, adcStartSingle);
-        
-        /*Wait until the ADC has warmed up*/
-        while (ADC0->STATUS & ADC_STATUS_SINGLEACT);
+  /* Configura ADC Sampling */
+  setupAdc();
   
   /* Wait in EM1 in until DMA is finished and callback is called */
   /* Disable interrupts until flag is checked in case DMA finishes after flag 
@@ -227,20 +257,12 @@ int main(void)
    INT_Enable();
    INT_Disable();
   }
-  
-  printf("enable interrupts...\n");
-  
   INT_Enable();
- 
-  printf("ramBufferAdcData: ");
-  for (i = 0; i < ADCSAMPLES; i++)
-    printf("%u ", (unsigned int) ramBufferAdcData[i] *330/4096);
-  printf("\n");
-  
-  printf("happy days!\n"); 
  
   /* Cleaning up after DMA transfers */
   DMA_Reset();
+  
+  printf("Done\n");
 
   /* Done */
   while (1);
