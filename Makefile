@@ -94,9 +94,8 @@ radio.c \
 syscalls.c \
 config.c \
 dmactrl.c \
-timer.c
-#audio.c
-#audio_rec.c
+audio.c \
+audio_rec.c
 #adc_ping_pong.c
 #flash_to_ram.c
 #main.c

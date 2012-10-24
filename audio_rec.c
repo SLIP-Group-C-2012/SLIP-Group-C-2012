@@ -22,14 +22,12 @@ volatile bool transferActive;
 /* ADC Transfer Data */
 #define ADC_PINGPONG_TRANSFERS            10
 
-
 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 #define ADCSAMPLES                        20
 volatile uint16_t ramBufferAdcData1[ADCSAMPLES];
 volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
 #define ADCSAMPLESPERSEC              8000
 
-uint16_t cyclic_buf[BUFSIZ];
 int p = 0;
 
 /**************************************************************************//**
@@ -57,6 +55,8 @@ void ADC0_IRQHandler(void)
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
+  uint16_t *cyclic_buf = (uint16_t *) user;
+
   static int transfernumber = 0;
   uint16_t *data;
   if (primary) data = &ramBufferAdcData1;
@@ -122,7 +122,7 @@ void setupCmu(void)
 /**************************************************************************//**
  * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
-void setupDma(void)
+void setupDma(uint16_t cyclic_buf)
 {
   DMA_Init_TypeDef        dmaInit;
   DMA_CfgChannel_TypeDef  chnlCfg;
@@ -135,7 +135,7 @@ void setupDma(void)
   
   /* Setup call-back function */  
   cb.cbFunc  = transferComplete;
-  cb.userPtr = NULL;
+  cb.userPtr = cyclic_buf;  // put the cyclic buf here....
 
   /* Setting up channel */
   chnlCfg.highPri   = false;
@@ -210,7 +210,7 @@ void setupAdc(void)
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
-int start_recording(void)
+void start_recording(uint16_t cyclic_buf)
 { 
   /* Initialize chip */
   CHIP_Init();
@@ -222,12 +222,13 @@ int start_recording(void)
   GPIO->P[0].DOUT &= ~(1 << 0);
   printf("started recording...\n");
   
-  /* Configuring clocks in the Clock Management Unit (CMU) */  CMU_ClockEnable(cmuClock_TIMER0, true); 
+  /* Configuring clocks in the Clock Management Unit (CMU) */
+  CMU_ClockEnable(cmuClock_TIMER0, true); 
   CMU_ClockEnable(cmuClock_PRS, true); 
   setupCmu();
   
   /* Configure DMA transfer from ADC to RAM using ping-pong */      
-  setupDma();
+  setupDma(cyclic_buf);
   
   /* Configura ADC Sampling */
   setupAdc();
@@ -250,13 +251,4 @@ int start_recording(void)
   DMA_Reset();
   
   printf("finished recording!\n");
-  
-  printf("cyclic_buf: ");
-  int i;
-  for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
-    printf("%d ", cyclic_buf[i]);
-  }
-  printf("\n");
-  
-  return 0;
 }

@@ -29,10 +29,18 @@ volatile uint16_t ramBufferAdcData1[ADCSAMPLES];
 volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
 #define ADCSAMPLESPERSEC              8000
 
-uint16_t cyclic_buf[BUFSIZ];
-
 int main(void)
 {
-  start_recording();
+  uint16_t cyclic_buf[BUFSIZ];
+  
+  start_recording(cyclic_buf);
+  
+  printf("cyclic_buf: ");
+  int i;
+  for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
+    printf("%d ", cyclic_buf[i]);
+  }
+  printf("\n");
+  
   return 0;
 }
