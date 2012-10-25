@@ -55,15 +55,14 @@ void ADC0_IRQHandler(void)
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
   uint8_t *cyclic_buf = (uint8_t *) user;
+  static int p = 2 * ADCSAMPLES;
 
   static int transfernumber = 0;
   
   /* Keeping track of the number of transfers */
   transfernumber++;
   
-  p += ADCSAMPLES;
-  
-  if (transfernumber * ADCSAMPLES >= BUFSIZ * 10)
+  if (p >= BUFSIZ * 10)
     p = 0;  // move back to the beginning of the cycle
     
   /* Let the transfer be repeated a few times to illustrate re-activation */
@@ -73,7 +72,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
     DMA_RefreshPingPong(channel,
                         primary,
                         false,
-                        cyclic_buf + p + ADCSAMPLES,
+                        &cyclic_buf[p],
                         NULL,
                         ADCSAMPLES - 1,
                         false);
@@ -88,7 +87,9 @@ void transferComplete(unsigned int channel, bool primary, void *user)
     transferActive = false;
     
     printf("transfer complete!\n");
-  } 
+  }
+  
+  p += ADCSAMPLES;
 }
 
 
