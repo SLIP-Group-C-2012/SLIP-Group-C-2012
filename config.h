@@ -28,6 +28,9 @@
 #endif // RESP_DEVICE
 
 #define RGB_PWM_TIMER_TOP 1024
+#define TIMER_RESEND_TOP (27342*2) //2 seconds
+//#define TIMER_RESEND_TOP 411480 //30 seconds
+
 
 void LETIMER_Setup(void);
 
@@ -36,5 +39,6 @@ void uart_init(USART_TypeDef *uart);
 void IO_Init(void);
 
 void InitRGBLEDPWM(void);
+void InitTimoutTimer(void);
 
 #endif // __CONFIG_H

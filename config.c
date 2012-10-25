@@ -28,6 +28,40 @@ void uart_init(USART_TypeDef *uart)
     uart->CMD = UART_CMD_TXEN | UART_CMD_RXEN;
     uart->IEN = UART_IEN_RXDATAV;
 }
+
+void InitTimoutTimer(void){
+	  CMU_ClockEnable(cmuClock_TIMER1, true);
+
+	  TIMER_Init_TypeDef timerInit =
+	   {
+	     .enable     = true,
+	     .debugRun   = true,
+	     .prescale   = timerPrescale1024,
+	     //.prescale   = timerPrescale1024,
+	     .clkSel     = timerClkSelHFPerClk,
+	     .fallAction = timerInputActionNone,
+	     .riseAction = timerInputActionNone,
+	     .mode       = timerModeUp,
+	     .dmaClrAct  = false,
+	     .quadModeX4 = false,
+	     .oneShot    = false,
+	     .sync       = false,
+	   };
+
+	  /* Enable overflow interrupt */
+	  TIMER_IntEnable(TIMER1, TIMER_IF_OF);
+
+	  /* Enable TIMER0 interrupt vector in NVIC */
+	  NVIC_EnableIRQ(TIMER1_IRQn);
+
+	  /* Set TIMER Top value */
+	  TIMER_TopSet(TIMER1, TIMER_RESEND_TOP);
+
+	  /* Configure TIMER */
+	  TIMER_Init(TIMER1, &timerInit);
+
+}
+
 void InitRGBLEDPWM(void)
 {
   CMU_ClockEnable(cmuClock_TIMER0, true);
@@ -81,7 +115,6 @@ void InitRGBLEDPWM(void)
 
   ///* Enable overflow interrupt */
   TIMER_IntEnable(TIMER0, TIMER_IF_OF);
-
 
   TIMER_IntClear(TIMER0, TIMER_IF_OF);
   /* Enable TIMER0 interrupt vector in NVIC */
