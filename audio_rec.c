@@ -25,8 +25,6 @@ volatile bool transferActive;
 
 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 #define ADCSAMPLES                        20
-volatile uint8_t ramBufferAdcData1[ADCSAMPLES];
-volatile uint8_t ramBufferAdcData2[ADCSAMPLES];
 #define ADCSAMPLESPERSEC              8000
 
 int p = 0;
@@ -59,25 +57,15 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   uint8_t *cyclic_buf = (uint8_t *) user;
 
   static int transfernumber = 0;
-  uint8_t *data;
-  if (primary) data = &ramBufferAdcData1;
-  else data = &ramBufferAdcData2;
-  
-  // let's try transferring the contents of 'data' to a cyclic buffer
-  int i;
-  for (i = 0; i < ADCSAMPLES; i++)
-    cyclic_buf[p + i] = data[i];
-  
-  //printf("transfer %d buffer %d [%d %d %d ... %d]\n", transfernumber, primary, data[0], data[1], data[2], data[ADCSAMPLES - 1]);
   
   /* Keeping track of the number of transfers */
   transfernumber++;
   
-  if (transfernumber * ADCSAMPLES > BUFSIZ * 10)
-    p = 0;  // move back to the beginning of the cycle
-    
   p += ADCSAMPLES;
   
+  if (transfernumber * ADCSAMPLES >= BUFSIZ * 10)
+    p = 0;  // move back to the beginning of the cycle
+    
   /* Let the transfer be repeated a few times to illustrate re-activation */
   if (transfernumber < (ADC_PINGPONG_TRANSFERS)) 
   {
@@ -85,7 +73,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
     DMA_RefreshPingPong(channel,
                         primary,
                         false,
-                        NULL,
+                        cyclic_buf + p + ADCSAMPLES,
                         NULL,
                         ADCSAMPLES - 1,
                         false);
@@ -165,10 +153,10 @@ void setupDma(uint8_t *cyclic_buf)
   /* Enabling PingPong Transfer*/  
   DMA_ActivatePingPong(DMA_CHANNEL_ADC,
                           false,
-                          (void *)&ramBufferAdcData1,
+                          (void *) cyclic_buf,
                           (void *)&(ADC0->SINGLEDATA),
                           ADCSAMPLES - 1,
-                          (void *)&ramBufferAdcData2,
+                          (void *)&cyclic_buf[ADCSAMPLES],
                           (void *)&(ADC0->SINGLEDATA),
                           ADCSAMPLES - 1);
 }
