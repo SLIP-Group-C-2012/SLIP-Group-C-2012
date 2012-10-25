@@ -31,7 +31,7 @@ volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
 
 int main(void)
 {
-  uint16_t cyclic_buf[BUFSIZ];
+  uint8_t cyclic_buf[BUFSIZ * 10];
   
   int i;
   for (i = 0; i < BUFSIZ; i++)
@@ -40,8 +40,9 @@ int main(void)
   start_recording(cyclic_buf);
   
   printf("scaled cyclic_buf: ");
-  for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
-    printf("(%d, %d) ", i, cyclic_buf[i] *330/4096);
+  //for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
+  for (i = 0; i < BUFSIZ * 10; i++) {
+    printf("%d ", cyclic_buf[i]);
   }
   printf("\n");
   

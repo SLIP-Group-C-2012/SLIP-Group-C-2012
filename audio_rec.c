@@ -20,12 +20,13 @@ DMA_CB_TypeDef cb;
 volatile bool transferActive;
 
 /* ADC Transfer Data */
-#define ADC_PINGPONG_TRANSFERS            10
+//#define ADC_PINGPONG_TRANSFERS            10
+#define ADC_PINGPONG_TRANSFERS            8000	// for 10 seconds of samples at 8000hz sample rate
 
 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 #define ADCSAMPLES                        20
-volatile uint16_t ramBufferAdcData1[ADCSAMPLES];
-volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
+volatile uint8_t ramBufferAdcData1[ADCSAMPLES];
+volatile uint8_t ramBufferAdcData2[ADCSAMPLES];
 #define ADCSAMPLESPERSEC              8000
 
 int p = 0;
@@ -55,10 +56,10 @@ void ADC0_IRQHandler(void)
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-  uint16_t *cyclic_buf = (uint16_t *) user;
+  uint8_t *cyclic_buf = (uint8_t *) user;
 
   static int transfernumber = 0;
-  uint16_t *data;
+  uint8_t *data;
   if (primary) data = &ramBufferAdcData1;
   else data = &ramBufferAdcData2;
   
@@ -72,7 +73,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   /* Keeping track of the number of transfers */
   transfernumber++;
   
-  if (transfernumber * ADCSAMPLES > BUFSIZ)
+  if (transfernumber * ADCSAMPLES > BUFSIZ * 10)
     p = 0;  // move back to the beginning of the cycle
     
   p += ADCSAMPLES;
@@ -114,7 +115,10 @@ void setupCmu(void)
   
   /* Enabling clocks */
   CMU_ClockEnable(cmuClock_DMA,  true);  
-  CMU_ClockEnable(cmuClock_ADC0, true);  
+  CMU_ClockEnable(cmuClock_ADC0, true);
+  
+  // Try enabling DAC (experimental)
+  CMU_ClockEnable(cmuClock_DAC0, true);
 }
 
 
@@ -122,7 +126,7 @@ void setupCmu(void)
 /**************************************************************************//**
  * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
-void setupDma(uint16_t *cyclic_buf)
+void setupDma(uint8_t *cyclic_buf)
 {
   DMA_Init_TypeDef        dmaInit;
   DMA_CfgChannel_TypeDef  chnlCfg;
@@ -131,6 +135,7 @@ void setupDma(uint16_t *cyclic_buf)
   /* Initializing the DMA */
   dmaInit.hprot        = 0;
   dmaInit.controlBlock = dmaControlBlock;
+  
   DMA_Init(&dmaInit);
   
   /* Setup call-back function */  
@@ -145,9 +150,9 @@ void setupDma(uint16_t *cyclic_buf)
   DMA_CfgChannel(DMA_CHANNEL_ADC, &chnlCfg);
 
   /* Setting up channel descriptor */
-  descrCfg.dstInc  = dmaDataInc2;
+  descrCfg.dstInc  = dmaDataInc1;	// tell dma to increment by a byte
   descrCfg.srcInc  = dmaDataIncNone;
-  descrCfg.size    = dmaDataSize2;
+  descrCfg.size    = dmaDataSize1;	// tell dma to read just one byte
   descrCfg.arbRate = dmaArbitrate1;
   descrCfg.hprot   = 0;
   DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg);
@@ -179,13 +184,16 @@ void setupAdc(void)
   
   /* Configure ADC single mode to sample Vref/2 at 10.5 MHz */
   /* With a 21 MHz clock, this gives the DMA 26 cycles to fetch each result */
-  adcInit.prescale = ADC_PrescaleCalc(8000, 0); /* Prescale to 10.5 MHz */
+  adcInit.prescale = ADC_PrescaleCalc(8000, 0); /* Prescale to 8000 Hz */
   ADC_Init(ADC0, &adcInit);
   
-  adcInitSingle.input =  adcRefVDD; /* Reference */
+  adcInitSingle.reference =  adcRefVDD; /* Reference */
+  adcInitSingle.input = adcSingleInpCh1;
   adcInitSingle.rep   = true;
+  adcInitSingle.resolution = adcRes8Bit;
   adcInitSingle.prsEnable = true;
   adcInitSingle.prsSel = adcPRSSELCh0; 
+  
   ADC_InitSingle(ADC0, &adcInitSingle);
   
   /* Enable ADC single overflow interrupt to indicate lost samples */
@@ -204,13 +212,26 @@ void setupAdc(void)
   TIMER_Enable(TIMER0, true);
 }
 
+void setupOpAmp(void)
+{
+    /*Define the configuration for OPA1*/
+    OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
+    
+    /*Send the output to ADC*/
+    configuration.outMode = opaOutModeAll;
+    configuration.outPen =  DAC_OPA1MUX_OUTPEN_OUT4;
+
+    /*Enable OPA1*/
+    OPAMP_Enable(DAC0, OPA1, &configuration);
+}
+
 /**************************************************************************//**
  * @brief  Main function
  * The ADC is set up to sample at full speed with a clock speed of half
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
-void start_recording(uint16_t *cyclic_buf)
+void start_recording(uint8_t *cyclic_buf)
 { 
   /* Initialize chip */
   CHIP_Init();
@@ -223,12 +244,12 @@ void start_recording(uint16_t *cyclic_buf)
   printf("started recording...\n");
   
   /* Configuring clocks in the Clock Management Unit (CMU) */
-  CMU_ClockEnable(cmuClock_TIMER0, true); 
-  CMU_ClockEnable(cmuClock_PRS, true); 
   setupCmu();
   
   /* Configure DMA transfer from ADC to RAM using ping-pong */      
   setupDma(cyclic_buf);
+  
+  setupOpAmp();
   
   /* Configura ADC Sampling */
   setupAdc();
@@ -250,12 +271,12 @@ void start_recording(uint16_t *cyclic_buf)
   /* Cleaning up after DMA transfers */
   DMA_Reset();
   
-  printf("cyclic_buf: ");
+  /*printf("cyclic_buf: ");
   int i;
   for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
     printf("(%d, %d) ", i, cyclic_buf[i]);
   }
-  printf("\n");
+  printf("\n");*/
   
   printf("finished recording!\n");
 }
