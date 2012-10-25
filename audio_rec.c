@@ -122,7 +122,7 @@ void setupCmu(void)
 /**************************************************************************//**
  * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
-void setupDma(uint16_t cyclic_buf)
+void setupDma(uint16_t *cyclic_buf)
 {
   DMA_Init_TypeDef        dmaInit;
   DMA_CfgChannel_TypeDef  chnlCfg;
@@ -210,7 +210,7 @@ void setupAdc(void)
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
-void start_recording(uint16_t cyclic_buf)
+void start_recording(uint16_t *cyclic_buf)
 { 
   /* Initialize chip */
   CHIP_Init();
@@ -249,6 +249,13 @@ void start_recording(uint16_t cyclic_buf)
  
   /* Cleaning up after DMA transfers */
   DMA_Reset();
+  
+  printf("cyclic_buf: ");
+  int i;
+  for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
+    printf("(%d, %d) ", i, cyclic_buf[i]);
+  }
+  printf("\n");
   
   printf("finished recording!\n");
 }

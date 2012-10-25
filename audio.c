@@ -33,12 +33,15 @@ int main(void)
 {
   uint16_t cyclic_buf[BUFSIZ];
   
+  int i;
+  for (i = 0; i < BUFSIZ; i++)
+  	cyclic_buf[i] = 0;
+  
   start_recording(cyclic_buf);
   
-  printf("cyclic_buf: ");
-  int i;
+  printf("scaled cyclic_buf: ");
   for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
-    printf("%d ", cyclic_buf[i]);
+    printf("(%d, %d) ", i, cyclic_buf[i] *330/4096);
   }
   printf("\n");
   
