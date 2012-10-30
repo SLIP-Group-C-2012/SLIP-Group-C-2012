@@ -33,7 +33,7 @@ volatile bool transferActive;
 #define ADCSAMPLES                        20
 #define ADCSAMPLESPERSEC              8000
 
-int p = 0;
+//int p = 0;
 
 /**************************************************************************//**
  * @brief  ADC Interrupt handler
@@ -71,12 +71,11 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   /* Keeping track of the number of transfers */
   transfernumber++;
   
-  if (p >= BUFSIZ * 10)
+  if (p >= dma->pcm_bufsize)
     p = 0;  // move back to the beginning of the cycle
     
   /* Let the transfer be repeated a few times to illustrate re-activation */
-  if (transfernumber < (ADC_PINGPONG_TRANSFERS)) 
-  {
+  if (transfernumber < (dma->numof_pingpong_transfers)) {
     /* Re-activate the DMA */
     DMA_RefreshPingPong(channel,
                         primary,
@@ -86,9 +85,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
                         ADCSAMPLES - 1,
                         false);
   }
-  
-  else
-  {
+  else {
     /* Stopping ADC */
     ADC_Reset(ADC0);
        
@@ -252,7 +249,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   Dma dma;
   dma.pcm_buf = pcm_buf;
   dma.pcm_bufsize = pcm_bufsize;
-  dma.numof_pingpong_transfers = numof_secs * ADCSAMPLESPERSEC;
+  dma.numof_pingpong_transfers = (ADCSAMPLESPERSEC / ADCSAMPLES) * numof_secs;
   
   printf("BUFSIZ: %d\n", BUFSIZ);
   printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
