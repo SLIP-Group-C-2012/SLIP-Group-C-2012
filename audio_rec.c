@@ -203,14 +203,12 @@ void setupAdc(void)
 
 void setupOpAmp(void)
 {
-    /*Define the configuration for OPA1*/
     OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
     
-    /*Send the output to ADC*/
+    // Send the output to ADC
     configuration.outMode = opaOutModeAll;
     configuration.outPen =  DAC_OPA1MUX_OUTPEN_OUT4;
 
-    /*Enable OPA1*/
     OPAMP_Enable(DAC0, OPA1, &configuration);
 }
 
@@ -220,7 +218,7 @@ void setupOpAmp(void)
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
-void start_recording(uint8_t *cyclic_buf)
+void record(uint8_t *pcm_buf, unsigned int numof_secs)
 { 
   /* Initialize chip */
   CHIP_Init();
@@ -230,17 +228,15 @@ void start_recording(uint8_t *cyclic_buf)
         | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
+  
   printf("started recording...\n");
   
-  /* Configuring clocks in the Clock Management Unit (CMU) */
-  setupCmu();
+  setupCmu();	// configure clocks in Clock Management Unit
   
-  /* Configure DMA transfer from ADC to RAM using ping-pong */      
-  setupDma(cyclic_buf);
+  setupDma(pcm_buf);	// configure dma to transfer from ADC to RAM using ping-pong
   
   setupOpAmp();
   
-  /* Configura ADC Sampling */
   setupAdc();
   
   /* Wait in EM1 in until DMA is finished and callback is called */
@@ -257,8 +253,7 @@ void start_recording(uint8_t *cyclic_buf)
   }
   INT_Enable();
  
-  /* Cleaning up after DMA transfers */
-  DMA_Reset();
+  DMA_Reset();	// clean up after DMA transfers
   
   /*printf("cyclic_buf: ");
   int i;

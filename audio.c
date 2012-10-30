@@ -37,7 +37,7 @@ int main(void)
   for (i = 0; i < BUFSIZ; i++)
   	cyclic_buf[i] = 0;
   
-  start_recording(cyclic_buf);
+  record(cyclic_buf);
   
   printf("scaled cyclic_buf: ");
   //for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
