@@ -13,6 +13,12 @@
 
 #define DMA_CHANNEL_ADC       0
 
+typedef struct {
+	uint8_t *pcm_buf;
+	unsigned int pcm_bufsize;
+	unsigned int numof_pingpong_transfers;
+} Dma;
+
 /* DMA callback structure */
 DMA_CB_TypeDef cb;
 
@@ -54,7 +60,10 @@ void ADC0_IRQHandler(void)
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-  uint8_t *cyclic_buf = (uint8_t *) user;
+  Dma *dma = (Dma *) user;
+
+  uint8_t *cyclic_buf = dma->pcm_buf;
+
   static int p = 2 * ADCSAMPLES;
 
   static int transfernumber = 0;
@@ -115,7 +124,7 @@ void setupCmu(void)
 /**************************************************************************//**
  * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
-void setupDma(uint8_t *cyclic_buf)
+void setupDma(Dma *dma)
 {
   DMA_Init_TypeDef        dmaInit;
   DMA_CfgChannel_TypeDef  chnlCfg;
@@ -129,7 +138,7 @@ void setupDma(uint8_t *cyclic_buf)
   
   /* Setup call-back function */  
   cb.cbFunc  = transferComplete;
-  cb.userPtr = cyclic_buf;  // put the cyclic buf here....
+  cb.userPtr = dma;
 
   /* Setting up channel */
   chnlCfg.highPri   = false;
@@ -144,12 +153,16 @@ void setupDma(uint8_t *cyclic_buf)
   descrCfg.size    = dmaDataSize1;	// tell dma to read just one byte
   descrCfg.arbRate = dmaArbitrate1;
   descrCfg.hprot   = 0;
+  
+  // TODO: what on earth is happening here?
   DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg);
   DMA_CfgDescr(DMA_CHANNEL_ADC, false, &descrCfg);
   
   /* Setting flag to indicate that transfer is in progress
     will be cleared by call-back function */
   transferActive = true;
+
+  uint8_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 
   /* Enabling PingPong Transfer*/  
   DMA_ActivatePingPong(DMA_CHANNEL_ADC,
@@ -218,7 +231,7 @@ void setupOpAmp(void)
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
-void record(uint8_t *pcm_buf, unsigned int numof_secs)
+void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 { 
   /* Initialize chip */
   CHIP_Init();
@@ -233,7 +246,12 @@ void record(uint8_t *pcm_buf, unsigned int numof_secs)
   
   setupCmu();	// configure clocks in Clock Management Unit
   
-  setupDma(pcm_buf);	// configure dma to transfer from ADC to RAM using ping-pong
+  Dma dma;
+  dma.pcm_buf = pcm_buf;
+  dma.pcm_bufsize = pcm_bufsize;
+  dma.numof_pingpong_transfers = numof_secs * ADCSAMPLESPERSEC;
+  
+  setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
   
   setupOpAmp();
   
