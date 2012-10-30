@@ -89,6 +89,7 @@ efm32lib/src/efm32_emu.c \
 efm32lib/src/efm32_adc.c \
 efm32lib/src/efm32_rtc.c \
 efm32lib/src/efm32_prs.c \
+i2cdrv.c \
 NRF24.c \
 radio.c \
 syscalls.c \
