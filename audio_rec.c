@@ -154,9 +154,9 @@ void setupDma(Dma *dma)
   descrCfg.arbRate = dmaArbitrate1;
   descrCfg.hprot   = 0;
   
-  // TODO: what on earth is happening here?
-  DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg);
-  DMA_CfgDescr(DMA_CHANNEL_ADC, false, &descrCfg);
+  
+  DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg); // configure primary descriptor 
+  DMA_CfgDescr(DMA_CHANNEL_ADC, false, &descrCfg);  // configure alternate descriptor
   
   /* Setting flag to indicate that transfer is in progress
     will be cleared by call-back function */
@@ -209,7 +209,10 @@ void setupAdc(void)
   /* Connect PRS channel 0 to TIMER overflow */
   PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
 
-  /* Configure TIMER to trigger 100 kHz sampling rate */
+  /* Configure TIMER to trigger 100 kHz sampling rate */  // but we don't want 100Khz?
+  
+  printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+  
   TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
   TIMER_Enable(TIMER0, true);
 }
@@ -250,6 +253,10 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   dma.pcm_buf = pcm_buf;
   dma.pcm_bufsize = pcm_bufsize;
   dma.numof_pingpong_transfers = numof_secs * ADCSAMPLESPERSEC;
+  
+  printf("BUFSIZ: %d\n", BUFSIZ);
+  printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
+  printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
   
   setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
   

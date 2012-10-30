@@ -1,47 +1,17 @@
-#include <stdbool.h>
-#include "efm32.h"
-#include "efm32_chip.h"
-#include "efm32_dma.h"
-#include "efm32_cmu.h"
-#include "efm32_emu.h"
-#include "efm32_adc.h"
-#include "efm32_prs.h"
-#include "efm32_opamp.h"
-#include "efm32_timer.h"
-#include "efm32_int.h"
-#include "dmactrl.h"
+#include <stdio.h>
+#include "audio_rec.h"
 
-#define DMA_CHANNEL_ADC       0
-
-/* DMA callback structure */
-DMA_CB_TypeDef cb;
-
-/* Transfer Flag */
-volatile bool transferActive;
-
-/* ADC Transfer Data */
-#define ADC_PINGPONG_TRANSFERS            10
-
-
-// TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
-#define ADCSAMPLES                        20
-volatile uint16_t ramBufferAdcData1[ADCSAMPLES];
-volatile uint16_t ramBufferAdcData2[ADCSAMPLES];
-#define ADCSAMPLESPERSEC              8000
+#define record_time_in_s 10
 
 int main(void)
 {
-  uint8_t cyclic_buf[BUFSIZ * 10];
+  uint8_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
   
+  record(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
+  
+  printf("pcm_buf: ");
   int i;
-  for (i = 0; i < BUFSIZ; i++)
-  	cyclic_buf[i] = 0;
-  
-  record(cyclic_buf);
-  
-  printf("scaled cyclic_buf: ");
-  //for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
-  for (i = 0; i < BUFSIZ * 10; i++) {
+  for (i = 0; i < SAMPLES_PER_SECOND * record_time_in_s; i++) {
     printf("%d ", cyclic_buf[i]);
   }
   printf("\n");
