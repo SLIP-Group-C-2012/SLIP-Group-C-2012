@@ -11,7 +11,7 @@
 #include "efm32_int.h"
 #include "dmactrl.h"
 
-#define DMA_CHANNEL_ADC       0
+#define DMA_CHANNEL_ADC 0
 
 typedef struct {
 	uint8_t *pcm_buf;
@@ -25,16 +25,8 @@ DMA_CB_TypeDef cb;
 /* Transfer Flag */
 volatile bool transferActive;
 
-/* ADC Transfer Data */
-//#define ADC_PINGPONG_TRANSFERS            10
-#define ADC_PINGPONG_TRANSFERS            8000	// for 10 seconds of samples at 8000hz sample rate
-
-// TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
-#define ADCSAMPLES                        20
-#define ADCSAMPLESPERSEC              8000
-//#define ADCSAMPLESPERSEC              100000
-
-//int p = 0;
+#define SAMPLE_RATE 8000  // 8000 hz sample rate
+#define ADCSAMPLES 20 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 
 /**************************************************************************//**
  * @brief  ADC Interrupt handler
@@ -114,7 +106,7 @@ void setupCmu(void)
   CMU_ClockEnable(cmuClock_ADC0, true);
   
   // Try enabling DAC (experimental)
-  //CMU_ClockEnable(cmuClock_DAC0, true);
+  CMU_ClockEnable(cmuClock_DAC0, true);
 }
 
 
@@ -179,16 +171,12 @@ void setupDma(Dma *dma)
  *****************************************************************************/
 void setupAdc(void)
 {
-  // -------------------------------------------------------------------------
-  /* Connect PRS channel 0 to TIMER overflow */
+  // Connect PRS channel 0 to TIMER overflow
   PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
 
-  /* Configure TIMER to trigger 100 kHz sampling rate */  // but we don't want 100Khz?
-  
   printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
   
-  //TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
-    /* Select TIMER0 parameters */  
+  // Select TIMER0 parameters
   TIMER_Init_TypeDef timerInit =
   {
     .enable     = true, 
@@ -204,29 +192,39 @@ void setupAdc(void)
     .sync       = false, 
   };
   
-  TIMER_TopSet(TIMER0, 1750);	// the magic number...
-  //TIMER_TopSet(TIMER0, 20);
+  /* For an 8000 Hz sample rate we need 8000 overflows per second
+   * with a 14Mhz clock we can get 8000 overflows per second by setting the
+   * 'top' value to 1750
+   *
+   * clock_frequency / sample rate = 1750
+   * 
+   * Or...
+   *
+   * f = 1/t, f - frequency, t - time period
+   * 
+   * t = 1 / 14 * 10^6
+   * (1 / 14 * 10^6) * 1750 = 1 / 8000 seconds
+   *
+   * So there will be 8000 overflows per second.
+   */
+  TIMER_TopSet(TIMER0, 1750);
   TIMER_Enable(TIMER0, true);
 
   ADC_Init_TypeDef        adcInit       = ADC_INIT_DEFAULT;
   ADC_InitSingle_TypeDef  adcInitSingle = ADC_INITSINGLE_DEFAULT;
   
-  /* Configure ADC single mode to sample Vref/2 at 10.5 MHz */
-  /* With a 21 MHz clock, this gives the DMA 26 cycles to fetch each result */
-  
-  adcInit.prescale = ADC_PrescaleCalc(8000, 0); /* Prescale to 8000 Hz */
-  //adcInit.prescale = ADC_PrescaleCalc(10500000, 0); /* Prescale to 10.5 MHz */
-  //adcInit.prescale = ADC_PrescaleCalc(7000000, 0); /* Set highest allowed prescaler */
+  /* The ADC clock does not directly control the sample rate,
+   * the sample rate is controlled by the frequency of the PRS signal
+   * the PRS signal triggers and ADC conversion which then triggers a DMA transfer
+   */
+  adcInit.prescale = ADC_PrescaleCalc(7000000, 0); // Set highest allowed prescaler (may as well)
   
   ADC_Init(ADC0, &adcInit);
   
-  adcInitSingle.reference =  adcRefVDD; /* Reference */
+  adcInitSingle.reference =  adcRefVDD;
   adcInitSingle.input = adcSingleInpCh1;
   
-  
-  //adcInitSingle.rep   = true;
-  // do we need rep on?
-  
+  //adcInitSingle.rep   = true; // do we need rep on?
   
   adcInitSingle.resolution = adcRes8Bit;
   adcInitSingle.prsEnable = true;
@@ -245,13 +243,13 @@ void setupAdc(void)
 
 void setupOpAmp(void)
 {
-    OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
+  OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
     
-    // Send the output to ADC
-    configuration.outMode = opaOutModeAll;
-    configuration.outPen =  DAC_OPA1MUX_OUTPEN_OUT4;
+  // Send the output to ADC
+  configuration.outMode = opaOutModeAll;
+  configuration.outPen =  DAC_OPA1MUX_OUTPEN_OUT4;
 
-    OPAMP_Enable(DAC0, OPA1, &configuration);
+  OPAMP_Enable(DAC0, OPA1, &configuration);
 }
 
 /**************************************************************************//**
@@ -278,7 +276,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   Dma dma;
   dma.pcm_buf = pcm_buf;
   dma.pcm_bufsize = pcm_bufsize;
-  dma.numof_pingpong_transfers = (ADCSAMPLESPERSEC / ADCSAMPLES) * numof_secs;
+  dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
   
   printf("BUFSIZ: %d\n", BUFSIZ);
   printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
@@ -305,13 +303,6 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   INT_Enable();
  
   DMA_Reset();	// clean up after DMA transfers
-  
-  /*printf("cyclic_buf: ");
-  int i;
-  for (i = 0; i < ADC_PINGPONG_TRANSFERS * ADCSAMPLES; i++) {
-    printf("(%d, %d) ", i, cyclic_buf[i]);
-  }
-  printf("\n");*/
   
   printf("finished recording!\n");
 }
