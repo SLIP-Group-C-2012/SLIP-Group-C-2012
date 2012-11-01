@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "audio_rec.h"
 
-#define record_time_in_s 10
+#define record_time_in_s 5
 
 int main(void)
 {
@@ -12,7 +12,7 @@ int main(void)
   printf("pcm_buf: ");
   int i;
   for (i = 0; i < SAMPLES_PER_SECOND * record_time_in_s; i++) {
-    printf("%d ", cyclic_buf[i]);
+    printf("%d, ", cyclic_buf[i]);
   }
   printf("\n");
   

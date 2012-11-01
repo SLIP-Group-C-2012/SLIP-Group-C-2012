@@ -32,6 +32,7 @@ volatile bool transferActive;
 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 #define ADCSAMPLES                        20
 #define ADCSAMPLESPERSEC              8000
+//#define ADCSAMPLESPERSEC              100000
 
 //int p = 0;
 
@@ -43,7 +44,7 @@ void ADC0_IRQHandler(void)
   /* Clear interrupt flag */
   ADC_IntClear(ADC0, ADC_IFC_SINGLEOF);
   
-  printf("ADC IRQ\n");
+  printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
   
   while(1){
     /* ERROR: ADC Result overflow has occured
@@ -113,7 +114,7 @@ void setupCmu(void)
   CMU_ClockEnable(cmuClock_ADC0, true);
   
   // Try enabling DAC (experimental)
-  CMU_ClockEnable(cmuClock_DAC0, true);
+  //CMU_ClockEnable(cmuClock_DAC0, true);
 }
 
 
@@ -178,17 +179,55 @@ void setupDma(Dma *dma)
  *****************************************************************************/
 void setupAdc(void)
 {
+  // -------------------------------------------------------------------------
+  /* Connect PRS channel 0 to TIMER overflow */
+  PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
+
+  /* Configure TIMER to trigger 100 kHz sampling rate */  // but we don't want 100Khz?
+  
+  printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+  
+  //TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
+    /* Select TIMER0 parameters */  
+  TIMER_Init_TypeDef timerInit =
+  {
+    .enable     = true, 
+    .debugRun   = true, 
+    .prescale   = timerPrescale1, 
+    .clkSel     = timerClkSelHFPerClk, 
+    .fallAction = timerInputActionNone, 
+    .riseAction = timerInputActionNone, 
+    .mode       = timerModeUp, 
+    .dmaClrAct  = false,
+    .quadModeX4 = false, 
+    .oneShot    = false, 
+    .sync       = false, 
+  };
+  
+  TIMER_TopSet(TIMER0, 1750);	// the magic number...
+  //TIMER_TopSet(TIMER0, 20);
+  TIMER_Enable(TIMER0, true);
+
   ADC_Init_TypeDef        adcInit       = ADC_INIT_DEFAULT;
   ADC_InitSingle_TypeDef  adcInitSingle = ADC_INITSINGLE_DEFAULT;
   
   /* Configure ADC single mode to sample Vref/2 at 10.5 MHz */
   /* With a 21 MHz clock, this gives the DMA 26 cycles to fetch each result */
+  
   adcInit.prescale = ADC_PrescaleCalc(8000, 0); /* Prescale to 8000 Hz */
+  //adcInit.prescale = ADC_PrescaleCalc(10500000, 0); /* Prescale to 10.5 MHz */
+  //adcInit.prescale = ADC_PrescaleCalc(7000000, 0); /* Set highest allowed prescaler */
+  
   ADC_Init(ADC0, &adcInit);
   
   adcInitSingle.reference =  adcRefVDD; /* Reference */
   adcInitSingle.input = adcSingleInpCh1;
-  adcInitSingle.rep   = true;
+  
+  
+  //adcInitSingle.rep   = true;
+  // do we need rep on?
+  
+  
   adcInitSingle.resolution = adcRes8Bit;
   adcInitSingle.prsEnable = true;
   adcInitSingle.prsSel = adcPRSSELCh0; 
@@ -200,18 +239,8 @@ void setupAdc(void)
   NVIC_EnableIRQ(ADC0_IRQn);
   
   /* Start repetitive ADC single conversions */
-  ADC_Start(ADC0, adcStartSingle);
-  
-  // -------------------------------------------------------------------------
-  /* Connect PRS channel 0 to TIMER overflow */
-  PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
-
-  /* Configure TIMER to trigger 100 kHz sampling rate */  // but we don't want 100Khz?
-  
-  printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
-  
-  TIMER_TopSet(TIMER0,  CMU_ClockFreqGet(cmuClock_TIMER0)/ADCSAMPLESPERSEC);
-  TIMER_Enable(TIMER0, true);
+  //ADC_Start(ADC0, adcStartSingle);
+  printf("adc setup [done]\n");
 }
 
 void setupOpAmp(void)

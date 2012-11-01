@@ -97,6 +97,7 @@ config.c \
 dmactrl.c \
 audio.c \
 audio_rec.c
+#adc_basic.c
 #adc_ping_pong.c
 #flash_to_ram.c
 #main.c
