@@ -36,7 +36,7 @@ void ADC0_IRQHandler(void)
   /* Clear interrupt flag */
   ADC_IntClear(ADC0, ADC_IFC_SINGLEOF);
   
-  printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
+  //printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
   
   while(1){
     /* ERROR: ADC Result overflow has occured
@@ -85,7 +85,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
     /* Clearing Flag */
     transferActive = false;
     
-    printf("transfer complete!\n");
+    //printf("transfer complete!\n");
   }
   
   p += ADCSAMPLES;
@@ -174,7 +174,7 @@ void setupAdc(void)
   // Connect PRS channel 0 to TIMER overflow
   PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
 
-  printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+  //printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
   
   // Select TIMER0 parameters
   TIMER_Init_TypeDef timerInit =
@@ -238,7 +238,7 @@ void setupAdc(void)
   
   /* Start repetitive ADC single conversions */
   //ADC_Start(ADC0, adcStartSingle);
-  printf("adc setup [done]\n");
+  //printf("adc setup [done]\n");
 }
 
 void setupOpAmp(void)
@@ -269,7 +269,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   uart_init(UART1); // for printf
   GPIO->P[0].DOUT &= ~(1 << 0);
   
-  printf("started recording...\n");
+  //printf("started recording...\n");
   
   setupCmu();	// configure clocks in Clock Management Unit
   
@@ -278,9 +278,9 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   dma.pcm_bufsize = pcm_bufsize;
   dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
   
-  printf("BUFSIZ: %d\n", BUFSIZ);
-  printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
-  printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
+  //printf("BUFSIZ: %d\n", BUFSIZ);
+  //printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
+  //printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
   
   setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
   
@@ -304,5 +304,5 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
  
   DMA_Reset();	// clean up after DMA transfers
   
-  printf("finished recording!\n");
+  //printf("finished recording!\n");
 }
