@@ -1,3 +1,5 @@
+#include "efm32_int.h"
+
 #define BANDW_1MB (0x0)
 #define BANDW_2MB (0x8)
 #define BANDW_250KB (0x20)

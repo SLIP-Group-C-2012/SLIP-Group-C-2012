@@ -8,6 +8,7 @@
 #include "efm32_cmu.h"
 #include "efm32_adc.h"
 #include "efm32_timer.h"
+#include "dac.h"
 
 #include "config.h"
 #include "NRF24.h"
@@ -30,7 +31,7 @@ void uart_init(USART_TypeDef *uart)
 }
 
 void InitTimoutTimer(void){
-	  CMU_ClockEnable(cmuClock_TIMER1, true);
+	  CMU_ClockEnable(cmuClock_TIMER2, true);
 
 	  TIMER_Init_TypeDef timerInit =
 	   {
@@ -49,16 +50,16 @@ void InitTimoutTimer(void){
 	   };
 
 	  /* Enable overflow interrupt */
-	  TIMER_IntEnable(TIMER1, TIMER_IF_OF);
+	  TIMER_IntEnable(TIMER2, TIMER_IF_OF);
 
 	  /* Enable TIMER0 interrupt vector in NVIC */
-	  NVIC_EnableIRQ(TIMER1_IRQn);
+	  NVIC_EnableIRQ(TIMER2_IRQn);
 
 	  /* Set TIMER Top value */
-	  TIMER_TopSet(TIMER1, TIMER_RESEND_TOP);
+	  TIMER_TopSet(TIMER2, TIMER_RESEND_TOP);
 
 	  /* Configure TIMER */
-	  TIMER_Init(TIMER1, &timerInit);
+	  TIMER_Init(TIMER2, &timerInit);
 
 }
 
@@ -186,6 +187,9 @@ void IO_Init(void)
     GPIO->P[1].DOUT |= (1 << 6);
     GPIO->P[1].MODEL = (GPIO->P[1].MODEL & ~_GPIO_P_MODEL_MODE6_MASK) | GPIO_P_MODEL_MODE6_PUSHPULL;
 
+
+    GPIO->P[4].DOUT |= (1 << 10);
+    GPIO->P[4].MODEH = (GPIO->P[4].MODEH & ~_GPIO_P_MODEH_MODE10_MASK) | GPIO_P_MODEH_MODE10_PUSHPULL;
 
 
     // I2C0 SCL

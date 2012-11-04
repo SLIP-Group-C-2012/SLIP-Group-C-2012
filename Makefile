@@ -92,6 +92,8 @@ radio.c \
 serial_input.c \
 syscalls.c \
 config.c \
+protcol.c \
+dac.c \
 main.c
 #i2cdrv.c \
 #fatfs/src/diskio.c \

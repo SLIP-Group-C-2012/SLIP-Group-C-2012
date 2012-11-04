@@ -28,7 +28,7 @@
 #endif // RESP_DEVICE
 
 #define RGB_PWM_TIMER_TOP 1024
-#define TIMER_RESEND_TOP (27342*2) //2 seconds
+#define TIMER_RESEND_TOP 27342 //1 seconds
 //#define TIMER_RESEND_TOP 411480 //30 seconds
 
 

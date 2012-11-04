@@ -9,6 +9,8 @@
 uint32_t packetbuff[32];
 int packetpending = 0;
 uint8_t addressbook[10];
+uint8_t pingdata[32] = "PING";
+
 
 typedef struct {
 	uint8_t opcode; // opcode 1 = text, 2 = audio 3, = rip
@@ -35,15 +37,11 @@ void protocol_send(uint8_t* buff, uint8_t dest){
 
 int protocol_recive(uint8_t* buff){
 	if (packetpending){
-		printf("String1 %s\n",packetbuff);
+		//printf("String1 %s\n",packetbuff);
 
-		uint8_t test[32] = "PING";
-		printf("String2 %s\n",test);
-
-		if(packetbuff==test){ // cant get this to work dont know why
-
-			printf("yes");
-
+		//printf("String2 %s\n",test);
+		if(!strcmp(packetbuff,pingdata)){
+			//printf("yes");
 			protocol_updateaddr(packet.src);
 		}
 
@@ -66,7 +64,7 @@ int protocol_loop(){
 
 			memcpy(packetbuff,packet.data,sizeof(packet.data));
 			forus = 1;
-			packetpending =1;
+			packetpending = 1;
 
 
 			if (packet.hops<=4){
@@ -81,27 +79,33 @@ int protocol_loop(){
 
 int protocol_getaddr(){
 	uint32_t serial1;
-	serial1 =  (*(uint32_t*)0x0FE081F0); //UNIQUE_0 is a timestamp (in Unix time) set in production,
+	serial1 =  (*(uint32_t*)0x0FE081F0) ^ (*(uint32_t*)0x0FE081F4); //UNIQUE_0 is a timestamp (in Unix time) set in production,
 	uint8_t * addr = &serial1;
 	return addr[0] ^ addr[1] ^ addr[2] ^ addr[3];
 }
 
 void protocol_updateaddr(uint8_t* address){
 
+	//printf("update, %i \n",address);
+
+	//addressbook[2] = address;
+
 	int alreadyinbook = 0;
 	for(int i = 0; i < 10; i++)
 	{
 		if(addressbook[i]==address){
 			alreadyinbook = 1;
+			//printf("foundat:%i\n",i);
+			break;
 		}
 	}
 	if(!alreadyinbook){
+		//printf("!already");
 		for(int i = 0; i < 10; i++){
-			if(!alreadyinbook){
-				if(addressbook[i]!=0){
-					addressbook[i] = address;
-					alreadyinbook  = 0;
-				}
+			if(addressbook[i]==0){
+				addressbook[i] = address;
+				alreadyinbook  = 0;
+				break;
 			}
 		}
 
@@ -112,7 +116,7 @@ void protocol_updateaddr(uint8_t* address){
 void protocol_printalladdr(void){
 	for(int i = 0; i < 10; i++)
 	{
-		if(addressbook[i]!=0){
+		if(!strcmp(addressbook[i],0)){
 			printf("Address %d\n",addressbook[i]);
 		}
 	}
