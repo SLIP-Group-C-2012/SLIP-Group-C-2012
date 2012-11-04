@@ -21,7 +21,7 @@
 #include <math.h>
 #include <string.h>
 
-uint32_t packetbuff[32];
+uint32_t packetbuff[27];
 int pingtimer = 0;
 
 void GPIO_EVEN_IRQHandler(void)
@@ -176,6 +176,7 @@ char array[] = {
 
 };
 
+#define SENDER (1)
 
 
 int main(void)
@@ -201,31 +202,40 @@ int main(void)
 	protocol_updateaddr(protocol_getaddr()); // ADSS LOCAL ADDRESS TO ADDRESS BOOK
 
 
-	play(array,sizeof(array));
+	//play(array,sizeof(array));
 
 	while(1)
 	{
-		p_ti++; // count loop iterations
+#ifdef SENDER
+		if (p_ti > sizeof(array)-27) p_ti = 0;
+		protocol_send(&array[p_ti], 0);
+		p_ti += 27;
+#else
+        if(protocol_recive(packetbuff)) {
+            printf("Playing...\n");
+            play(packetbuff, sizeof(packetbuff));
+        }
+#endif
 
-		if (serial_getString((uint8_t *) comp_in))
-		{
-			// printf("clockspeed is'%i'\n", CMU_ClockFreqGet(cmuClock_TIMER0));
-			printf("input is '%s'\n Now Sending", comp_in);
-			// printf("String'%u'",strlen(str));
-			protocol_send(comp_in,0);
+//		if (serial_getString((uint8_t *) comp_in))
+//		{
+//			// printf("clockspeed is'%i'\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+//			printf("input is '%s'\n Now Sending", comp_in);
+//			// printf("String'%u'",strlen(str));
+//			protocol_send(comp_in,0);
+//
+//		}
 
-		}
-
-		if(protocol_recive(packetbuff)){
-			printf("Data '%s'\n",packetbuff);
-		}
-
-		if (pingtimer>=10){
-			//printf("Timer %d\n", pingtimer);
-			protocol_send("PING",0);
-			pingtimer=0;
-			protocol_printalladdr();
-		}
+//		if(protocol_recive(packetbuff)){
+//			printf("Data '%s'\n",packetbuff);
+//		}
+//
+//		if (pingtimer>=10){
+//			//printf("Timer %d\n", pingtimer);
+//			protocol_send("PING",0);
+//			pingtimer=0;
+//			protocol_printalladdr();
+//		}
 
 		// we should have this in our main loop always. It helps radio service itself.
 		protocol_loop();
