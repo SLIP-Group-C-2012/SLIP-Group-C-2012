@@ -21,7 +21,6 @@
 #include <math.h>
 #include <string.h>
 
-uint32_t packetbuff[27];
 int pingtimer = 0;
 
 void GPIO_EVEN_IRQHandler(void)
@@ -176,12 +175,12 @@ char array[] = {
 
 };
 
-#define SENDER (1)
+//#define SENDER
 
 
 int main(void)
 {
-	char comp_in[32]; // for receiving from PC
+	uint8_t pack_in[32-5]; // for receiving from PC
 	volatile unsigned long p_ti = 0; // for counting loop
 
 	init_config(); // init things for printf, interrupts, etc
@@ -211,9 +210,9 @@ int main(void)
 		protocol_send(&array[p_ti], 0);
 		p_ti += 27;
 #else
-        if(protocol_recive(packetbuff)) {
+        if(protocol_recive(pack_in)) {
             printf("Playing...\n");
-            play(packetbuff, sizeof(packetbuff));
+            play(pack_in, sizeof(pack_in));
         }
 #endif
 
