@@ -17,24 +17,12 @@
 #include "config.h"
 #include "radio.h"
 
-#include "protcol.h"
+#include "acksys.h"
 
 #include <math.h>
 #include <string.h>
 
 int pingtimer = 0;
-
-#define MY_ADDR (1)
-#define DEST_ADDR (2)
-
-typedef struct {
-  uint8_t src;
-  uint8_t dest;
-  uint8_t packetID;
-  uint8_t data[28];
-} Packet_Type __attribute__ ((packed));
-
-Packet_Type packet;
 
 void GPIO_EVEN_IRQHandler(void)
 {
@@ -188,7 +176,7 @@ char array[] = {
 
 };
 
-#define SENDER
+#define SENDER (1)
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
@@ -196,10 +184,9 @@ char array[] = {
 
 int main(void)
 {
-	uint8_t audio_pack[COMPRESSED_SIZE];
-	uint8_t uncompressed[AUDIO_PACK_SIZE];
-	uint8_t non_realtime_buff[8000*SECONDS_TO_PLAY];
-	volatile unsigned long p_ti = 0; // for counting loop
+	volatile unsigned long id = 0; // for counting loop
+	uint8_t playback[SECONDS_TO_PLAY * 8000];
+	uint8_t data[28];
 
 	init_config(); // init things for printf, interrupts, etc
 
@@ -209,68 +196,23 @@ int main(void)
 	radio_setup(10, BANDW_2MB, POW_MAX);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
-    
-    int id = 0;
-    int lastRet = 0;
 
-	while(1)
-	{
-#ifdef SENDER
-		volatile int ccc = 0;
-		for(ccc; ccc < 1000; ccc++){
-			;
-		}
-		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
-		//compress(&array[p_ti], audio_pack);
-		id++;
-		packet.src = MY_ADDR;
-		packet.dest = DEST_ADDR;
-		packet.packetID = id;
-		memcpy(packet.data, &array[p_ti], 28);
-		radio_sendPacket32((uint8_t *)&packet);
-		printf("SENT ::: Source : %d , dest : %d , ID : %d , data : %s\n", packet.src, packet.dest, packet.packetID, packet.data);
-		p_ti += AUDIO_PACK_SIZE;
+    while (1) {
+
+#if SENDER
+    if (id > sizeof(array)) id = 0;
+    acksys_sendData((uint8_t *) &array[id+=28], 0);
 #else
-        if(radio_receivePacket32((uint8_t *)&packet)) {
-            //printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
-            //uncompress(audio_pack, uncompressed);
-            
-    		if(packet.dest == MY_ADDR){    			
-    			printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
-    			play((char *) &packet.data, 28);    			
-    		} else if(packet.packetID > lastRet){
-    			printf("RETRANSMIT ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
-    			lastRet = packet.packetID;    		
-    			radio_sendPacket32((uint8_t *)&packet);
-    		}
-
-            memcpy(&non_realtime_buff[p_ti], audio_pack, sizeof(audio_pack));//uncompressed,sizeof(uncompressed));
-            p_ti += sizeof(uncompressed);
+    if (acksys_recvData(data)) {
+        if (id > sizeof(playback)) {
+            play(playback, 28);
+            id = 0;
         }
+        memcpy(&playback[id+=28], data, 28);
+    }
 #endif
 
-//		if (serial_getString((uint8_t *) comp_in))
-//		{
-//			// printf("clockspeed is'%i'\n", CMU_ClockFreqGet(cmuClock_TIMER0));
-//			printf("input is '%s'\n Now Sending", comp_in);
-//			// printf("String'%u'",strlen(str));
-//			protocol_send(comp_in,0);
-//
-//		}
-
-//		if(protocol_recive(packetbuff)){
-//			printf("Data '%s'\n",packetbuff);
-//		}
-//
-//		if (pingtimer>=10){
-//			//printf("Timer %d\n", pingtimer);
-//			protocol_send("PING",0);
-//			pingtimer=0;
-//			protocol_printalladdr();
-//		}
-
 		// we should have this in our main loop always. It helps radio service itself.
-		//protocol_loop();
 		radio_loop();
 	}
 }

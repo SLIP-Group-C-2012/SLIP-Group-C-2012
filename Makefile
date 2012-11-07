@@ -95,6 +95,7 @@ config.c \
 codec.c \
 protcol.c \
 dac.c \
+acksys.c \
 main.c
 #i2cdrv.c \
 #fatfs/src/diskio.c \
