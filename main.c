@@ -179,7 +179,7 @@ char array[] = {
 //#define SENDER
 
 #define COMPRESSED_SIZE (32)
-#define AUDIO_PACK_SIZE (128)
+#define AUDIO_PACK_SIZE (32)//128)
 #define SECONDS_TO_PLAY (1)
 
 int main(void)
@@ -212,8 +212,8 @@ int main(void)
 	{
 #ifdef SENDER
 		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
-		compress(&array[p_ti], audio_pack);
-		radio_sendPacket32(audio_pack);
+		//compress(&array[p_ti], audio_pack);
+		radio_sendPacket32(&array[p_ti]);//audio_pack);
 		p_ti += AUDIO_PACK_SIZE;
 #else
         if (p_ti >= sizeof(non_realtime_buff)) {
@@ -223,9 +223,9 @@ int main(void)
 
         if(radio_receivePacket32(audio_pack)) {
             printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
-            uncompress(audio_pack, uncompressed);
+            //uncompress(audio_pack, uncompressed);
 
-            memcpy(&non_realtime_buff[p_ti],uncompressed,sizeof(uncompressed));
+            memcpy(&non_realtime_buff[p_ti], audio_pack, sizeof(audio_pack));//uncompressed,sizeof(uncompressed));
             p_ti += sizeof(uncompressed);
         }
 #endif
