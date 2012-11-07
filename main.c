@@ -179,7 +179,7 @@ char array[] = {
 //#define SENDER
 
 #define COMPRESSED_SIZE (27)
-#define AUDIO_PACK_SIZE (216)
+#define AUDIO_PACK_SIZE (72)
 
 int main(void)
 {

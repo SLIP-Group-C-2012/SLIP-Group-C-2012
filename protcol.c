@@ -6,6 +6,8 @@
 //#include "nrf24_config.h"
 //#define NULL ((void*)0)
 
+#define DISABLE_REBROADCAST (1)
+
 
 uint8_t packetbuff[32];
 int packetpending = 0;
@@ -67,12 +69,13 @@ int protocol_loop(){
 			forus = 1;
 			packetpending = 1;
 
-
+        if (!DISABLE_REBROADCAST) {
 			if (packet.hops<=4){
 				packet.hops++;
 				radio_sendPacket32((uint8_t *)&packet);
 				printf("Rebroadcast");
 			}
+		}
 		}
 	}
 	return forus;
