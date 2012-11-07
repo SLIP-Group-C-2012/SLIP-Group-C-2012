@@ -24,6 +24,18 @@
 
 int pingtimer = 0;
 
+#define MY_ADDR (1)
+#define DEST_ADDR (2)
+
+typedef struct {
+  uint8_t src;
+  uint8_t dest;
+  uint8_t packetID;
+  uint8_t data[28];
+} Packet_Type __attribute__ ((packed));
+
+Packet_Type packet;
+
 void GPIO_EVEN_IRQHandler(void)
 {
 	radio_handleInterrupt();
@@ -176,10 +188,10 @@ char array[] = {
 
 };
 
-//#define SENDER
+#define SENDER
 
 #define COMPRESSED_SIZE (32)
-#define AUDIO_PACK_SIZE (32)//128)
+#define AUDIO_PACK_SIZE (28)//128)
 #define SECONDS_TO_PLAY (1)
 
 int main(void)
@@ -196,34 +208,40 @@ int main(void)
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
 	radio_setup(2, BANDW_2MB, POW_MAX);
 
-	printf("serial.aa..\n");
-
-	//printf("%i%i\n", serial1, serial2);
-
-	printf("serial...\n");
-
-	printf("%d\n", protocol_getaddr());
-
-	protocol_updateaddr(protocol_getaddr()); // ADSS LOCAL ADDRESS TO ADDRESS BOOK
-
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
+    
+    int id = 0;
 
 	while(1)
 	{
 #ifdef SENDER
+		volatile int ccc = 0;
+		for(ccc; ccc < 1000; ccc++){
+			;
+		}
 		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
 		//compress(&array[p_ti], audio_pack);
-		radio_sendPacket32(&array[p_ti]);//audio_pack);
+		id++;
+		packet.src = MY_ADDR;
+		packet.dest = DEST_ADDR;
+		packet.packetID = id;
+		memcpy(packet.data, &array[p_ti], 28);
+		radio_sendPacket32((uint8_t *)&packet);
+		printf("SENT ::: Source : %d , dest : %d , ID : %d , data : %s\n", packet.src, packet.dest, packet.packetID, packet.data);
 		p_ti += AUDIO_PACK_SIZE;
 #else
-        if (p_ti >= sizeof(non_realtime_buff)) {
-            play((char *) non_realtime_buff, sizeof(non_realtime_buff));
-            p_ti = 0;
-        }
-
-        if(radio_receivePacket32(audio_pack)) {
-            printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
+        if(radio_receivePacket32((uint8_t *)&packet))) {
+            //printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
             //uncompress(audio_pack, uncompressed);
+            
+    		if(packet.dest == MY_ADDR){    			
+    			printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
+    			play(packet.data, 28);    			
+    		} else if(packet.packetID > lastRet){
+    			printf("RETRANSMIT ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
+    			lastRet = packet.packetID;    		
+    			radio_sendPacket32((uint8_t *)&packet);
+    		}
 
             memcpy(&non_realtime_buff[p_ti], audio_pack, sizeof(audio_pack));//uncompressed,sizeof(uncompressed));
             p_ti += sizeof(uncompressed);
