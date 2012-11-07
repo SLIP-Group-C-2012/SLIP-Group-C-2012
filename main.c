@@ -178,11 +178,13 @@ char array[] = {
 
 //#define SENDER
 
+#define COMPRESSED_SIZE (27)
+#define AUDIO_PACK_SIZE (216)
 
 int main(void)
 {
-	uint8_t audio_pack[25];
-	uint8_t uncompressed[64];
+	uint8_t audio_pack[COMPRESSED_SIZE];
+	uint8_t uncompressed[AUDIO_PACK_SIZE];
 	volatile unsigned long p_ti = 0; // for counting loop
 
 	init_config(); // init things for printf, interrupts, etc
@@ -207,15 +209,15 @@ int main(void)
 
     //printf("play...\n");
 
-    set_up_compression(64, 25);
+    set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 
 	while(1)
 	{
 #ifdef SENDER
-		if (p_ti > sizeof(array)-64) p_ti = 0;
+		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
 		compress(&array[p_ti], audio_pack);
 		protocol_send(audio_pack, 0);
-		p_ti += 64;
+		p_ti += AUDIO_PACK_SIZE;
 #else
         if(protocol_recive(audio_pack)) {
             printf("Playing...\n");
