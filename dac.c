@@ -2,7 +2,7 @@
 #include "efm32_timer.h"
 #include "dac.h"
 
-#define INPUT_BUF_SIZE (10200)
+#define INPUT_BUF_SIZE (3*8000)
 
 char buff[INPUT_BUF_SIZE];
 

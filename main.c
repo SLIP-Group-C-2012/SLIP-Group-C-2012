@@ -178,13 +178,15 @@ char array[] = {
 
 //#define SENDER
 
-#define COMPRESSED_SIZE (27)
-#define AUDIO_PACK_SIZE (72)
+#define COMPRESSED_SIZE (32)
+#define AUDIO_PACK_SIZE (128)
+#define SECONDS_TO_PLAY (1)
 
 int main(void)
 {
 	uint8_t audio_pack[COMPRESSED_SIZE];
 	uint8_t uncompressed[AUDIO_PACK_SIZE];
+	uint8_t non_realtime_buff[8000*SECONDS_TO_PLAY];
 	volatile unsigned long p_ti = 0; // for counting loop
 
 	init_config(); // init things for printf, interrupts, etc
@@ -204,11 +206,6 @@ int main(void)
 
 	protocol_updateaddr(protocol_getaddr()); // ADSS LOCAL ADDRESS TO ADDRESS BOOK
 
-
-	//play((char *) array,sizeof(array));
-
-    //printf("play...\n");
-
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 
 	while(1)
@@ -216,13 +213,20 @@ int main(void)
 #ifdef SENDER
 		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
 		compress(&array[p_ti], audio_pack);
-		protocol_send(audio_pack, 0);
+		radio_sendPacket32(audio_pack);
 		p_ti += AUDIO_PACK_SIZE;
 #else
-        if(protocol_recive(audio_pack)) {
-            printf("Playing...\n");
+        if (p_ti >= sizeof(non_realtime_buff)) {
+            play((char *) non_realtime_buff, sizeof(non_realtime_buff));
+            p_ti = 0;
+        }
+
+        if(radio_receivePacket32(audio_pack)) {
+            printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
             uncompress(audio_pack, uncompressed);
-            play((char *) uncompressed, sizeof(uncompressed));
+
+            memcpy(&non_realtime_buff[p_ti],uncompressed,sizeof(uncompressed));
+            p_ti += sizeof(uncompressed);
         }
 #endif
 
@@ -247,7 +251,8 @@ int main(void)
 //		}
 
 		// we should have this in our main loop always. It helps radio service itself.
-		protocol_loop();
+		//protocol_loop();
+		radio_loop();
 	}
 }
 
