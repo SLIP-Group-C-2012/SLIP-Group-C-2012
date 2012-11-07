@@ -12,6 +12,7 @@
 #include "efm32_timer.h"
 #include "serial_input.h"
 #include "dac.h"
+#include "codec.h"
 
 #include "config.h"
 #include "radio.h"
@@ -180,7 +181,8 @@ char array[] = {
 
 int main(void)
 {
-	uint8_t pack_in[32-5]; // for receiving from PC
+	uint8_t audio_pack[25];
+	uint8_t uncompressed[64];
 	volatile unsigned long p_ti = 0; // for counting loop
 
 	init_config(); // init things for printf, interrupts, etc
@@ -205,16 +207,20 @@ int main(void)
 
     //printf("play...\n");
 
+    set_up_compression(64, 25);
+
 	while(1)
 	{
 #ifdef SENDER
-		if (p_ti > sizeof(array)-27) p_ti = 0;
-		protocol_send(&array[p_ti], 0);
-		p_ti += 27;
+		if (p_ti > sizeof(array)-64) p_ti = 0;
+		compress(&array[p_ti], audio_pack);
+		protocol_send(audio_pack, 0);
+		p_ti += 64;
 #else
-        if(protocol_recive(pack_in)) {
+        if(protocol_recive(audio_pack)) {
             printf("Playing...\n");
-            play((char *) pack_in, sizeof(pack_in));
+            uncompress(audio_pack, uncompressed);
+            play((char *) uncompressed, sizeof(uncompressed));
         }
 #endif
 

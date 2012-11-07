@@ -92,6 +92,7 @@ radio.c \
 serial_input.c \
 syscalls.c \
 config.c \
+codec.c \
 protcol.c \
 dac.c \
 main.c
