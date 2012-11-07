@@ -212,7 +212,7 @@ int main(void)
 #else
         if(protocol_recive(pack_in)) {
             printf("Playing...\n");
-            play(pack_in, sizeof(pack_in));
+            play((char *) pack_in, sizeof(pack_in));
         }
 #endif
 
