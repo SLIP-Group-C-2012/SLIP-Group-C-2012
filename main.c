@@ -191,7 +191,7 @@ char array[] = {
 #define SENDER
 
 #define COMPRESSED_SIZE (32)
-#define AUDIO_PACK_SIZE (28)//128)
+#define AUDIO_PACK_SIZE (28)
 #define SECONDS_TO_PLAY (1)
 
 int main(void)
@@ -206,11 +206,12 @@ int main(void)
 	printf("I'm %s\n", "transciever");
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(2, BANDW_2MB, POW_MAX);
+	radio_setup(10, BANDW_2MB, POW_MAX);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
     
     int id = 0;
+    int lastRet = 0;
 
 	while(1)
 	{
@@ -230,13 +231,13 @@ int main(void)
 		printf("SENT ::: Source : %d , dest : %d , ID : %d , data : %s\n", packet.src, packet.dest, packet.packetID, packet.data);
 		p_ti += AUDIO_PACK_SIZE;
 #else
-        if(radio_receivePacket32((uint8_t *)&packet))) {
+        if(radio_receivePacket32((uint8_t *)&packet)) {
             //printf("Playing... %d %%\n", 100 * p_ti / sizeof(non_realtime_buff));
             //uncompress(audio_pack, uncompressed);
             
     		if(packet.dest == MY_ADDR){    			
     			printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
-    			play(packet.data, 28);    			
+    			play((char *) &packet.data, 28);    			
     		} else if(packet.packetID > lastRet){
     			printf("RETRANSMIT ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
     			lastRet = packet.packetID;    		
