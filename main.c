@@ -59,9 +59,9 @@ int init_config(void)
 	printf("hello5");
 
 
-	CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
-	CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-	CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
+	//CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
+	//CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
+	//CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
@@ -201,7 +201,9 @@ int main(void)
 	protocol_updateaddr(protocol_getaddr()); // ADSS LOCAL ADDRESS TO ADDRESS BOOK
 
 
-	//play(array,sizeof(array));
+	//play((char *) array,sizeof(array));
+
+    //printf("play...\n");
 
 	while(1)
 	{
