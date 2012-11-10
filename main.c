@@ -176,11 +176,11 @@ char array[] = {
 
 };
 
-#define SENDER (1)
+#define SENDER (0)
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
-#define SECONDS_TO_PLAY (1)
+#define SECONDS_TO_PLAY (3)
 
 int main(void)
 {
@@ -205,9 +205,11 @@ int main(void)
     id = id + 28;
 #else
     if (radio_receivePacket32(data)) {
+
         if (id > sizeof(playback)-32) {
-            play(playback, 28);
+            play((char *) playback, 28);
             id = 0;
+            printf("Received\n");
         }
         memcpy(&playback[id], data, 28);
         id = id + 28;
