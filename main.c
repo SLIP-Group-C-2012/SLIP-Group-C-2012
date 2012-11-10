@@ -201,14 +201,16 @@ int main(void)
 
 #if SENDER
     if (id > sizeof(array)-32) id = 0;
-    radio_sendPacket32((uint8_t *) &array[id+=28]);
+    radio_sendPacket32((uint8_t *) &array[id]);
+    id = id + 28;
 #else
     if (radio_receivePacket32(data)) {
-        if (id > sizeof(playback)) {
+        if (id > sizeof(playback)-32) {
             play(playback, 28);
             id = 0;
         }
-        memcpy(&playback[id+=28], data, 28);
+        memcpy(&playback[id], data, 28);
+        id = id + 28;
     }
 #endif
 
