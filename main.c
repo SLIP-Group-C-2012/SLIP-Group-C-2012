@@ -12,7 +12,7 @@
 #include "efm32_timer.h"
 #include "serial_input.h"
 #include "dac.h"
-#include "codec.h"
+//#include "codec.h"
 
 #include "config.h"
 #include "radio.h"
@@ -188,7 +188,7 @@ char array[] = {
 
 };
 
-#define SENDER
+//#define SENDER
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
@@ -208,7 +208,7 @@ int main(void)
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
 	radio_setup(10, BANDW_2MB, POW_MAX, 1);
 
-    set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
+    //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
     
     int id = 0;
     int lastRet = 0;
@@ -222,7 +222,7 @@ int main(void)
 		packet.src = MY_ADDR;
 		packet.dest = DEST_ADDR;
 		packet.packetID = id;
-		packet.ack = 0;
+
 		memcpy(packet.data, &array[p_ti], 28);
 		radio_sendPacket32((uint8_t *)&packet);
 		printf("SENT ::: Source : %d , dest : %d , ID : %d , data : %s\n", packet.src, packet.dest, packet.packetID, packet.data);
@@ -231,15 +231,10 @@ int main(void)
         if(radio_receivePacket32((uint8_t *)&packet)) {
            
     		if(packet.dest == MY_ADDR)
-    		{
-    			if(packet.ack == 0)
-    			{    			    			
-    				printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
-    				play((char *) &packet.data, 28);
-    			} else if (packet.ack == 1)
-    			{
-    					
-    			}    			
+    		{  			    			
+    			printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
+    			play((char *) &packet.data, 28);
+    			  			
     		} else if(packet.packetID > lastRet){
     			printf("RETRANSMIT ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
     			lastRet = packet.packetID;    		
