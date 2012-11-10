@@ -200,7 +200,7 @@ int main(void)
     while (1) {
 
 #if SENDER
-    if (id > sizeof(array)) id = 0;
+    if (id > sizeof(array)-32) id = 0;
     radio_sendPacket32((uint8_t *) &array[id+=28]);
 #else
     if (radio_receivePacket32(data)) {
