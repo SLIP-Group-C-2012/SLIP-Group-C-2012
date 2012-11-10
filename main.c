@@ -12,6 +12,7 @@
 #include "efm32_timer.h"
 #include "serial_input.h"
 #include "dac.h"
+#include "codec.h"
 
 #include "config.h"
 #include "radio.h"
@@ -21,8 +22,19 @@
 #include <math.h>
 #include <string.h>
 
-uint32_t packetbuff[32];
 int pingtimer = 0;
+
+#define MY_ADDR (1)
+#define DEST_ADDR (2)
+
+typedef struct {
+  uint8_t src;
+  uint8_t dest;
+  uint8_t packetID;
+  uint8_t data[28];
+} Packet_Type __attribute__ ((packed));
+
+Packet_Type packet;
 
 void GPIO_EVEN_IRQHandler(void)
 {
@@ -60,9 +72,9 @@ int init_config(void)
 	printf("hello5");
 
 
-	CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
-	CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-	CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
+	//CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
+	//CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
+	//CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
@@ -176,11 +188,17 @@ char array[] = {
 
 };
 
+#define SENDER
 
+#define COMPRESSED_SIZE (32)
+#define AUDIO_PACK_SIZE (28)
+#define SECONDS_TO_PLAY (1)
 
 int main(void)
 {
-	char comp_in[32]; // for receiving from PC
+	uint8_t audio_pack[COMPRESSED_SIZE];
+	uint8_t uncompressed[AUDIO_PACK_SIZE];
+	uint8_t non_realtime_buff[8000*SECONDS_TO_PLAY];
 	volatile unsigned long p_ti = 0; // for counting loop
 
 	init_config(); // init things for printf, interrupts, etc
@@ -188,47 +206,74 @@ int main(void)
 	printf("I'm %s\n", "transciever");
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(2, BANDW_2MB, POW_MAX);
+	radio_setup(10, BANDW_2MB, POW_MAX);
 
-	printf("serial.aa..\n");
-
-	//printf("%i%i\n", serial1, serial2);
-
-	printf("serial...\n");
-
-	printf("%d\n", protocol_getaddr());
-
-	protocol_updateaddr(protocol_getaddr()); // ADSS LOCAL ADDRESS TO ADDRESS BOOK
-
-
-	play(array,sizeof(array));
+    set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
+    
+    int id = 0;
+    int lastRet = 0;
 
 	while(1)
 	{
-		p_ti++; // count loop iterations
+#ifdef SENDER
+		if (p_ti > sizeof(array)-AUDIO_PACK_SIZE) p_ti = 0;
+		//compress(&array[p_ti], audio_pack);
+		id++;
+		packet.src = MY_ADDR;
+		packet.dest = DEST_ADDR;
+		packet.packetID = id;
+		packet.ack = 0;
+		memcpy(packet.data, &array[p_ti], 28);
+		radio_sendPacket32((uint8_t *)&packet);
+		printf("SENT ::: Source : %d , dest : %d , ID : %d , data : %s\n", packet.src, packet.dest, packet.packetID, packet.data);
+		p_ti += AUDIO_PACK_SIZE;
+#else
+        if(radio_receivePacket32((uint8_t *)&packet)) {
+           
+    		if(packet.dest == MY_ADDR)
+    		{
+    			if(packet.ack == 0)
+    			{    			    			
+    				printf("RECEIVED 4 ME ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
+    				play((char *) &packet.data, 28);
+    			} else if (packet.ack == 1)
+    			{
+    					
+    			}    			
+    		} else if(packet.packetID > lastRet){
+    			printf("RETRANSMIT ::: Source : %d , packetID : %d , data : %s\n", packet.src, packet.packetID, packet.data);
+    			lastRet = packet.packetID;    		
+    			radio_sendPacket32((uint8_t *)&packet);
+    		}
 
-		if (serial_getString((uint8_t *) comp_in))
-		{
-			// printf("clockspeed is'%i'\n", CMU_ClockFreqGet(cmuClock_TIMER0));
-			printf("input is '%s'\n Now Sending", comp_in);
-			// printf("String'%u'",strlen(str));
-			protocol_send(comp_in,0);
+            memcpy(&non_realtime_buff[p_ti], audio_pack, sizeof(audio_pack));//uncompressed,sizeof(uncompressed));
+            p_ti += sizeof(uncompressed);
+        }
+#endif
 
-		}
+//		if (serial_getString((uint8_t *) comp_in))
+//		{
+//			// printf("clockspeed is'%i'\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+//			printf("input is '%s'\n Now Sending", comp_in);
+//			// printf("String'%u'",strlen(str));
+//			protocol_send(comp_in,0);
+//
+//		}
 
-		if(protocol_recive(packetbuff)){
-			printf("Data '%s'\n",packetbuff);
-		}
-
-		if (pingtimer>=10){
-			//printf("Timer %d\n", pingtimer);
-			protocol_send("PING",0);
-			pingtimer=0;
-			protocol_printalladdr();
-		}
+//		if(protocol_recive(packetbuff)){
+//			printf("Data '%s'\n",packetbuff);
+//		}
+//
+//		if (pingtimer>=10){
+//			//printf("Timer %d\n", pingtimer);
+//			protocol_send("PING",0);
+//			pingtimer=0;
+//			protocol_printalladdr();
+//		}
 
 		// we should have this in our main loop always. It helps radio service itself.
-		protocol_loop();
+		//protocol_loop();
+		radio_loop();
 	}
 }
 
