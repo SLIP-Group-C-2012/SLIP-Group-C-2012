@@ -201,9 +201,9 @@ int main(void)
 
 #if SENDER
     if (id > sizeof(array)) id = 0;
-    acksys_sendData((uint8_t *) &array[id+=28], 0);
+    radio_sendPacket32((uint8_t *) &array[id+=28]);
 #else
-    if (acksys_recvData(data)) {
+    if (radio_receivePacket32(data)) {
         if (id > sizeof(playback)) {
             play(playback, 28);
             id = 0;

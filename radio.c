@@ -157,6 +157,7 @@ void radio_loop(void)
                 receiveModeEnable();
 
             packet_wait = 0;
+            printf("Sent!\n");
         } else if (nrf_status & 0x40)
         {
             NRF_WriteRegister(NRF_STATUS, 0x70);
