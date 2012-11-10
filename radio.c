@@ -8,6 +8,7 @@
 
 #define MAX_LEGAL_CHANNEL (90) // maximal allowed channel
 #define PACKET_SIZE (32)
+#define HARDWARE_RETRANSMITS (5) // if ACKing is enabled
 
 volatile int packet_received = 0; // is there a packet to be shown
 volatile int enable_receive = 0; // whether to enable receive mode after last packet has been sent
@@ -64,7 +65,7 @@ void radio_handleInterrupt(void)
     }
 }
 
-void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power)
+void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power, uint8_t hardwareACK)
 {
     uint8_t addr_array[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
 
@@ -73,10 +74,20 @@ void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power)
     if (channel > MAX_LEGAL_CHANNEL) return; // keeps police happy
 
     NRF_CE_lo;
-    NRF_WriteRegister(NRF_CONFIG, 0x3C); // Enable CRC and disable TX interrupts
-    NRF_WriteRegister(NRF_EN_AA, 0x0); // Disable auto ACK
+    NRF_WriteRegister(NRF_CONFIG, 0x0C); // Enable CRC and disable TX interrupts
+
+    if (hardwareACK)
+    {
+        NRF_WriteRegister(NRF_EN_AA, 0x3F); // Enable auto ACK
+        NRF_WriteRegister(NRF_SETUP_RETR, HARDWARE_RETRANSMITS); // Retransmits
+    }
+    else
+    {
+        NRF_WriteRegister(NRF_EN_AA, 0x0); // Disable auto ACK
+        NRF_WriteRegister(NRF_SETUP_RETR, 0); // Retransmits
+    }
+
     NRF_WriteRegister(NRF_EN_RXADDR, 0x3F); // Receive Pipe 0 enabled
-    NRF_WriteRegister(NRF_SETUP_RETR, 0); // Retransmits
     NRF_WriteRegister(NRF_SETUP_AW, 0x03); // Address Width  (5 bytes)
     NRF_WriteRegister(NRF_RF_SETUP, bandwidth | power); // set up
     NRF_WriteRegister(NRF_RF_CH, channel); // RF Channel

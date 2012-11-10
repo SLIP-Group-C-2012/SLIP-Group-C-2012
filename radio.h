@@ -18,7 +18,8 @@ void radio_loop(void);
 // Setup the radio at a certain channel (1 - 90),
 // a certain bandwidth from BANDW_1MB, BANDW_2MB or BANDW_250KB
 // and with certain TX power POW_MAX, POW_HIGH, POW_MEDIUM or POW_LOW
-void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power);
+// if you would like to do hardware acking, set hardwareACK to 1 otherwise set it to 0
+void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power, uint8_t hardwareACK);
 
 // Send a 32 byte packet. data is pointer to the first element of the packet
 void radio_sendPacket32(uint8_t * data);

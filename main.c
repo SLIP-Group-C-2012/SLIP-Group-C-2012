@@ -193,7 +193,7 @@ int main(void)
 	printf("I'm %s\n", "transciever");
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(10, BANDW_2MB, POW_MAX);
+	radio_setup(10, BANDW_2MB, POW_MAX, 1);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 
