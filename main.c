@@ -186,14 +186,14 @@ int main(void)
 {
 	volatile unsigned long id = 0; // for counting loop
 	uint8_t playback[SECONDS_TO_PLAY * 8000];
-	uint8_t data[28];
+	uint8_t data[32];
 
 	init_config(); // init things for printf, interrupts, etc
 
 	printf("I'm %s\n", "transciever");
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(10, BANDW_2MB, POW_MAX, 1);
+	radio_setup(2, BANDW_2MB, POW_MAX, 0);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 

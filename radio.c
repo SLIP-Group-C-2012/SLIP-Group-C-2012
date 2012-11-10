@@ -74,15 +74,16 @@ void radio_setup(uint8_t channel, uint8_t bandwidth, uint8_t power, uint8_t hard
     if (channel > MAX_LEGAL_CHANNEL) return; // keeps police happy
 
     NRF_CE_lo;
-    NRF_WriteRegister(NRF_CONFIG, 0x0C); // Enable CRC and disable TX interrupts
 
     if (hardwareACK)
     {
+        NRF_WriteRegister(NRF_CONFIG, 0x0C); // Enable CRC and disable TX interrupts
         NRF_WriteRegister(NRF_EN_AA, 0x3F); // Enable auto ACK
         NRF_WriteRegister(NRF_SETUP_RETR, HARDWARE_RETRANSMITS); // Retransmits
     }
     else
     {
+        NRF_WriteRegister(NRF_CONFIG, 0x3C); // Enable CRC and disable TX interrupts
         NRF_WriteRegister(NRF_EN_AA, 0x0); // Disable auto ACK
         NRF_WriteRegister(NRF_SETUP_RETR, 0); // Retransmits
     }
@@ -157,7 +158,6 @@ void radio_loop(void)
                 receiveModeEnable();
 
             packet_wait = 0;
-            printf("Sent!\n");
         } else if (nrf_status & 0x40)
         {
             NRF_WriteRegister(NRF_STATUS, 0x70);
