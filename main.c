@@ -180,12 +180,12 @@ char array[] = {
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
-#define SECONDS_TO_PLAY (3)
+#define SECONDS_TO_PLAY (8000)
 
 int main(void)
 {
 	volatile unsigned long id = 0; // for counting loop
-	uint8_t playback[SECONDS_TO_PLAY * 8000];
+	uint8_t playback[SECONDS_TO_PLAY];
 	uint8_t data[32];
 
 	init_config(); // init things for printf, interrupts, etc
@@ -207,7 +207,7 @@ int main(void)
     if (radio_receivePacket32(data)) {
 
         if (id > sizeof(playback)-32) {
-            play((char *) playback, 28);
+            play((char *) playback, sizeof(playback));
             id = 0;
             printf("Received\n");
         }

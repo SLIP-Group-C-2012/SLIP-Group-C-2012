@@ -13,7 +13,7 @@ int toPlay = 0;
 
 int next(int val)
 {
-    if(val == (INPUT_BUF_SIZE-1))
+    if(val >= (INPUT_BUF_SIZE-1))
         val=0;
     else
         val++;
