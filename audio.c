@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "audio_rec.h"
 
-#define record_time_in_s 5
+#define record_time_in_s 0
 
 int main(void)
 {

@@ -10,6 +10,7 @@
 #include "efm32_timer.h"
 #include "efm32_int.h"
 #include "dmactrl.h"
+#include "dac.h"
 
 #define DMA_CHANNEL_ADC 0
 
@@ -36,7 +37,7 @@ void ADC0_IRQHandler(void)
   /* Clear interrupt flag */
   ADC_IntClear(ADC0, ADC_IFC_SINGLEOF);
   
-  //printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
+  printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
   
   while(1){
     /* ERROR: ADC Result overflow has occured
@@ -60,15 +61,17 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   static int p = 2 * ADCSAMPLES;
 
   static int transfernumber = 0;
-  
+  play(&cyclic_buf[transfernumber * ADCSAMPLES], ADCSAMPLES);
+
   /* Keeping track of the number of transfers */
   transfernumber++;
+
   
   if (p >= dma->pcm_bufsize)
     p = 0;  // move back to the beginning of the cycle
     
   /* Let the transfer be repeated a few times to illustrate re-activation */
-  if (transfernumber < (dma->numof_pingpong_transfers)) {
+  if (dma->numof_pingpong_transfers == 0 || transfernumber < (dma->numof_pingpong_transfers)) {
     /* Re-activate the DMA */
     DMA_RefreshPingPong(channel,
                         primary,
@@ -287,7 +290,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   setupOpAmp();
   
   setupAdc();
-  
+  InitAudioPWM();
   /* Wait in EM1 in until DMA is finished and callback is called */
   /* Disable interrupts until flag is checked in case DMA finishes after flag 
   * check but before sleep command. Device will still wake up on any set IRQ 
