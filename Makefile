@@ -27,6 +27,7 @@ LINUXCS   = /cad/codesourcery/arm-none-eabi/arm-2010q1
 GCCVERSION = $(shell $(CC) -dumpversion)
 
 TOOLDIR = ~/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI
+-include Makefile.settings
 RM = rm -rf
 
 CC      = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-gcc$(QUOTE)
