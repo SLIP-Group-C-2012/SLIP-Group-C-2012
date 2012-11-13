@@ -246,7 +246,7 @@ void setupAdc(void)
 
 void setupOpAmp(void)
 {
-  OPAMP_Init_TypeDef configuration =  OPA_INIT_NON_INVERTING;
+  OPAMP_Init_TypeDef configuration =  OPA_INIT_UNITY_GAIN;
     
   // Send the output to ADC
   configuration.outMode = opaOutModeAll;
