@@ -61,7 +61,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
   static int p = 2 * ADCSAMPLES;
 
   static int transfernumber = 0;
-  play(&cyclic_buf[transfernumber * ADCSAMPLES], ADCSAMPLES);
+  //play((char *) &cyclic_buf[transfernumber * ADCSAMPLES], ADCSAMPLES);
 
   /* Keeping track of the number of transfers */
   transfernumber++;
