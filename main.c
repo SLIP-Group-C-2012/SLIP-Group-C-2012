@@ -134,9 +134,12 @@ int main(void)
 
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
-    for (id = 0; id < BUFFER_SIZE - 32; id+=32)
+    for (id = 0; id < BUFFER_SIZE - 32; id+=28) {
         radio_sendPacket32((uint8_t *) &cyclic_buf[id]);
-    printf("Finished sending\n");
+        radio_loop();
+    }
+    //play((char *) cyclic_buf, BUFFER_SIZE);
+    printf("Hello there\n");
 #else
     if (radio_receivePacket32(data)) {
 
