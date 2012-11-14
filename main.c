@@ -73,13 +73,13 @@ int init_config(void)
 	UART1->ROUTE = UART_ROUTE_LOCATION_LOC3
 			| UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
 
-	TIMER_IntClear(TIMER0, TIMER_IF_OF);
-	InitRGBLEDPWM();
-	TIMER_IntClear(TIMER0, TIMER_IF_OF);
-
-	TIMER_IntClear(TIMER2, TIMER_IF_OF);
-	InitTimoutTimer();
-	TIMER_IntClear(TIMER2, TIMER_IF_OF);
+//	TIMER_IntClear(TIMER0, TIMER_IF_OF);
+//	InitRGBLEDPWM();
+//	TIMER_IntClear(TIMER0, TIMER_IF_OF);
+//
+//	TIMER_IntClear(TIMER2, TIMER_IF_OF);
+//	InitTimoutTimer();
+//	TIMER_IntClear(TIMER2, TIMER_IF_OF);
 
 	uart_init(UART1); // for printf
 
@@ -180,7 +180,10 @@ char array[] = {
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
-#define SECONDS_TO_PLAY (8000)
+
+#define SECONDS_TO_PLAY (1)
+#define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
+
 
 int main(void)
 {
@@ -191,6 +194,13 @@ int main(void)
 	init_config(); // init things for printf, interrupts, etc
 
 	printf("I'm %s\n", "transciever");
+
+	  uint8_t cyclic_buf[BUFFER_SIZE] = {};
+  while (1) {
+    record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+    play((char *) cyclic_buf, BUFFER_SIZE);
+    printf("Playing back\n");
+  }
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
 	radio_setup(2, BANDW_2MB, POW_MAX, 0);

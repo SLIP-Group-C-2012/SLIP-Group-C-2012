@@ -100,7 +100,7 @@ codec.c \
 protcol.c \
 dac.c \
 acksys.c \
-audio.c \
+main.c \
 dmactrl.c \
 audio_rec.c \
 #fatfs/src/diskio.c \
