@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include "efm32.h"
-#include "efm32_chip.h"
 #include "efm32_dma.h"
 #include "efm32_cmu.h"
 #include "efm32_emu.h"
@@ -48,7 +47,7 @@ void ADC0_IRQHandler(void)
 }
 
 
-
+int transfernumber = 0;
 /**************************************************************************//**
  * @brief  Call-back called when transfer is complete
  *****************************************************************************/
@@ -60,7 +59,6 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 
   static int p = 2 * ADCSAMPLES;
 
-  static int transfernumber = 0;
   //play((char *) &cyclic_buf[transfernumber * ADCSAMPLES], ADCSAMPLES);
 
   /* Keeping track of the number of transfers */
@@ -262,16 +260,8 @@ void setupOpAmp(void)
  * using ping-pong transfer.
  *****************************************************************************/
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
-{ 
-  /* Initialize chip */
-  CHIP_Init();
-  SystemCoreClockUpdate();
-  IO_Init();
-  UART1->ROUTE = UART_ROUTE_LOCATION_LOC3
-        | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
-  uart_init(UART1); // for printf
-  GPIO->P[0].DOUT &= ~(1 << 0);
-  
+{
+  transfernumber = 0;
   //printf("started recording...\n");
   
   setupCmu();	// configure clocks in Clock Management Unit
@@ -290,7 +280,6 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
   setupOpAmp();
   
   setupAdc();
-  InitAudioPWM();
   /* Wait in EM1 in until DMA is finished and callback is called */
   /* Disable interrupts until flag is checked in case DMA finishes after flag 
   * check but before sleep command. Device will still wake up on any set IRQ 
