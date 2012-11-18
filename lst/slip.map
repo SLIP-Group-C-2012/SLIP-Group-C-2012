@@ -129,7 +129,7 @@ transferActive      0x1               build/audio_rec.o
 packet_size         0x4               build/codec.o
 packets             0x140             build/acksys.o
 bps                 0x4               build/codec.o
-packetbuff          0x20              build/protcol.o
+packetbuff          0x1d              build/protcol.o
 
 Discarded input sections
 
@@ -477,6 +477,8 @@ Discarded input sections
  .text          0x00000000        0x0 build/protcol.o
  .data          0x00000000        0x0 build/protcol.o
  .bss           0x00000000        0x0 build/protcol.o
+ .bss.recivedupto
+                0x00000000        0x4 build/protcol.o
  .text.protocol_send
                 0x00000000       0x98 build/protcol.o
  .text          0x00000000        0x0 build/dac.o
@@ -705,12 +707,12 @@ LOAD /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../l
 LOAD /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a
 LOAD /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a
 END GROUP
-                0x20006548                PROVIDE (__cs3_heap_start, _end)
+                0x20006540                PROVIDE (__cs3_heap_start, _end)
                 0x20020000                PROVIDE (__cs3_heap_end, (__cs3_region_start_ram + __cs3_region_size_ram))
                 0x00000001                PROVIDE (__cs3_region_num, ((__cs3_regions_end - __cs3_regions) / 0x14))
                 0x20020000                PROVIDE (__cs3_stack, (__cs3_region_start_ram + __cs3_region_size_ram))
 
-.text           0x00000000     0xa2f0
+.text           0x00000000     0xa2d8
  CREATE_OBJECT_SYMBOLS
                 0x00000000                __cs3_region_start_rom = .
  *(.cs3.region-head.rom)
@@ -958,252 +960,252 @@ END GROUP
                 0x00002884       0x58 build/protcol.o
                 0x00002884                protocol_recive
  .text.protocol_loop
-                0x000028dc       0xc8 build/protcol.o
+                0x000028dc       0x98 build/protcol.o
                 0x000028dc                protocol_loop
  .text.protocol_getaddr
-                0x000029a4       0x4c build/protcol.o
-                0x000029a4                protocol_getaddr
+                0x00002974       0x4c build/protcol.o
+                0x00002974                protocol_getaddr
  .text.NVIC_EnableIRQ
-                0x000029f0       0x28 build/dac.o
+                0x000029c0       0x28 build/dac.o
  .text.TIMER_CompareBufSet
-                0x00002a18       0x20 build/dac.o
+                0x000029e8       0x20 build/dac.o
  .text.TIMER_IntClear
-                0x00002a38       0x10 build/dac.o
+                0x00002a08       0x10 build/dac.o
  .text.TIMER_IntEnable
-                0x00002a48       0x18 build/dac.o
+                0x00002a18       0x18 build/dac.o
  .text.TIMER_TopSet
-                0x00002a60       0x10 build/dac.o
- .text.next     0x00002a70       0x28 build/dac.o
-                0x00002a70                next
- .text.play     0x00002a98       0x74 build/dac.o
-                0x00002a98                play
+                0x00002a30       0x10 build/dac.o
+ .text.next     0x00002a40       0x28 build/dac.o
+                0x00002a40                next
+ .text.play     0x00002a68       0x74 build/dac.o
+                0x00002a68                play
  .text.InitAudioPWM
-                0x00002b0c      0x13c build/dac.o
-                0x00002b0c                InitAudioPWM
+                0x00002adc      0x13c build/dac.o
+                0x00002adc                InitAudioPWM
  .text.TIMER1_IRQHandler
-                0x00002c48       0x94 build/dac.o
-                0x00002c48                TIMER1_IRQHandler
+                0x00002c18       0x94 build/dac.o
+                0x00002c18                TIMER1_IRQHandler
  .text.NVIC_EnableIRQ
-                0x00002cdc       0x28 build/main.o
+                0x00002cac       0x28 build/main.o
  .text.SystemCoreClockUpdate
-                0x00002d04        0x8 build/main.o
+                0x00002cd4        0x8 build/main.o
  .text.CHIP_Init
-                0x00002d0c        0x4 build/main.o
+                0x00002cdc        0x4 build/main.o
  .text.TIMER_IntClear
-                0x00002d10       0x10 build/main.o
+                0x00002ce0       0x10 build/main.o
  .text.GPIO_EVEN_IRQHandler
-                0x00002d20        0x8 build/main.o
-                0x00002d20                GPIO_EVEN_IRQHandler
+                0x00002cf0        0x8 build/main.o
+                0x00002cf0                GPIO_EVEN_IRQHandler
  .text.TIMER2_IRQHandler
-                0x00002d28       0x2c build/main.o
-                0x00002d28                TIMER2_IRQHandler
+                0x00002cf8       0x2c build/main.o
+                0x00002cf8                TIMER2_IRQHandler
  .text.TIMER0_IRQHandler
-                0x00002d54       0x14 build/main.o
-                0x00002d54                TIMER0_IRQHandler
+                0x00002d24       0x14 build/main.o
+                0x00002d24                TIMER0_IRQHandler
  .text.init_config
-                0x00002d68       0x48 build/main.o
-                0x00002d68                init_config
- .text.main     0x00002db0      0x12c build/main.o
-                0x00002db0                main
+                0x00002d38       0x48 build/main.o
+                0x00002d38                init_config
+ .text.main     0x00002d80      0x144 build/main.o
+                0x00002d80                main
  .text.ADC_IntClear
-                0x00002edc       0x10 build/audio_rec.o
+                0x00002ec4       0x10 build/audio_rec.o
  .text.ADC0_IRQHandler
-                0x00002eec       0x20 build/audio_rec.o
-                0x00002eec                ADC0_IRQHandler
- .text          0x00002f0c       0xf0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
-                0x00002f0c                memcpy
- .text          0x00002ffc       0x8c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
-                0x00002ffc                memset
- .text          0x00003088       0x64 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
-                0x00003088                _printf_r
-                0x000030b4                printf
- .text          0x000030ec       0x84 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
-                0x000030ec                _puts_r
-                0x00003160                puts
- .text          0x00003170       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
-                0x00003170                strlen
- .text          0x000031d0     0x1834 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
-                0x000031d0                _vfprintf_r
-                0x000049e8                vfprintf
- .text          0x00004a04       0xf8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
-                0x00004a04                __swsetup_r
- *fill*         0x00004afc        0x4 00
- .text          0x00004b00     0x1030 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
-                0x00004c48                _dtoa_r
- .text          0x00005b30      0x1e0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
-                0x00005b30                _fflush_r
-                0x00005ce8                fflush
- .text          0x00005d10      0x1d8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
-                0x00005d18                _cleanup_r
-                0x00005d74                __sfmoreglue
-                0x00005da4                _cleanup
-                0x00005db4                __sinit
-                0x00005e10                __sfp
-                0x00005ea8                __sfp_lock_acquire
-                0x00005eac                __sfp_lock_release
-                0x00005eb0                __sinit_lock_acquire
-                0x00005eb4                __sinit_lock_release
-                0x00005eb8                __fp_lock_all
-                0x00005ed0                __fp_unlock_all
- .text          0x00005ee8      0x234 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
-                0x00005ee8                _malloc_trim_r
-                0x00005f8c                _free_r
- .text          0x0000611c      0x32c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
-                0x0000611c                __sfvwrite_r
- .text          0x00006448       0xa0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
-                0x00006448                _fwalk
-                0x00006494                _fwalk_reent
- .text          0x000064e8       0xa4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
-                0x000064e8                _setlocale_r
-                0x00006544                __locale_charset
-                0x00006550                __locale_mb_cur_max
-                0x0000655c                __locale_msgcharset
-                0x00006564                __locale_cjk_lang
-                0x00006568                _localeconv_r
-                0x00006570                setlocale
-                0x00006584                localeconv
- .text          0x0000658c       0xe8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
-                0x0000658c                __smakebuf_r
- .text          0x00006674       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
-                0x00006674                malloc
-                0x00006684                free
- .text          0x00006694      0x580 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
-                0x00006694                _malloc_r
- .text          0x00006c14       0x88 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
-                0x00006c14                memchr
- .text          0x00006c9c       0xbc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
-                0x00006c9c                memmove
- .text          0x00006d58        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
-                0x00006d58                __malloc_lock
-                0x00006d5c                __malloc_unlock
- .text          0x00006d60      0x910 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
-                0x00006d60                _Balloc
-                0x00006dcc                _Bfree
-                0x00006e04                __multadd
-                0x00006e88                __s2b
-                0x00006f1c                __hi0bits
-                0x00006f58                __lo0bits
-                0x00006fb4                __i2b
-                0x00006fc8                __multiply
-                0x00007104                __pow5mult
-                0x000071a4                __lshift
-                0x00007260                __mcmp
-                0x000072a0                __mdiff
-                0x00007380                __ulp
-                0x000073c4                __b2d
-                0x00007474                __d2b
-                0x00007540                __ratio
-                0x00007594                _mprec_log10
-                0x000075c8                __copybits
-                0x00007610                __any_on
- .text          0x00007670      0x3d8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
-                0x00007670                _realloc_r
- .text          0x00007a48       0x94 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
-                0x00007a48                __fpclassifyd
- .text          0x00007adc       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
-                0x00007adc                _sbrk_r
- .text          0x00007b04       0x8c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
-                0x00007b04                __sread
-                0x00007b28                __seofread
-                0x00007b2c                __swrite
-                0x00007b64                __sseek
-                0x00007b88                __sclose
- .text          0x00007b90      0x1dc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
-                0x00007b90                strcmp
- .text          0x00007d6c      0xd14 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
-                0x00007d6c                __sprint_r
-                0x00007dec                _vfiprintf_r
-                0x00008a64                vfiprintf
- .text          0x00008a80       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
-                0x00008a80                _write_r
- .text          0x00008aac       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
-                0x00008aac                _calloc_r
- .text          0x00008b0c       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
-                0x00008b0c                _close_r
- .text          0x00008b34       0xc4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
-                0x00008b34                _fclose_r
-                0x00008be8                fclose
- .text          0x00008bf8      0x13c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
-                0x00008bf8                _fputwc_r
-                0x00008cdc                fputwc
- .text          0x00008d34       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
-                0x00008d34                _fstat_r
- .text          0x00008d5c       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
-                0x00008d5c                _isatty_r
- .text          0x00008d84       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
-                0x00008d84                _lseek_r
- .text          0x00008db0       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
-                0x00008db0                _read_r
- .text          0x00008ddc       0xfc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
-                0x00008ddc                __swbuf_r
-                0x00008ec4                __swbuf
- .text          0x00008ed8       0xb0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
-                0x00008ed8                _wcrtomb_r
-                0x00008f28                wcrtomb
- .text          0x00008f88       0x4c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
-                0x00008f88                __ascii_wctomb
-                0x00008fa4                _wctomb_r
- .text          0x00008fd4       0x30 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
-                0x00008fd4                __cs3_premain
- *fill*         0x00009004        0x4 00
- .text          0x00009008      0x278 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
-                0x00009008                __udivsi3
-                0x00009008                __aeabi_uidiv
-                0x00009264                __aeabi_uidivmod
- .text          0x00009280        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
-                0x00009280                __aeabi_ldiv0
-                0x00009280                __aeabi_idiv0
- .text          0x00009284      0x370 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
-                0x00009284                __aeabi_drsub
-                0x0000928c                __aeabi_dsub
-                0x0000928c                __subdf3
-                0x00009290                __adddf3
-                0x00009290                __aeabi_dadd
-                0x00009508                __aeabi_ui2d
-                0x00009508                __floatunsidf
-                0x00009528                __floatsidf
-                0x00009528                __aeabi_i2d
-                0x0000954c                __extendsfdf2
-                0x0000954c                __aeabi_f2d
-                0x00009588                __aeabi_ul2d
-                0x00009588                __floatundidf
-                0x00009598                __floatdidf
-                0x00009598                __aeabi_l2d
- .text          0x000095f4      0x424 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
-                0x000095f4                __aeabi_dmul
-                0x000095f4                __muldf3
-                0x00009848                __aeabi_ddiv
-                0x00009848                __divdf3
- .text          0x00009a18      0x110 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
-                0x00009a18                __gtdf2
-                0x00009a18                __gedf2
-                0x00009a20                __ltdf2
-                0x00009a20                __ledf2
-                0x00009a28                __cmpdf2
-                0x00009a28                __eqdf2
-                0x00009a28                __nedf2
-                0x00009aa4                __aeabi_cdrcmple
-                0x00009ab4                __aeabi_cdcmple
-                0x00009ab4                __aeabi_cdcmpeq
-                0x00009ac4                __aeabi_dcmpeq
-                0x00009ad8                __aeabi_dcmplt
-                0x00009aec                __aeabi_dcmple
-                0x00009b00                __aeabi_dcmpge
-                0x00009b14                __aeabi_dcmpgt
- .text          0x00009b28       0x50 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
-                0x00009b28                __fixdfsi
-                0x00009b28                __aeabi_d2iz
- .text          0x00009b78       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
-                0x00009b78                __aeabi_uldivmod
- .text          0x00009ba4       0x5c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
-                0x00009ba4                __gnu_ldivmod_helper
-                0x00009bd4                __gnu_uldivmod_helper
- .text          0x00009c00      0x364 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
-                0x00009c00                __divdi3
- .text          0x00009f64      0x33c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
-                0x00009f64                __udivdi3
- .text          0x0000a2a0       0x50 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
-                0x0000a2a0                __libc_init_array
+                0x00002ed4       0x20 build/audio_rec.o
+                0x00002ed4                ADC0_IRQHandler
+ .text          0x00002ef4       0xf0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+                0x00002ef4                memcpy
+ .text          0x00002fe4       0x8c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+                0x00002fe4                memset
+ .text          0x00003070       0x64 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+                0x00003070                _printf_r
+                0x0000309c                printf
+ .text          0x000030d4       0x84 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+                0x000030d4                _puts_r
+                0x00003148                puts
+ .text          0x00003158       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                0x00003158                strlen
+ .text          0x000031b8     0x1834 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+                0x000031b8                _vfprintf_r
+                0x000049d0                vfprintf
+ .text          0x000049ec       0xf8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+                0x000049ec                __swsetup_r
+ *fill*         0x00004ae4        0x4 00
+ .text          0x00004ae8     0x1030 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+                0x00004c30                _dtoa_r
+ .text          0x00005b18      0x1e0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+                0x00005b18                _fflush_r
+                0x00005cd0                fflush
+ .text          0x00005cf8      0x1d8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+                0x00005d00                _cleanup_r
+                0x00005d5c                __sfmoreglue
+                0x00005d8c                _cleanup
+                0x00005d9c                __sinit
+                0x00005df8                __sfp
+                0x00005e90                __sfp_lock_acquire
+                0x00005e94                __sfp_lock_release
+                0x00005e98                __sinit_lock_acquire
+                0x00005e9c                __sinit_lock_release
+                0x00005ea0                __fp_lock_all
+                0x00005eb8                __fp_unlock_all
+ .text          0x00005ed0      0x234 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+                0x00005ed0                _malloc_trim_r
+                0x00005f74                _free_r
+ .text          0x00006104      0x32c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+                0x00006104                __sfvwrite_r
+ .text          0x00006430       0xa0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+                0x00006430                _fwalk
+                0x0000647c                _fwalk_reent
+ .text          0x000064d0       0xa4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                0x000064d0                _setlocale_r
+                0x0000652c                __locale_charset
+                0x00006538                __locale_mb_cur_max
+                0x00006544                __locale_msgcharset
+                0x0000654c                __locale_cjk_lang
+                0x00006550                _localeconv_r
+                0x00006558                setlocale
+                0x0000656c                localeconv
+ .text          0x00006574       0xe8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+                0x00006574                __smakebuf_r
+ .text          0x0000665c       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+                0x0000665c                malloc
+                0x0000666c                free
+ .text          0x0000667c      0x580 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                0x0000667c                _malloc_r
+ .text          0x00006bfc       0x88 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+                0x00006bfc                memchr
+ .text          0x00006c84       0xbc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+                0x00006c84                memmove
+ .text          0x00006d40        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+                0x00006d40                __malloc_lock
+                0x00006d44                __malloc_unlock
+ .text          0x00006d48      0x910 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+                0x00006d48                _Balloc
+                0x00006db4                _Bfree
+                0x00006dec                __multadd
+                0x00006e70                __s2b
+                0x00006f04                __hi0bits
+                0x00006f40                __lo0bits
+                0x00006f9c                __i2b
+                0x00006fb0                __multiply
+                0x000070ec                __pow5mult
+                0x0000718c                __lshift
+                0x00007248                __mcmp
+                0x00007288                __mdiff
+                0x00007368                __ulp
+                0x000073ac                __b2d
+                0x0000745c                __d2b
+                0x00007528                __ratio
+                0x0000757c                _mprec_log10
+                0x000075b0                __copybits
+                0x000075f8                __any_on
+ .text          0x00007658      0x3d8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+                0x00007658                _realloc_r
+ .text          0x00007a30       0x94 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+                0x00007a30                __fpclassifyd
+ .text          0x00007ac4       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+                0x00007ac4                _sbrk_r
+ .text          0x00007aec       0x8c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+                0x00007aec                __sread
+                0x00007b10                __seofread
+                0x00007b14                __swrite
+                0x00007b4c                __sseek
+                0x00007b70                __sclose
+ .text          0x00007b78      0x1dc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+                0x00007b78                strcmp
+ .text          0x00007d54      0xd14 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+                0x00007d54                __sprint_r
+                0x00007dd4                _vfiprintf_r
+                0x00008a4c                vfiprintf
+ .text          0x00008a68       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+                0x00008a68                _write_r
+ .text          0x00008a94       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+                0x00008a94                _calloc_r
+ .text          0x00008af4       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+                0x00008af4                _close_r
+ .text          0x00008b1c       0xc4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+                0x00008b1c                _fclose_r
+                0x00008bd0                fclose
+ .text          0x00008be0      0x13c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+                0x00008be0                _fputwc_r
+                0x00008cc4                fputwc
+ .text          0x00008d1c       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+                0x00008d1c                _fstat_r
+ .text          0x00008d44       0x28 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+                0x00008d44                _isatty_r
+ .text          0x00008d6c       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+                0x00008d6c                _lseek_r
+ .text          0x00008d98       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+                0x00008d98                _read_r
+ .text          0x00008dc4       0xfc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+                0x00008dc4                __swbuf_r
+                0x00008eac                __swbuf
+ .text          0x00008ec0       0xb0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+                0x00008ec0                _wcrtomb_r
+                0x00008f10                wcrtomb
+ .text          0x00008f70       0x4c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+                0x00008f70                __ascii_wctomb
+                0x00008f8c                _wctomb_r
+ .text          0x00008fbc       0x30 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                0x00008fbc                __cs3_premain
+ *fill*         0x00008fec        0x4 00
+ .text          0x00008ff0      0x278 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+                0x00008ff0                __udivsi3
+                0x00008ff0                __aeabi_uidiv
+                0x0000924c                __aeabi_uidivmod
+ .text          0x00009268        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+                0x00009268                __aeabi_ldiv0
+                0x00009268                __aeabi_idiv0
+ .text          0x0000926c      0x370 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+                0x0000926c                __aeabi_drsub
+                0x00009274                __aeabi_dsub
+                0x00009274                __subdf3
+                0x00009278                __adddf3
+                0x00009278                __aeabi_dadd
+                0x000094f0                __aeabi_ui2d
+                0x000094f0                __floatunsidf
+                0x00009510                __floatsidf
+                0x00009510                __aeabi_i2d
+                0x00009534                __extendsfdf2
+                0x00009534                __aeabi_f2d
+                0x00009570                __aeabi_ul2d
+                0x00009570                __floatundidf
+                0x00009580                __floatdidf
+                0x00009580                __aeabi_l2d
+ .text          0x000095dc      0x424 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+                0x000095dc                __aeabi_dmul
+                0x000095dc                __muldf3
+                0x00009830                __aeabi_ddiv
+                0x00009830                __divdf3
+ .text          0x00009a00      0x110 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+                0x00009a00                __gtdf2
+                0x00009a00                __gedf2
+                0x00009a08                __ltdf2
+                0x00009a08                __ledf2
+                0x00009a10                __cmpdf2
+                0x00009a10                __eqdf2
+                0x00009a10                __nedf2
+                0x00009a8c                __aeabi_cdrcmple
+                0x00009a9c                __aeabi_cdcmple
+                0x00009a9c                __aeabi_cdcmpeq
+                0x00009aac                __aeabi_dcmpeq
+                0x00009ac0                __aeabi_dcmplt
+                0x00009ad4                __aeabi_dcmple
+                0x00009ae8                __aeabi_dcmpge
+                0x00009afc                __aeabi_dcmpgt
+ .text          0x00009b10       0x50 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+                0x00009b10                __fixdfsi
+                0x00009b10                __aeabi_d2iz
+ .text          0x00009b60       0x2c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+                0x00009b60                __aeabi_uldivmod
+ .text          0x00009b8c       0x5c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+                0x00009b8c                __gnu_ldivmod_helper
+                0x00009bbc                __gnu_uldivmod_helper
+ .text          0x00009be8      0x364 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+                0x00009be8                __divdi3
+ .text          0x00009f4c      0x33c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+                0x00009f4c                __udivdi3
+ .text          0x0000a288       0x50 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+                0x0000a288                __libc_init_array
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -1215,132 +1217,132 @@ END GROUP
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x0000a2f0        0x0
+.v4_bx          0x0000a2d8        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0000a2f0        0x0
+.iplt           0x0000a2d8        0x0
  .iplt          0x00000000        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x0000a2f0        0x4
+.eh_frame       0x0000a2d8        0x4
  *(.eh_frame)
- .eh_frame      0x0000a2f0        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
- .eh_frame      0x0000a2f0        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
-                0x0000a2f4                PROVIDE (__exidx_start, .)
+ .eh_frame      0x0000a2d8        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .eh_frame      0x0000a2d8        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+                0x0000a2dc                PROVIDE (__exidx_start, .)
 
-.ARM.exidx      0x0000a2f4        0x8
+.ARM.exidx      0x0000a2dc        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x0000a2f4        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
- .ARM.exidx     0x0000a2fc        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x0000a2dc        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x0000a2e4        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x0000a2fc                PROVIDE (__exidx_end, .)
+                0x0000a2e4                PROVIDE (__exidx_end, .)
 
-.rel.dyn        0x0000a2fc        0x0
+.rel.dyn        0x0000a2e4        0x0
  .rel.iplt      0x00000000        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
 
-.rodata         0x0000a300      0x390
+.rodata         0x0000a2e8      0x390
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.i2cNSum
-                0x0000a300        0x4 build/efm32_i2c.o
- .rodata        0x0000a304        0x8 build/radio.o
- .rodata        0x0000a30c       0x58 build/config.o
+                0x0000a2e8        0x4 build/efm32_i2c.o
+ .rodata        0x0000a2ec        0x8 build/radio.o
+ .rodata        0x0000a2f4       0x58 build/config.o
  .rodata.refclk.6261
-                0x0000a364        0x4 build/config.o
+                0x0000a34c        0x4 build/config.o
  .rodata.ovs.6260
-                0x0000a368        0x4 build/config.o
+                0x0000a350        0x4 build/config.o
  .rodata.baud.6259
-                0x0000a36c        0x4 build/config.o
- .rodata        0x0000a370        0xc build/protcol.o
- .rodata        0x0000a37c       0x20 build/dac.o
- .rodata        0x0000a39c       0x24 build/main.o
- .rodata        0x0000a3c0       0x64 build/audio_rec.o
+                0x0000a354        0x4 build/config.o
+ .rodata        0x0000a358        0xc build/protcol.o
+ .rodata        0x0000a364       0x20 build/dac.o
+ .rodata        0x0000a384       0x24 build/main.o
+ .rodata        0x0000a3a8       0x64 build/audio_rec.o
  .rodata.str1.4
-                0x0000a424        0x2 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+                0x0000a40c        0x2 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
                                   0x4 (size before relaxing)
- *fill*         0x0000a426        0x2 00
- .rodata        0x0000a428       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ *fill*         0x0000a40e        0x2 00
+ .rodata        0x0000a410       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
  .rodata.str1.4
-                0x0000a448       0x42 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+                0x0000a430       0x42 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
                                  0x44 (size before relaxing)
- *fill*         0x0000a48a        0x2 00
+ *fill*         0x0000a472        0x2 00
  .rodata.str1.4
-                0x0000a48c       0x10 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+                0x0000a474       0x10 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
                                  0x14 (size before relaxing)
- .rodata        0x0000a49c       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
-                0x0000a49c                __sf_fake_stderr
-                0x0000a4bc                __sf_fake_stdout
-                0x0000a4dc                __sf_fake_stdin
- .rodata        0x0000a4fc        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
-                0x0000a4fc                _global_impure_ptr
+ .rodata        0x0000a484       0x60 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+                0x0000a484                __sf_fake_stderr
+                0x0000a4a4                __sf_fake_stdout
+                0x0000a4c4                __sf_fake_stdin
+ .rodata        0x0000a4e4        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                0x0000a4e4                _global_impure_ptr
  .rodata.str1.4
-                0x0000a500        0x2 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                0x0000a4e8        0x2 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
                                   0x4 (size before relaxing)
- *fill*         0x0000a502        0x2 00
+ *fill*         0x0000a4ea        0x2 00
  .rodata.str1.4
-                0x0000a504        0xc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                0x0000a4ec        0xc /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
                                  0x14 (size before relaxing)
- .rodata        0x0000a510      0x128 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
-                0x0000a520                __mprec_tens
-                0x0000a5e8                __mprec_tinytens
-                0x0000a610                __mprec_bigtens
- .rodata        0x0000a638       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .rodata        0x0000a4f8      0x128 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+                0x0000a508                __mprec_tens
+                0x0000a5d0                __mprec_tinytens
+                0x0000a5f8                __mprec_bigtens
+ .rodata        0x0000a620       0x20 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
  .rodata.str1.4
                 0x00000000       0x30 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
-                0x0000a658                . = ALIGN (0x4)
+                0x0000a640                . = ALIGN (0x4)
  *(.init)
- .init          0x0000a658        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
-                0x0000a658                _init
- .init          0x0000a65c        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
-                0x0000a664                . = ALIGN (0x4)
-                0x0000a664                __preinit_array_start = .
+ .init          0x0000a640        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+                0x0000a640                _init
+ .init          0x0000a644        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+                0x0000a64c                . = ALIGN (0x4)
+                0x0000a64c                __preinit_array_start = .
  *(.preinit_array)
-                0x0000a664                __preinit_array_end = .
-                0x0000a664                . = ALIGN (0x4)
-                0x0000a664                __init_array_start = .
+                0x0000a64c                __preinit_array_end = .
+                0x0000a64c                . = ALIGN (0x4)
+                0x0000a64c                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x0000a664        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
-                0x0000a668                __init_array_end = .
-                0x0000a668                . = ALIGN (0x4)
+ .init_array    0x0000a64c        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+                0x0000a650                __init_array_end = .
+                0x0000a650                . = ALIGN (0x4)
  *(.fini)
- .fini          0x0000a668        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
-                0x0000a668                _fini
- .fini          0x0000a66c        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
-                0x0000a674                . = ALIGN (0x4)
-                0x0000a674                __fini_array_start = .
+ .fini          0x0000a650        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+                0x0000a650                _fini
+ .fini          0x0000a654        0x8 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+                0x0000a65c                . = ALIGN (0x4)
+                0x0000a65c                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x0000a674        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .fini_array    0x0000a65c        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
  *(SORT(.fini_array.*))
-                0x0000a678                __fini_array_end = .
-                0x0000a678                . = ALIGN (0x4)
+                0x0000a660                __fini_array_end = .
+                0x0000a660                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x0000a678                . = ALIGN (0x4)
+                0x0000a660                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x0000a678                . = ALIGN (0x4)
-                0x0000a678                __cs3_regions = .
-                0x0000a678        0x4 LONG 0x0
-                0x0000a67c        0x4 LONG 0xa690 __cs3_region_init_ram
-                0x0000a680        0x4 LONG 0x20000000 __cs3_region_start_ram
-                0x0000a684        0x4 LONG 0x590 __cs3_region_init_size_ram
-                0x0000a688        0x4 LONG 0x5fb8 __cs3_region_zero_size_ram
-                0x0000a68c                __cs3_regions_end = .
-                0x0000a690                . = ALIGN (0x8)
- *fill*         0x0000a68c        0x4 00
+                0x0000a660                . = ALIGN (0x4)
+                0x0000a660                __cs3_regions = .
+                0x0000a660        0x4 LONG 0x0
+                0x0000a664        0x4 LONG 0xa678 __cs3_region_init_ram
+                0x0000a668        0x4 LONG 0x20000000 __cs3_region_start_ram
+                0x0000a66c        0x4 LONG 0x590 __cs3_region_init_size_ram
+                0x0000a670        0x4 LONG 0x5fb0 __cs3_region_zero_size_ram
+                0x0000a674                __cs3_regions_end = .
+                0x0000a678                . = ALIGN (0x8)
+ *fill*         0x0000a674        0x4 00
  *(.rom)
  *(.rom.b .bss.rom)
-                0x0000a690                _etext = .
+                0x0000a678                _etext = .
                 0x00100000                __cs3_region_end_rom = (__cs3_region_start_rom + 0x100000)
                 0x00100000                __cs3_region_size_rom = 0x100000
 
-.data           0x20000000      0x590 load address 0x0000a690
+.data           0x20000000      0x590 load address 0x0000a678
                 0x20000000                __cs3_region_start_ram = .
  *(.cs3.region-head.ram)
  *(.jcr)
@@ -1368,10 +1370,10 @@ END GROUP
                 0x20000590                . = ALIGN (0x8)
                 0x20000590                _edata = .
 
-.igot.plt       0x20000590        0x0 load address 0x0000ac20
+.igot.plt       0x20000590        0x0 load address 0x0000ac08
  .igot.plt      0x00000000        0x0 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
 
-.bss            0x20000590     0x5fb8 load address 0x0000ac20
+.bss            0x20000590     0x5fb0 load address 0x0000ac08
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss           0x20000590       0x1c /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
@@ -1399,55 +1401,52 @@ END GROUP
  .bss.packetpending
                 0x200005d0        0x4 build/protcol.o
                 0x200005d0                packetpending
- .bss.recivedupto
-                0x200005d4        0x4 build/protcol.o
-                0x200005d4                recivedupto
- .bss.set       0x200005d8        0x4 build/dac.o
-                0x200005d8                set
- .bss.iterator  0x200005dc        0x4 build/dac.o
-                0x200005dc                iterator
- .bss.toPlay    0x200005e0        0x4 build/dac.o
-                0x200005e0                toPlay
+ .bss.set       0x200005d4        0x4 build/dac.o
+                0x200005d4                set
+ .bss.iterator  0x200005d8        0x4 build/dac.o
+                0x200005d8                iterator
+ .bss.toPlay    0x200005dc        0x4 build/dac.o
+                0x200005dc                toPlay
  .bss.pingtimer
-                0x200005e4        0x4 build/main.o
-                0x200005e4                pingtimer
- .bss           0x200005e8       0x34 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
-                0x200005e8                __malloc_top_pad
-                0x200005ec                __malloc_current_mallinfo
-                0x20000614                __malloc_max_sbrked_mem
-                0x20000618                __malloc_max_total_mem
+                0x200005e0        0x4 build/main.o
+                0x200005e0                pingtimer
+ .bss           0x200005e4       0x34 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                0x200005e4                __malloc_top_pad
+                0x200005e8                __malloc_current_mallinfo
+                0x20000610                __malloc_max_sbrked_mem
+                0x20000614                __malloc_max_total_mem
  *(COMMON)
- COMMON         0x2000061c        0x4 build/system_efm32.o
-                0x2000061c                SystemCoreClock
- COMMON         0x20000620       0x21 build/radio.o
-                0x20000620                packet
-                0x20000640                radio_mode
- *fill*         0x20000641        0x3 00
- COMMON         0x20000644      0x11c build/codec.o
-                0x20000644                mask
-                0x20000648                decompressprev
-                0x2000064c                no_steps
-                0x20000650                steps
-                0x20000750                output_packet_size
-                0x20000754                compressprev
-                0x20000758                packet_size
-                0x2000075c                bps
- COMMON         0x20000760       0x20 build/protcol.o
-                0x20000760                packetbuff
- COMMON         0x20000780     0x5dc0 build/dac.o
-                0x20000780                buff
- COMMON         0x20006540        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
-                0x20006540                errno
-                0x20006548                . = ALIGN (0x8)
- *fill*         0x20006544        0x4 00
+ COMMON         0x20000618        0x4 build/system_efm32.o
+                0x20000618                SystemCoreClock
+ COMMON         0x2000061c       0x21 build/radio.o
+                0x2000061c                packet
+                0x2000063c                radio_mode
+ *fill*         0x2000063d        0x3 00
+ COMMON         0x20000640      0x11c build/codec.o
+                0x20000640                mask
+                0x20000644                decompressprev
+                0x20000648                no_steps
+                0x2000064c                steps
+                0x2000074c                output_packet_size
+                0x20000750                compressprev
+                0x20000754                packet_size
+                0x20000758                bps
+ COMMON         0x2000075c       0x1d build/protcol.o
+                0x2000075c                packetbuff
+ *fill*         0x20000779        0x3 00
+ COMMON         0x2000077c     0x5dc0 build/dac.o
+                0x2000077c                buff
+ COMMON         0x2000653c        0x4 /home/hwsknudsen/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+                0x2000653c                errno
+                0x20006540                . = ALIGN (0x8)
  *(.ram.b .bss.ram)
-                0x20006548                _end = .
-                0x20006548                __end = .
+                0x20006540                _end = .
+                0x20006540                __end = .
                 0x20020000                __cs3_region_end_ram = (__cs3_region_start_ram + 0x20000)
                 0x00020000                __cs3_region_size_ram = 0x20000
-                0x0000a690                __cs3_region_init_ram = LOADADDR (.data)
+                0x0000a678                __cs3_region_init_ram = LOADADDR (.data)
                 0x00000590                __cs3_region_init_size_ram = (_edata - ADDR (.data))
-                0x00005fb8                __cs3_region_zero_size_ram = (_end - _edata)
+                0x00005fb0                __cs3_region_zero_size_ram = (_end - _edata)
 
 .stab
  *(.stab)
@@ -1523,7 +1522,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xd45f
+.debug_info     0x00000000     0xd44f
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x70 build/core_cm3.o
  .debug_info    0x00000070      0x423 build/system_efm32.o
@@ -1548,12 +1547,12 @@ END GROUP
  .debug_info    0x00008271      0x628 build/syscalls.o
  .debug_info    0x00008899     0x16ea build/config.o
  .debug_info    0x00009f83      0x26f build/codec.o
- .debug_info    0x0000a1f2      0x2e1 build/protcol.o
- .debug_info    0x0000a4d3      0xc07 build/dac.o
- .debug_info    0x0000b0da      0x27d build/acksys.o
- .debug_info    0x0000b357      0x826 build/main.o
- .debug_info    0x0000bb7d      0x12c build/dmactrl.o
- .debug_info    0x0000bca9     0x17b6 build/audio_rec.o
+ .debug_info    0x0000a1f2      0x2d1 build/protcol.o
+ .debug_info    0x0000a4c3      0xc07 build/dac.o
+ .debug_info    0x0000b0ca      0x27d build/acksys.o
+ .debug_info    0x0000b347      0x826 build/main.o
+ .debug_info    0x0000bb6d      0x12c build/dmactrl.o
+ .debug_info    0x0000bc99     0x17b6 build/audio_rec.o
 
 .debug_abbrev   0x00000000     0x288b
  *(.debug_abbrev)
@@ -1587,7 +1586,7 @@ END GROUP
  .debug_abbrev  0x0000254a       0xab build/dmactrl.o
  .debug_abbrev  0x000025f5      0x296 build/audio_rec.o
 
-.debug_line     0x00000000     0x69b7
+.debug_line     0x00000000     0x69b6
  *(.debug_line)
  .debug_line    0x00000000      0x14f build/core_cm3.o
  .debug_line    0x0000014f      0x2a2 build/system_efm32.o
@@ -1612,12 +1611,12 @@ END GROUP
  .debug_line    0x000044fd      0x480 build/syscalls.o
  .debug_line    0x0000497d      0x42f build/config.o
  .debug_line    0x00004dac      0x3a5 build/codec.o
- .debug_line    0x00005151      0x27c build/protcol.o
- .debug_line    0x000053cd      0x30f build/dac.o
- .debug_line    0x000056dc      0x25d build/acksys.o
- .debug_line    0x00005939      0x658 build/main.o
- .debug_line    0x00005f91      0x3fb build/dmactrl.o
- .debug_line    0x0000638c      0x62b build/audio_rec.o
+ .debug_line    0x00005151      0x27a build/protcol.o
+ .debug_line    0x000053cb      0x30f build/dac.o
+ .debug_line    0x000056da      0x25d build/acksys.o
+ .debug_line    0x00005937      0x659 build/main.o
+ .debug_line    0x00005f90      0x3fb build/dmactrl.o
+ .debug_line    0x0000638b      0x62b build/audio_rec.o
 
 .debug_frame    0x00000000     0x2378
  *(.debug_frame)

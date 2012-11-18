@@ -110,8 +110,8 @@ int init_config(void)
 #define SENDER (0)
 #define RECVINGADDRESS (62)
 
-#define COMPRESSED_SIZE (32)
-#define AUDIO_PACK_SIZE (28)
+#define COMPRESSED_SIZE (29)
+#define AUDIO_PACK_SIZE (29)
 
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
@@ -121,7 +121,7 @@ int main(void)
 {
 	volatile unsigned long id = 0; // for counting loop
 	uint8_t playback[BUFFER_SIZE];
-	uint8_t data[32];
+	uint8_t data[COMPRESSED_SIZE];
 
 	init_config(); // init things for printf, interrupts, etc
 
@@ -142,7 +142,7 @@ int main(void)
 
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
-    for (id = 0; id < BUFFER_SIZE - 32; id+=28) {
+    for (id = 0; id < BUFFER_SIZE - COMPRESSED_SIZE; id+=AUDIO_PACK_SIZE) {
     	protocol_send((uint8_t *) &cyclic_buf[id], RECVINGADDRESS);
     	//radio_sendPacket32((uint8_t *) &cyclic_buf[id]);
 		protocol_loop();
@@ -152,13 +152,14 @@ int main(void)
 #else
     if (protocol_recive(data)) {
 
-        if (id > sizeof(playback)-32) {
+        if (id > sizeof(playback)-COMPRESSED_SIZE) {
             play((char *) playback, sizeof(playback));
             id = 0;
+            printf(playback);
             printf("Received\n");
         }
-        memcpy(&playback[id], data, 28);
-        id = id + 28;
+        memcpy(&playback[id], data, AUDIO_PACK_SIZE);
+        id = id + AUDIO_PACK_SIZE;
     }
 #endif
 

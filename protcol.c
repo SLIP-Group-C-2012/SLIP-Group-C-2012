@@ -9,7 +9,7 @@
 #define DISABLE_REBROADCAST (0)
 
 
-uint8_t packetbuff[32];
+uint8_t packetbuff[29];
 int packetpending = 0;
 //uint8_t myaddress = protocol_getaddr();
 
@@ -45,8 +45,8 @@ int protocol_recive(uint8_t* buff){
 
 		//printf("String2 %s\n",test);
 
-		//memcpy(packetbuff,buff,sizeof(packetbuff));
 		memcpy(buff,packetbuff,sizeof(packetbuff));
+		//memcpy(buff,packetbuff,sizeof(packetbuff));
 
 		packetpending = 0;
 		return 1;
@@ -61,10 +61,9 @@ int protocol_loop(){
 	if(radio_receivePacket32((uint8_t *)&packet))
 	{
 
-		if(recivedupto<packet.packetID){
-			recivedupto = packet.packetID;
 
 			memcpy(packetbuff,packet.data,sizeof(packet.data));
+
 
 			if(packet.dest==protocol_getaddr()){
 				forus = 1;
@@ -80,7 +79,7 @@ int protocol_loop(){
 			}
 
 
-		}
+
 	}
 	return forus;
 }
