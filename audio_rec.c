@@ -72,7 +72,8 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 		p = 0;  // move back to the beginning of the cycle
 
 	/* Let the transfer be repeated a few times to illustrate re-activation */
-	if (dma->numof_pingpong_transfers == 0 || transfernumber < (dma->numof_pingpong_transfers)) {
+	//if (dma->numof_pingpong_transfers == 0 || transfernumber < (dma->numof_pingpong_transfers)) {
+	if (enable_transfer) {
 		/* Re-activate the DMA */
 		DMA_RefreshPingPong(channel,
 		                    primary,
