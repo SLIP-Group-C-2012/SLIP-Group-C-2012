@@ -333,8 +333,7 @@ void stop_recording(void)
 	DMA_Reset();	// clean up after DMA transfers
 }
 
-void get_last_chunk(uint8_t *chunk)
+uint8_t *get_last_chunk(void)
 {
-	// TODO: implement this...
-	;
+	return cyclic_buf[p - 2 * ADCSAMPLES];
 }
