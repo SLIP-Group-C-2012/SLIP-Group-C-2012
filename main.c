@@ -82,6 +82,7 @@ int init_config(void)
 //	InitTimoutTimer();
 //	TIMER_IntClear(TIMER2, TIMER_IF_OF);
 
+
 	uart_init(UART1); // for printf
 
 	// for interrupts
@@ -105,7 +106,7 @@ int init_config(void)
  *****************************************************************************/
 //133761
 
-#define SENDER (1)
+#define SENDER (0)
 
 #define COMPRESSED_SIZE (29)
 #define AUDIO_PACK_SIZE (29)
@@ -136,17 +137,17 @@ int main(void)
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
     for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-    	printf("ID = %d", id);
+
         protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
         protocol_loop();
     }
-    //play((char *) cyclic_buf, BUFFER_SIZE);
-    printf("Hello there\n");
+
+
 #else
     if (protocol_recive(data)) {
 
         if (id > sizeof(playback)-32) {
-        	printf("SIZE of Play = %d", sizeof(playback));
+
             play((char *) playback, sizeof(playback));
             id = 0;
             printf("Received\n");

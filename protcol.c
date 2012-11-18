@@ -36,7 +36,7 @@ void protocol_send(uint8_t* buff, uint8_t dest) {
 int protocol_recive(uint8_t* buff){	
 
 	if (packetpending){
-		memcpy(buff,packetbuff,sizeof(packetbuff));
+		memcpy(packetbuff,buff,sizeof(packetbuff));
 		packetpending = 0;
 		return 1;
 	}
@@ -50,8 +50,10 @@ int protocol_loop(){
 	int lastReceived = 0;
 	if(radio_receivePacket32((uint8_t *)&packet))
 	{
+		//printf("SRC: %d DEST: %d ID: %d \n" , packet.src, packet.dest, packet.packetID);
 		if(packet.dest == protocol_getaddr())
 		{
+			//printf("12");
 			forus = 1;
 			packetpending = 1;
 			lastReceived = packet.packetID;
