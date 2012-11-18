@@ -102,7 +102,7 @@ int init_config(void)
  *****************************************************************************/
 //133761
 
-#define SENDER (0)
+#define SENDER (1)
 
 #define COMPRESSED_SIZE (29)
 #define AUDIO_PACK_SIZE (29)
@@ -132,6 +132,7 @@ int main(void)
 
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+    printf("send...\n");
     for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
 
         protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
