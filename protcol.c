@@ -36,7 +36,8 @@ void protocol_send(uint8_t* buff, uint8_t dest) {
 int protocol_recive(uint8_t* buff){	
 
 	if (packetpending){
-		memcpy(packetbuff,buff,sizeof(packetbuff));
+		printf("Copiyng %d bytes ->>> packetbuff", sizeof(packetbuff));
+		memcpy(buff,packetbuff,sizeof(packetbuff));
 		packetpending = 0;
 		return 1;
 	}
@@ -57,6 +58,7 @@ int protocol_loop(){
 			forus = 1;
 			packetpending = 1;
 			lastReceived = packet.packetID;
+			printf("Received %d bytes ->>> packetbuff", sizeof(packet.data));
 			memcpy(packetbuff,packet.data,sizeof(packet.data));
 		} else if(!DISABLE_REBROADCAST) {
 			forus = 0;

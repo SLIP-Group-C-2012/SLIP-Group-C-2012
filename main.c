@@ -58,16 +58,12 @@ int init_config(void)
 	/* Ensure core frequency has been updated */
 	//SystemCoreClockUpdate();
 
-	printf("hello5");
-
 
 	//CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
 	//CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
 	//CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
-
-	printf("hello3");
 
 
 	IO_Init();
@@ -95,9 +91,9 @@ int init_config(void)
 	//	uint32_t serial2;
 	//	serial2 =  (*(uint32_t*)0x0FE081F4); //UNIQUE_1 contains a facility ID
 
-	printf("hello");
+
 	InitAudioPWM();
-	printf("hello2");
+
 
 }
 
