@@ -16,6 +16,7 @@
 
 #include "config.h"
 #include "radio.h"
+#include "protcol.h"
 
 #include "acksys.h"
 
@@ -109,6 +110,8 @@ int init_config(void)
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
 
+#define RECEIVINGADDRESS (62)
+
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
 
@@ -126,7 +129,7 @@ int main(void)
     uint8_t cyclic_buf[BUFFER_SIZE] = {};
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(2, BANDW_2MB, POW_MAX, 0);
+	radio_setup(2, BANDW_2MB, POW_MAX, 1);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 
@@ -135,13 +138,13 @@ int main(void)
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
     for (id = 0; id < BUFFER_SIZE - 32; id+=28) {
-        radio_sendPacket32((uint8_t *) &cyclic_buf[id]);
-        radio_loop();
+        protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
+        protocol_loop();
     }
     //play((char *) cyclic_buf, BUFFER_SIZE);
     printf("Hello there\n");
 #else
-    if (radio_receivePacket32(data)) {
+    if (protocol_receive(data)) {
 
         if (id > sizeof(playback)-32) {
             play((char *) playback, sizeof(playback));
@@ -154,7 +157,7 @@ int main(void)
 #endif
 
 		// we should have this in our main loop always. It helps radio service itself.
-		radio_loop();
+		protocol_loop();
 	}
 }
 
