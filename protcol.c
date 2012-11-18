@@ -11,7 +11,7 @@
 #define MY_ADDR (1)
 
 
-uint8_t packetbuff[32];
+uint8_t packetbuff[29];
 int packetpending = 0;
 
 typedef struct {
