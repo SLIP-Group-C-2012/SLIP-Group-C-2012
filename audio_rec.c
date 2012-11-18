@@ -23,7 +23,7 @@ typedef struct {
 DMA_CB_TypeDef cb;
 
 /* Transfer Flag */
-volatile bool transferActive;
+volatile bool transferActive;	// TODO: why is this volatile?
 
 #define SAMPLE_RATE 8000  // 8000 hz sample rate
 #define ADCSAMPLES 20 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
@@ -299,8 +299,11 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 	//printf("finished recording!\n");
 }
 
+// TODO: test this actually works...
 void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
+	enable_transfer = true;
+
 	setupCmu();	// configure clocks in Clock Management Unit
 
 	Dma dma;
@@ -318,3 +321,15 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 
 	setupAdc();
 }
+
+// TODO: test this actually works...
+void stop_recording(void)
+{
+	enable_transfer = false
+	
+	while (transferActive)
+		;		// wait till transfer halted
+
+	DMA_Reset();	// clean up after DMA transfers
+}
+
