@@ -36,7 +36,7 @@ void protocol_send(uint8_t* buff, uint8_t dest) {
 int protocol_recive(uint8_t* buff){	
 
 	if (packetpending){
-		printf("Copiyng %d bytes ->>> buff\n", sizeof(packetbuff));
+		//printf("Copiyng %d bytes ->>> buff\n", sizeof(packetbuff));
 		memcpy(buff,packetbuff,sizeof(packetbuff));
 		packetpending = 0;
 		return 1;
@@ -58,12 +58,12 @@ int protocol_loop(){
 			forus = 1;
 			packetpending = 1;
 			lastReceived = packet.packetID;
-			printf("Received %d bytes ->>> packetbuff\n", sizeof(packet.data));
+			//printf("Received %d bytes ->>> packetbuff\n", sizeof(packet.data));
 			memcpy(packetbuff,packet.data,sizeof(packet.data));
 		} else if(!DISABLE_REBROADCAST) {
 			forus = 0;
 			packetpending = 0;
-			printf("Retransimit\n");
+			//printf("Retransimit\n");
 			packet.src = protocol_getaddr();
 			radio_sendPacket32((uint8_t *)&packet);
 		}

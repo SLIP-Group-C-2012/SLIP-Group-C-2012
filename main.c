@@ -118,6 +118,9 @@ int main(void)
 	volatile unsigned long id = 0; // for counting loop
 	uint8_t playback[BUFFER_SIZE];
 	uint8_t data[AUDIO_PACK_SIZE];
+	
+	printf("I'm %s\n", SENDER ? "sender" : "receiver");
+	printf("%d\n", protocol_getaddr());
 
 	init_config(); // init things for printf, interrupts, etc
 
@@ -134,7 +137,7 @@ int main(void)
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 
     for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-		printf("send...\n");
+		//printf("send...\n");
         protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
         protocol_loop();
     }
@@ -147,7 +150,7 @@ int main(void)
 
             play((char *) playback, sizeof(playback));
             id = 0;
-            printf("Received\n");
+            //printf("Received\n");
         }
         memcpy(&playback[id], data, 29);
         id = id + 29;
