@@ -17,6 +17,8 @@ typedef struct {
 	uint8_t *pcm_buf;
 	unsigned int pcm_bufsize;
 	unsigned int numof_pingpong_transfers;
+	
+	uint8_t *latest_chunk;	// points to the latest set of audio samples
 } Dma;
 
 /* DMA callback structure */
@@ -24,6 +26,7 @@ DMA_CB_TypeDef cb;
 
 /* Transfer Flag */
 volatile bool transferActive;	// TODO: why is this volatile?
+bool enable_transfer = false;
 
 #define SAMPLE_RATE 8000  // 8000 hz sample rate
 #define ADCSAMPLES 20 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
@@ -88,6 +91,8 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 
 		//printf("transfer complete!\n");
 	}
+
+	dma->latest_chunk = &cyclic_buf[p - ADCSAMPLES];
 
 	p += ADCSAMPLES;
 }
@@ -314,6 +319,8 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 	//printf("BUFSIZ: %d\n", BUFSIZ);
 	//printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
 	//printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
+	
+	// TODO: deal with interrupts?
 
 	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
 
@@ -325,7 +332,7 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 // TODO: test this actually works...
 void stop_recording(void)
 {
-	enable_transfer = false
+	enable_transfer = false;
 	
 	while (transferActive)
 		;		// wait till transfer halted
@@ -333,7 +340,8 @@ void stop_recording(void)
 	DMA_Reset();	// clean up after DMA transfers
 }
 
-uint8_t *get_last_chunk(void)
+// cept p isn't global :-(
+uint8_t *get_latest_chunk(Dma *dma)
 {
-	return cyclic_buf[p - 2 * ADCSAMPLES];
+	return dma->latest_chunk;
 }
