@@ -176,4 +176,3 @@ void radio_loop(void)
         INT_Enable();
     }
 }
-

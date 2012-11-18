@@ -27,7 +27,7 @@
  ******************************************************************************/
 
 #include <stddef.h>
-#include "dvk_boardcontrol.h"
+//#include "dvk_boardcontrol.h" // we don't need this >.>
 #include "i2cdrv.h"
 #include "efm32_cmu.h"
 #include "efm32_gpio.h"
@@ -52,7 +52,7 @@ void I2CDRV_Init(const I2C_Init_TypeDef *init)
 {
   int i;
 
-  DVK_enablePeripheral(DVK_I2C);
+  //DVK_enablePeripheral(DVK_I2C);  // we don't need this >.>
 
   CMU_ClockEnable(cmuClock_HFPER, true);
   CMU_ClockEnable(cmuClock_I2C0, true);

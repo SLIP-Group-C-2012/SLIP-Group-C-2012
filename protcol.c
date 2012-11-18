@@ -2,11 +2,14 @@
 //#include "NRF24.h"
 //#include "nRF24L01.h"
 #include "efm32_int.h"
-///#include "nrf24_config.h"
+#include "protcol.h"
+//#include "nrf24_config.h"
 //#define NULL ((void*)0)
 
+#define DISABLE_REBROADCAST (1)
 
-uint32_t packetbuff[32];
+
+uint8_t packetbuff[32];
 int packetpending = 0;
 uint8_t addressbook[10];
 uint8_t pingdata[32] = "PING";
@@ -24,7 +27,7 @@ typedef struct {
 Packet_Type packet;
 int recivedupto = 0;
 
-void protocol_send(uint8_t* buff, uint8_t dest){
+void protocol_send(uint8_t* buff, uint8_t dest) {
 	packet.opcode = 1; // opcode 1 = text, 2 = audio 3, = rip
 	packet.src = protocol_getaddr();
 	packet.dest = 0;
@@ -66,25 +69,26 @@ int protocol_loop(){
 			forus = 1;
 			packetpending = 1;
 
-
+        if (!DISABLE_REBROADCAST) {
 			if (packet.hops<=4){
 				packet.hops++;
 				radio_sendPacket32((uint8_t *)&packet);
 				printf("Rebroadcast");
 			}
 		}
+		}
 	}
 	return forus;
 }
 
-int protocol_getaddr(){
+uint8_t protocol_getaddr(){
 	uint32_t serial1;
 	serial1 =  (*(uint32_t*)0x0FE081F0) ^ (*(uint32_t*)0x0FE081F4); //UNIQUE_0 is a timestamp (in Unix time) set in production,
 	uint8_t * addr = &serial1;
 	return addr[0] ^ addr[1] ^ addr[2] ^ addr[3];
 }
 
-void protocol_updateaddr(uint8_t* address){
+void protocol_updateaddr(uint8_t address){
 
 	//printf("update, %i \n",address);
 

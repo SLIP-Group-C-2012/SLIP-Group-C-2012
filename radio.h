@@ -28,4 +28,3 @@ void radio_sendPacket32(uint8_t * data);
 // The function will return 1 if data was received and will fill up the first 32 bytes of the array with it
 // The function will return 0 if no data was received and will leave the array untouched
 uint8_t radio_receivePacket32(uint8_t * data);
-

@@ -1,0 +1,2128 @@
+Archive member included because of file (symbol)
+
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+                              build/serial_input.o (memcpy)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+                              build/codec.o (memset)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+                              build/protcol.o (printf)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+                              build/acksys.o (puts)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+                              build/protcol.o (strcmp)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o) (strlen)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o) (_vfprintf_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (__swsetup_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (_dtoa_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (_fflush_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o) (__sinit)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o) (_free_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o) (__sfvwrite_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o) (_fwalk)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o) (_global_impure_ptr)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (_localeconv_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o) (__smakebuf_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (malloc)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o) (_malloc_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (memchr)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o) (memmove)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o) (__malloc_lock)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (_Balloc)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o) (_realloc_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (__fpclassifyd)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o) (_sbrk_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o) (__sread)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (__sprint_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o) (_write_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o) (_calloc_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o) (_close_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o) (fclose)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o) (_fputwc_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o) (_fstat_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o) (_isatty_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o) (_lseek_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o) (_read_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o) (errno)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o) (__swbuf_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o) (_wcrtomb_r)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o) (__wctomb)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                              (__cs3_start_c)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+                              (_start)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (__aeabi_uidiv)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (__aeabi_dsub)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (__aeabi_dmul)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (__aeabi_dcmpeq)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o) (__aeabi_d2iz)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o) (__aeabi_uldivmod)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o) (__gnu_uldivmod_helper)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o) (__divdi3)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o) (__udivdi3)
+/home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+                              /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o) (__libc_init_array)
+
+Allocating common symbols
+Common symbol       size              file
+
+packet              0x20              build/radio.o
+errno               0x4               /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+addressbook         0xa               build/protcol.o
+radio_mode          0x1               build/radio.o
+cb                  0xc               build/audio_rec.o
+SystemCoreClock     0x4               build/system_efm32.o
+buff                0x5dc0            build/dac.o
+mask                0x4               build/codec.o
+decompressprev      0x4               build/codec.o
+no_steps            0x4               build/codec.o
+steps               0x100             build/codec.o
+output_packet_size  0x4               build/codec.o
+dmaControlBlock     0x200             build/dmactrl.o
+compressprev        0x4               build/codec.o
+transferActive      0x1               build/audio_rec.o
+packet_size         0x4               build/codec.o
+packets             0x140             build/acksys.o
+bps                 0x4               build/codec.o
+packetbuff          0x20              build/protcol.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .data          0x00000000        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .text          0x00000000        0x0 build/core_cm3.o
+ .data          0x00000000        0x0 build/core_cm3.o
+ .bss           0x00000000        0x0 build/core_cm3.o
+ .text          0x00000000        0x0 build/system_efm32.o
+ .data          0x00000000        0x0 build/system_efm32.o
+ .bss           0x00000000        0x0 build/system_efm32.o
+ .text.SystemHFXOClockGet
+                0x00000000       0x10 build/system_efm32.o
+ .text.SystemHFXOClockSet
+                0x00000000       0x2c build/system_efm32.o
+ .text.SystemInit
+                0x00000000        0x4 build/system_efm32.o
+ .text.SystemLFXOClockSet
+                0x00000000       0x2c build/system_efm32.o
+ .text          0x00000000        0x0 build/efm32_assert.o
+ .data          0x00000000        0x0 build/efm32_assert.o
+ .bss           0x00000000        0x0 build/efm32_assert.o
+ .text          0x00000000        0x0 build/efm32_system.o
+ .data          0x00000000        0x0 build/efm32_system.o
+ .bss           0x00000000        0x0 build/efm32_system.o
+ .text.SYSTEM_ChipRevisionGet
+                0x00000000       0x58 build/efm32_system.o
+ .text          0x00000000        0x0 build/efm32_gpio.o
+ .data          0x00000000        0x0 build/efm32_gpio.o
+ .bss           0x00000000        0x0 build/efm32_gpio.o
+ .text.GPIO_DbgLocationSet
+                0x00000000       0x2c build/efm32_gpio.o
+ .text.GPIO_DriveModeSet
+                0x00000000       0x48 build/efm32_gpio.o
+ .text.GPIO_PinInGet
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PinOutClear
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PinOutGet
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PinOutSet
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PinOutToggle
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PortInGet
+                0x00000000       0x30 build/efm32_gpio.o
+ .text.GPIO_PortOutClear
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PortOutGet
+                0x00000000       0x30 build/efm32_gpio.o
+ .text.GPIO_PortOutSet
+                0x00000000       0x34 build/efm32_gpio.o
+ .text.GPIO_PortOutSetVal
+                0x00000000       0x5c build/efm32_gpio.o
+ .text.GPIO_PortOutToggle
+                0x00000000       0x34 build/efm32_gpio.o
+ .text          0x00000000        0x0 build/efm32_cmu.o
+ .data          0x00000000        0x0 build/efm32_cmu.o
+ .bss           0x00000000        0x0 build/efm32_cmu.o
+ .text.CMU_Log2ToDiv
+                0x00000000       0x14 build/efm32_cmu.o
+ .text.CMU_Calibrate
+                0x00000000       0xbc build/efm32_cmu.o
+ .text.CMU_CalibrateConfig
+                0x00000000       0xd0 build/efm32_cmu.o
+ .text.CMU_ClockDivGet
+                0x00000000      0x128 build/efm32_cmu.o
+ .text.CMU_ClockSelectSet
+                0x00000000      0x344 build/efm32_cmu.o
+ .text.CMU_FreezeEnable
+                0x00000000       0x44 build/efm32_cmu.o
+ .text.CMU_AUXHFRCOBandGet
+                0x00000000       0x18 build/efm32_cmu.o
+ .text.CMU_AUXHFRCOBandSet
+                0x00000000       0xd4 build/efm32_cmu.o
+ .text.CMU_HFRCOBandGet
+                0x00000000       0x18 build/efm32_cmu.o
+ .text.CMU_HFRCOBandSet
+                0x00000000       0xf8 build/efm32_cmu.o
+ .text.CMU_HFRCOStartupDelayGet
+                0x00000000       0x18 build/efm32_cmu.o
+ .text.CMU_HFRCOStartupDelaySet
+                0x00000000       0x30 build/efm32_cmu.o
+ .text.CMU_LCDClkFDIVGet
+                0x00000000       0x14 build/efm32_cmu.o
+ .text.CMU_LCDClkFDIVSet
+                0x00000000       0x44 build/efm32_cmu.o
+ .text.CMU_OscillatorEnable
+                0x00000000       0xe8 build/efm32_cmu.o
+ .text.CMU_OscillatorTuningGet
+                0x00000000       0x54 build/efm32_cmu.o
+ .text.CMU_OscillatorTuningSet
+                0x00000000       0x88 build/efm32_cmu.o
+ .text.CMU_PCNTClockExternalGet
+                0x00000000       0x74 build/efm32_cmu.o
+ .text.CMU_PCNTClockExternalSet
+                0x00000000       0x40 build/efm32_cmu.o
+ .text          0x00000000        0x0 build/efm32_usart.o
+ .data          0x00000000        0x0 build/efm32_usart.o
+ .bss           0x00000000        0x0 build/efm32_usart.o
+ .text.USART_BaudrateAsyncSet
+                0x00000000       0xb4 build/efm32_usart.o
+ .text.USART_BaudrateCalc
+                0x00000000       0xc8 build/efm32_usart.o
+ .text.USART_BaudrateGet
+                0x00000000       0x5c build/efm32_usart.o
+ .text.USART_Enable
+                0x00000000       0x2c build/efm32_usart.o
+ .text.USART_InitAsync
+                0x00000000       0x68 build/efm32_usart.o
+ .text.USART_InitIrDA
+                0x00000000       0xa4 build/efm32_usart.o
+ .text.USART_InitI2s
+                0x00000000       0x88 build/efm32_usart.o
+ .text.USART_InitPrsTrigger
+                0x00000000       0x54 build/efm32_usart.o
+ .text.USART_RxDouble
+                0x00000000       0x20 build/efm32_usart.o
+ .text.USART_RxDoubleExt
+                0x00000000       0x1c build/efm32_usart.o
+ .text.USART_RxExt
+                0x00000000       0x20 build/efm32_usart.o
+ .text.USART_TxDouble
+                0x00000000       0x24 build/efm32_usart.o
+ .text.USART_TxDoubleExt
+                0x00000000       0x20 build/efm32_usart.o
+ .text.USART_TxExt
+                0x00000000       0x24 build/efm32_usart.o
+ .text          0x00000000        0x0 build/efm32_i2c.o
+ .data          0x00000000        0x0 build/efm32_i2c.o
+ .bss           0x00000000        0x0 build/efm32_i2c.o
+ .bss.i2cTransfer
+                0x00000000       0x20 build/efm32_i2c.o
+ .text.I2C_BusFreqGet
+                0x00000000       0x4c build/efm32_i2c.o
+ .text.I2C_Enable
+                0x00000000       0x24 build/efm32_i2c.o
+ .text.I2C_Reset
+                0x00000000       0x3c build/efm32_i2c.o
+ .text.I2C_Transfer
+                0x00000000      0x490 build/efm32_i2c.o
+ .text.I2C_TransferInit
+                0x00000000       0xe4 build/efm32_i2c.o
+ .text          0x00000000        0x0 build/efm32_dma.o
+ .data          0x00000000        0x0 build/efm32_dma.o
+ .bss           0x00000000        0x0 build/efm32_dma.o
+ .text.DMA_ActivateAuto
+                0x00000000       0x58 build/efm32_dma.o
+ .text.DMA_ActivateBasic
+                0x00000000       0x4c build/efm32_dma.o
+ .text.DMA_ActivateScatterGather
+                0x00000000      0x158 build/efm32_dma.o
+ .text.DMA_CfgLoop
+                0x00000000       0x58 build/efm32_dma.o
+ .text.DMA_CfgRect
+                0x00000000       0x30 build/efm32_dma.o
+ .text.DMA_CfgDescrScatterGather
+                0x00000000       0xe0 build/efm32_dma.o
+ .text.DMA_ChannelEnabled
+                0x00000000       0x20 build/efm32_dma.o
+ .text          0x00000000        0x0 build/efm32_timer.o
+ .data          0x00000000        0x0 build/efm32_timer.o
+ .bss           0x00000000        0x0 build/efm32_timer.o
+ .text.TIMER_Lock
+                0x00000000       0x14 build/efm32_timer.o
+ .text.TIMER_Reset
+                0x00000000       0xc8 build/efm32_timer.o
+ .text.TIMER_Unlock
+                0x00000000       0x14 build/efm32_timer.o
+ .text          0x00000000        0x0 build/efm32_opamp.o
+ .data          0x00000000        0x0 build/efm32_opamp.o
+ .bss           0x00000000        0x0 build/efm32_opamp.o
+ .text.OPAMP_Disable
+                0x00000000       0x58 build/efm32_opamp.o
+ .text          0x00000000        0x0 build/efm32_int.o
+ .data          0x00000000        0x0 build/efm32_int.o
+ .bss           0x00000000        0x0 build/efm32_int.o
+ .text          0x00000000        0x0 build/efm32_emu.o
+ .data          0x00000000        0x0 build/efm32_emu.o
+ .bss           0x00000000        0x0 build/efm32_emu.o
+ .text.SystemCoreClockUpdate
+                0x00000000        0x8 build/efm32_emu.o
+ .text.BITBAND_Peripheral
+                0x00000000       0x28 build/efm32_emu.o
+ .text.EMU_BUPinEnable
+                0x00000000       0x24 build/efm32_emu.o
+ .text.CMU_Lock
+                0x00000000       0x14 build/efm32_emu.o
+ .text.CMU_Unlock
+                0x00000000       0x14 build/efm32_emu.o
+ .bss.cmuStatus
+                0x00000000        0x2 build/efm32_emu.o
+ .text.EMU_Restore
+                0x00000000       0xf0 build/efm32_emu.o
+ .text.EMU_EnterEM2
+                0x00000000       0x64 build/efm32_emu.o
+ .text.EMU_EnterEM3
+                0x00000000       0x90 build/efm32_emu.o
+ .text.EMU_EnterEM4
+                0x00000000       0x54 build/efm32_emu.o
+ .text.EMU_MemPwrDown
+                0x00000000       0x14 build/efm32_emu.o
+ .text.EMU_UpdateOscConfig
+                0x00000000       0x18 build/efm32_emu.o
+ .text.EMU_EM4Init
+                0x00000000       0x54 build/efm32_emu.o
+ .text.EMU_BUPDInit
+                0x00000000      0x124 build/efm32_emu.o
+ .text          0x00000000        0x0 build/efm32_adc.o
+ .data          0x00000000        0x0 build/efm32_adc.o
+ .bss           0x00000000        0x0 build/efm32_adc.o
+ .text.ADC_CalibrateLoadScan
+                0x00000000      0x170 build/efm32_adc.o
+ .text.ADC_InitScan
+                0x00000000       0x94 build/efm32_adc.o
+ .text.ADC_TimebaseCalc
+                0x00000000       0x58 build/efm32_adc.o
+ .text          0x00000000        0x0 build/efm32_rtc.o
+ .data          0x00000000        0x0 build/efm32_rtc.o
+ .bss           0x00000000        0x0 build/efm32_rtc.o
+ .text.BITBAND_Peripheral
+                0x00000000       0x28 build/efm32_rtc.o
+ .text.RTC_CompareGet
+                0x00000000       0x3c build/efm32_rtc.o
+ .text.RTC_CompareSet
+                0x00000000       0x38 build/efm32_rtc.o
+ .text.RTC_Enable
+                0x00000000       0x24 build/efm32_rtc.o
+ .text.RTC_FreezeEnable
+                0x00000000       0x34 build/efm32_rtc.o
+ .text.RTC_CounterReset
+                0x00000000       0x14 build/efm32_rtc.o
+ .text          0x00000000        0x0 build/efm32_prs.o
+ .data          0x00000000        0x0 build/efm32_prs.o
+ .bss           0x00000000        0x0 build/efm32_prs.o
+ .text.PRS_SourceAsyncSignalSet
+                0x00000000       0x30 build/efm32_prs.o
+ .text          0x00000000        0x0 build/i2cdrv.o
+ .data          0x00000000        0x0 build/i2cdrv.o
+ .bss           0x00000000        0x0 build/i2cdrv.o
+ .text.I2CDRV_Init
+                0x00000000       0xac build/i2cdrv.o
+ .text.I2CDRV_Transfer
+                0x00000000       0x34 build/i2cdrv.o
+ .text          0x00000000        0x0 build/NRF24.o
+ .data          0x00000000        0x0 build/NRF24.o
+ .bss           0x00000000        0x0 build/NRF24.o
+ .text.NRF_Status
+                0x00000000       0x90 build/NRF24.o
+ .text.NRF_SetupTX
+                0x00000000       0xf0 build/NRF24.o
+ .text.NRF_EnableRX
+                0x00000000       0x7c build/NRF24.o
+ .text.CE_Lo_TriggerFunc
+                0x00000000       0x10 build/NRF24.o
+ .text.NRF_TransmitPacket
+                0x00000000       0x3c build/NRF24.o
+ .text.NRF_PowerDown
+                0x00000000       0x38 build/NRF24.o
+ .text.NRF_PowerUp
+                0x00000000       0x20 build/NRF24.o
+ .text.NRF_Carrier
+                0x00000000       0xa4 build/NRF24.o
+ .text          0x00000000        0x0 build/radio.o
+ .data          0x00000000        0x0 build/radio.o
+ .bss           0x00000000        0x0 build/radio.o
+ .text.radio_receivePacket32
+                0x00000000       0x64 build/radio.o
+ .text          0x00000000        0x0 build/serial_input.o
+ .data          0x00000000        0x0 build/serial_input.o
+ .bss           0x00000000        0x0 build/serial_input.o
+ .text.serial_receiveData
+                0x00000000       0x84 build/serial_input.o
+ .text.serial_getString
+                0x00000000      0x118 build/serial_input.o
+ COMMON         0x00000000        0x0 build/serial_input.o
+ .text          0x00000000        0x0 build/syscalls.o
+ .data          0x00000000        0x0 build/syscalls.o
+ .bss           0x00000000        0x0 build/syscalls.o
+ .text._open    0x00000000       0x14 build/syscalls.o
+ .text          0x00000000        0x0 build/config.o
+ .data          0x00000000        0x0 build/config.o
+ .bss           0x00000000        0x0 build/config.o
+ .text.TIMER_CompareBufSet
+                0x00000000       0x20 build/config.o
+ .text.TIMER_IntClear
+                0x00000000       0x10 build/config.o
+ .text.TIMER_IntEnable
+                0x00000000       0x18 build/config.o
+ .text.TIMER_TopSet
+                0x00000000       0x10 build/config.o
+ .text.LETIMER_Setup
+                0x00000000        0x4 build/config.o
+ .text.InitTimoutTimer
+                0x00000000       0xb8 build/config.o
+ .text.InitRGBLEDPWM
+                0x00000000      0x138 build/config.o
+ .text          0x00000000        0x0 build/codec.o
+ .data          0x00000000        0x0 build/codec.o
+ .bss           0x00000000        0x0 build/codec.o
+ .text.compress
+                0x00000000      0x1b8 build/codec.o
+ .text.uncompress
+                0x00000000      0x15c build/codec.o
+ .text          0x00000000        0x0 build/protcol.o
+ .data          0x00000000        0x0 build/protcol.o
+ .bss           0x00000000        0x0 build/protcol.o
+ .bss.packetpending
+                0x00000000        0x4 build/protcol.o
+ .data.pingdata
+                0x00000000       0x20 build/protcol.o
+ .bss.recivedupto
+                0x00000000        0x4 build/protcol.o
+ .text.protocol_send
+                0x00000000       0xb4 build/protcol.o
+ .text.protocol_recive
+                0x00000000       0x80 build/protcol.o
+ .text.protocol_loop
+                0x00000000       0x9c build/protcol.o
+ .text.protocol_getaddr
+                0x00000000       0x4c build/protcol.o
+ .text.protocol_updateaddr
+                0x00000000       0x90 build/protcol.o
+ .rodata        0x00000000        0xc build/protcol.o
+ .text.protocol_printalladdr
+                0x00000000       0x58 build/protcol.o
+ COMMON         0x00000000       0x2c build/protcol.o
+ .text          0x00000000        0x0 build/dac.o
+ .data          0x00000000        0x0 build/dac.o
+ .bss           0x00000000        0x0 build/dac.o
+ .bss.set       0x00000000        0x4 build/dac.o
+ .text.play     0x00000000       0x74 build/dac.o
+ .text          0x00000000        0x0 build/acksys.o
+ .data          0x00000000        0x0 build/acksys.o
+ .bss           0x00000000        0x0 build/acksys.o
+ .bss.packets_id
+                0x00000000        0x4 build/acksys.o
+ .bss.packetID  0x00000000        0x4 build/acksys.o
+ .text.acksys_sendData
+                0x00000000       0xf0 build/acksys.o
+ .rodata        0x00000000       0x20 build/acksys.o
+ .text.acksys_recvData
+                0x00000000      0x16c build/acksys.o
+ COMMON         0x00000000      0x140 build/acksys.o
+ .text          0x00000000        0x0 build/main.o
+ .data          0x00000000        0x0 build/main.o
+ .bss           0x00000000        0x0 build/main.o
+ .text          0x00000000        0x0 build/dmactrl.o
+ .data          0x00000000        0x0 build/dmactrl.o
+ .bss           0x00000000        0x0 build/dmactrl.o
+ .text          0x00000000        0x0 build/audio_rec.o
+ .data          0x00000000        0x0 build/audio_rec.o
+ .bss           0x00000000        0x0 build/audio_rec.o
+ .text          0x00000000        0x0 build/startup_efm32gg.o
+ .data          0x00000000        0x0 build/startup_efm32gg.o
+ .bss           0x00000000        0x0 build/startup_efm32gg.o
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+ .text          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+ .bss           0x00000000        0xc /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+ .text          0x00000000      0x114 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .text          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .ARM.extab     0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .text          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .text          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .data          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+ .bss           0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00100000         xr
+ram              0x20000000         0x00020000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+LOAD build/core_cm3.o
+LOAD build/system_efm32.o
+LOAD build/efm32_assert.o
+LOAD build/efm32_system.o
+LOAD build/efm32_gpio.o
+LOAD build/efm32_cmu.o
+LOAD build/efm32_usart.o
+LOAD build/efm32_i2c.o
+LOAD build/efm32_dma.o
+LOAD build/efm32_timer.o
+LOAD build/efm32_opamp.o
+LOAD build/efm32_int.o
+LOAD build/efm32_emu.o
+LOAD build/efm32_adc.o
+LOAD build/efm32_rtc.o
+LOAD build/efm32_prs.o
+LOAD build/i2cdrv.o
+LOAD build/NRF24.o
+LOAD build/radio.o
+LOAD build/serial_input.o
+LOAD build/syscalls.o
+LOAD build/config.o
+LOAD build/codec.o
+LOAD build/protcol.o
+LOAD build/dac.o
+LOAD build/acksys.o
+LOAD build/main.o
+LOAD build/dmactrl.o
+LOAD build/audio_rec.o
+LOAD build/startup_efm32gg.o
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a
+START GROUP
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a
+END GROUP
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+START GROUP
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a
+LOAD /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a
+END GROUP
+                0x20006818                PROVIDE (__cs3_heap_start, _end)
+                0x20020000                PROVIDE (__cs3_heap_end, (__cs3_region_start_ram + __cs3_region_size_ram))
+                0x00000001                PROVIDE (__cs3_region_num, ((__cs3_regions_end - __cs3_regions) / 0x14))
+                0x20020000                PROVIDE (__cs3_stack, (__cs3_region_start_ram + __cs3_region_size_ram))
+
+.text           0x00000000     0xb378
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                __cs3_region_start_rom = .
+ *(.cs3.region-head.rom)
+                0x00000001                ASSERT ((. == __cs3_region_start_rom), .cs3.region-head.rom not permitted)
+                0x00000000                __cs3_interrupt_vector = __cs3_interrupt_vector_efm32g
+ *(.cs3.interrupt_vector)
+ .cs3.interrupt_vector
+                0x00000000       0xdc build/startup_efm32gg.o
+                0x00000000                __cs3_interrupt_vector_efm32g
+                0x00000001                ASSERT ((. != __cs3_interrupt_vector_efm32g), No interrupt vector)
+                0x000000dc                PROVIDE (__cs3_reset, __cs3_reset_efm32)
+ *(.cs3.reset)
+ .cs3.reset     0x000000dc        0xc build/startup_efm32gg.o
+                0x000000dc                __cs3_reset_efm32
+                0x000000e4                DebugMon_Handler
+                0x000000e4                USART0_TX_IRQHandler
+                0x000000e4                I2C0_IRQHandler
+                0x000000e4                HardFault_Handler
+                0x000000e4                LEUART1_IRQHandler
+                0x000000e4                SysTick_Handler
+                0x000000e4                USART1_RX_IRQHandler
+                0x000000e4                PendSV_Handler
+                0x000000e4                NMI_Handler
+                0x000000e4                I2C1_IRQHandler
+                0x000000e4                _IRQHandlerinterrupt
+                0x000000e4                Reserved9_Handler
+                0x000000e4                Reserved7_Handler
+                0x000000e4                TIMER3_IRQHandler
+                0x000000e4                USART1_TX_IRQHandler
+                0x000000e4                MSC_IRQHandler
+                0x000000e4                UsageFault_Handler
+                0x000000e4                LEUART0_IRQHandler
+                0x000000e4                UART0_TX_IRQHandler
+                0x000000e4                UART1_TX_IRQHandler
+                0x000000e4                RTC_IRQHandler
+                0x000000e4                LCD_IRQHandler
+                0x000000e4                PCNT2_IRQHandler
+                0x000000e4                UART0_RX_IRQHandler
+                0x000000e4                LETIMER0_IRQHandler
+                0x000000e4                Reserved10_Handler
+                0x000000e4                Reserved8_Handler
+                0x000000e4                USART2_RX_IRQHandler
+                0x000000e4                EMU_IRQHandler
+                0x000000e4                PCNT0_IRQHandler
+                0x000000e4                USB_IRQHandler
+                0x000000e4                BURTC_IRQHandler
+                0x000000e4                PCNT1_IRQHandler
+                0x000000e4                ACMP0_IRQHandler
+                0x000000e4                USART0_RX_IRQHandler
+                0x000000e4                MemManage_Handler
+                0x000000e4                SVC_Handler
+                0x000000e4                DAC0_IRQHandler
+                0x000000e4                Reserved13_Handler
+                0x000000e4                CMU_IRQHandler
+                0x000000e4                EBI_IRQHandler
+                0x000000e4                GPIO_ODD_IRQHandler
+                0x000000e4                LESENSE_IRQHandler
+                0x000000e4                AES_IRQHandler
+                0x000000e4                VCMP_IRQHandler
+                0x000000e4                BusFault_Handler
+                0x000000e4                USART2_TX_IRQHandler
+                0x00000138                PROVIDE (__cs3_start_asm, _start)
+ *(.text.cs3.init)
+ .text.cs3.init
+                0x000000e8       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                0x000000e8                __cs3_start_c
+ .text.cs3.init
+                0x00000138       0x10 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+                0x00000138                _start
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x00000148       0x68 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .text.SystemCoreClockGet
+                0x000001b0       0x54 build/system_efm32.o
+                0x000001b0                SystemCoreClockGet
+ .text.SystemHFClockGet
+                0x00000204       0xdc build/system_efm32.o
+                0x00000204                SystemHFClockGet
+ .text.SystemLFRCOClockGet
+                0x000002e0        0x8 build/system_efm32.o
+                0x000002e0                SystemLFRCOClockGet
+ .text.SystemULFRCOClockGet
+                0x000002e8        0x8 build/system_efm32.o
+                0x000002e8                SystemULFRCOClockGet
+ .text.SystemLFXOClockGet
+                0x000002f0       0x10 build/system_efm32.o
+                0x000002f0                SystemLFXOClockGet
+ .text.SYSTEM_GetCalibrationValue
+                0x00000300       0x54 build/efm32_system.o
+                0x00000300                SYSTEM_GetCalibrationValue
+ .text.BITBAND_Peripheral
+                0x00000354       0x28 build/efm32_gpio.o
+ .text.GPIO_IntConfig
+                0x0000037c       0xec build/efm32_gpio.o
+                0x0000037c                GPIO_IntConfig
+ .text.GPIO_PinModeSet
+                0x00000468      0x1a4 build/efm32_gpio.o
+                0x00000468                GPIO_PinModeSet
+ .text.BITBAND_Peripheral
+                0x0000060c       0x28 build/efm32_cmu.o
+ .text.CMU_FlashWaitStateMax
+                0x00000634       0x5c build/efm32_cmu.o
+ .text.CMU_DivToLog2
+                0x00000690       0x28 build/efm32_cmu.o
+ .text.CMU_FlashWaitStateControl
+                0x000006b8       0xe4 build/efm32_cmu.o
+ .text.CMU_USBCClkGet
+                0x0000079c       0x48 build/efm32_cmu.o
+ .text.CMU_AUXClkGet
+                0x000007e4       0x94 build/efm32_cmu.o
+ .text.CMU_DBGClkGet
+                0x00000878       0x5c build/efm32_cmu.o
+ .text.CMU_LFClkGet
+                0x000008d4       0xc4 build/efm32_cmu.o
+ .text.CMU_Sync
+                0x00000998       0x34 build/efm32_cmu.o
+ .text.CMU_ClockDivSet
+                0x000009cc      0x264 build/efm32_cmu.o
+                0x000009cc                CMU_ClockDivSet
+ .text.CMU_ClockEnable
+                0x00000c30       0xc8 build/efm32_cmu.o
+                0x00000c30                CMU_ClockEnable
+ .text.CMU_ClockFreqGet
+                0x00000cf8      0x258 build/efm32_cmu.o
+                0x00000cf8                CMU_ClockFreqGet
+ .text.CMU_ClockSelectGet
+                0x00000f50      0x19c build/efm32_cmu.o
+                0x00000f50                CMU_ClockSelectGet
+ .text.USART_BaudrateSyncSet
+                0x000010ec       0x68 build/efm32_usart.o
+                0x000010ec                USART_BaudrateSyncSet
+ .text.USART_InitSync
+                0x00001154       0xa4 build/efm32_usart.o
+                0x00001154                USART_InitSync
+ .text.USART_Reset
+                0x000011f8       0x8c build/efm32_usart.o
+                0x000011f8                USART_Reset
+ .text.USART_Rx
+                0x00001284       0x20 build/efm32_usart.o
+                0x00001284                USART_Rx
+ .text.USART_Tx
+                0x000012a4       0x24 build/efm32_usart.o
+                0x000012a4                USART_Tx
+ .text.BITBAND_Peripheral
+                0x000012c8       0x28 build/efm32_i2c.o
+ .text.I2C_BusFreqSet
+                0x000012f0       0x8c build/efm32_i2c.o
+                0x000012f0                I2C_BusFreqSet
+ .text.I2C_Init
+                0x0000137c       0x5c build/efm32_i2c.o
+                0x0000137c                I2C_Init
+ .text.NVIC_EnableIRQ
+                0x000013d8       0x28 build/efm32_dma.o
+ .text.NVIC_DisableIRQ
+                0x00001400       0x2c build/efm32_dma.o
+ .text.NVIC_ClearPendingIRQ
+                0x0000142c       0x2c build/efm32_dma.o
+ .text.BITBAND_Peripheral
+                0x00001458       0x28 build/efm32_dma.o
+ .text.DMA_Prepare
+                0x00001480      0x138 build/efm32_dma.o
+ .text.DMA_IRQHandler
+                0x000015b8       0xf0 build/efm32_dma.o
+                0x000015b8                DMA_IRQHandler
+ .text.DMA_ActivatePingPong
+                0x000016a8       0x64 build/efm32_dma.o
+                0x000016a8                DMA_ActivatePingPong
+ .text.DMA_CfgChannel
+                0x0000170c       0xbc build/efm32_dma.o
+                0x0000170c                DMA_CfgChannel
+ .text.DMA_CfgDescr
+                0x000017c8       0x7c build/efm32_dma.o
+                0x000017c8                DMA_CfgDescr
+ .text.DMA_Init
+                0x00001844       0x68 build/efm32_dma.o
+                0x00001844                DMA_Init
+ .text.DMA_RefreshPingPong
+                0x000018ac      0x118 build/efm32_dma.o
+                0x000018ac                DMA_RefreshPingPong
+ .text.DMA_Reset
+                0x000019c4       0xd0 build/efm32_dma.o
+                0x000019c4                DMA_Reset
+ .text.TIMER_Enable
+                0x00001a94       0x28 build/efm32_timer.o
+                0x00001a94                TIMER_Enable
+ .text.TIMER_Init
+                0x00001abc       0xf4 build/efm32_timer.o
+                0x00001abc                TIMER_Init
+ .text.TIMER_InitCC
+                0x00001bb0       0xac build/efm32_timer.o
+                0x00001bb0                TIMER_InitCC
+ .text.OPAMP_Enable
+                0x00001c5c      0x3e4 build/efm32_opamp.o
+                0x00001c5c                OPAMP_Enable
+ .text.ADC_CalibrateLoadSingle
+                0x00002040      0x16c build/efm32_adc.o
+ .text.ADC_Init
+                0x000021ac       0x60 build/efm32_adc.o
+                0x000021ac                ADC_Init
+ .text.ADC_InitSingle
+                0x0000220c       0x98 build/efm32_adc.o
+                0x0000220c                ADC_InitSingle
+ .text.ADC_PrescaleCalc
+                0x000022a4       0x70 build/efm32_adc.o
+                0x000022a4                ADC_PrescaleCalc
+ .text.ADC_Reset
+                0x00002314       0x7c build/efm32_adc.o
+                0x00002314                ADC_Reset
+ .text.RTC_Init
+                0x00002390       0x4c build/efm32_rtc.o
+                0x00002390                RTC_Init
+ .text.RTC_Reset
+                0x000023dc       0x58 build/efm32_rtc.o
+                0x000023dc                RTC_Reset
+ .text.PRS_SourceSignalSet
+                0x00002434       0x34 build/efm32_prs.o
+                0x00002434                PRS_SourceSignalSet
+ .text.NRF_Delay
+                0x00002468       0x24 build/NRF24.o
+                0x00002468                NRF_Delay
+ .text.NRF_ReadByte
+                0x0000248c       0xc4 build/NRF24.o
+                0x0000248c                NRF_ReadByte
+ .text.NRF_ReadRegister
+                0x00002550       0x1c build/NRF24.o
+                0x00002550                NRF_ReadRegister
+ .text.NRF_WriteRegister
+                0x0000256c       0x2c build/NRF24.o
+                0x0000256c                NRF_WriteRegister
+ .text.NRF_WriteRegisterMulti
+                0x00002598       0x30 build/NRF24.o
+                0x00002598                NRF_WriteRegisterMulti
+ .text.NRF_SendPayload
+                0x000025c8       0xdc build/NRF24.o
+                0x000025c8                NRF_SendPayload
+ .text.NRF_ReceivePayload
+                0x000026a4       0xa0 build/NRF24.o
+                0x000026a4                NRF_ReceivePayload
+ .text.NRF_SendCommand
+                0x00002744       0x94 build/NRF24.o
+                0x00002744                NRF_SendCommand
+ .text.INT_Disable
+                0x000027d8       0x38 build/radio.o
+ .text.INT_Enable
+                0x00002810       0x4c build/radio.o
+ .text.toStandByI
+                0x0000285c       0x10 build/radio.o
+                0x0000285c                toStandByI
+ .text.receiveModeEnable
+                0x0000286c       0x58 build/radio.o
+                0x0000286c                receiveModeEnable
+ .text.toStandByII
+                0x000028c4       0x48 build/radio.o
+                0x000028c4                toStandByII
+ .text.radio_handleInterrupt
+                0x0000290c       0x40 build/radio.o
+                0x0000290c                radio_handleInterrupt
+ .text.radio_setup
+                0x0000294c      0x150 build/radio.o
+                0x0000294c                radio_setup
+ .text.radio_sendPacket32
+                0x00002a9c       0x80 build/radio.o
+                0x00002a9c                radio_sendPacket32
+ .text.radio_loop
+                0x00002b1c      0x128 build/radio.o
+                0x00002b1c                radio_loop
+ .text.UART1_RX_IRQHandler
+                0x00002c44       0x88 build/serial_input.o
+                0x00002c44                UART1_RX_IRQHandler
+ .text._close   0x00002ccc       0x10 build/syscalls.o
+                0x00002ccc                _close
+ .text._fstat   0x00002cdc       0x18 build/syscalls.o
+                0x00002cdc                _fstat
+ .text._isatty  0x00002cf4       0x10 build/syscalls.o
+                0x00002cf4                _isatty
+ .text._lseek   0x00002d04       0x14 build/syscalls.o
+                0x00002d04                _lseek
+ .text._read    0x00002d18       0x8c build/syscalls.o
+                0x00002d18                _read
+ .text._sbrk    0x00002da4       0x70 build/syscalls.o
+                0x00002da4                _sbrk
+ .text._write   0x00002e14       0x54 build/syscalls.o
+                0x00002e14                _write
+ .text.NVIC_EnableIRQ
+                0x00002e68       0x28 build/config.o
+ .text.NVIC_ClearPendingIRQ
+                0x00002e90       0x2c build/config.o
+ .text.uart_init
+                0x00002ebc       0x4c build/config.o
+                0x00002ebc                uart_init
+ .text.IO_Init  0x00002f08      0x4e8 build/config.o
+                0x00002f08                IO_Init
+ .text.set_up_compression
+                0x000033f0      0x1e0 build/codec.o
+                0x000033f0                set_up_compression
+ .text.NVIC_EnableIRQ
+                0x000035d0       0x28 build/dac.o
+ .text.TIMER_CompareBufSet
+                0x000035f8       0x20 build/dac.o
+ .text.TIMER_IntClear
+                0x00003618       0x10 build/dac.o
+ .text.TIMER_IntEnable
+                0x00003628       0x18 build/dac.o
+ .text.TIMER_TopSet
+                0x00003640       0x10 build/dac.o
+ .text.next     0x00003650       0x28 build/dac.o
+                0x00003650                next
+ .text.InitAudioPWM
+                0x00003678      0x13c build/dac.o
+                0x00003678                InitAudioPWM
+ .text.TIMER1_IRQHandler
+                0x000037b4       0x94 build/dac.o
+                0x000037b4                TIMER1_IRQHandler
+ .text.NVIC_EnableIRQ
+                0x00003848       0x28 build/main.o
+ .text.SystemCoreClockUpdate
+                0x00003870        0x8 build/main.o
+ .text.CHIP_Init
+                0x00003878        0x4 build/main.o
+ .text.TIMER_IntClear
+                0x0000387c       0x10 build/main.o
+ .text.GPIO_EVEN_IRQHandler
+                0x0000388c        0x8 build/main.o
+                0x0000388c                GPIO_EVEN_IRQHandler
+ .text.TIMER2_IRQHandler
+                0x00003894       0x2c build/main.o
+                0x00003894                TIMER2_IRQHandler
+ .text.TIMER0_IRQHandler
+                0x000038c0       0x14 build/main.o
+                0x000038c0                TIMER0_IRQHandler
+ .text.init_config
+                0x000038d4       0x78 build/main.o
+                0x000038d4                init_config
+ .text.main     0x0000394c       0xe4 build/main.o
+                0x0000394c                main
+ .text.NVIC_EnableIRQ
+                0x00003a30       0x28 build/audio_rec.o
+ .text.EMU_EnterEM1
+                0x00003a58       0x1c build/audio_rec.o
+ .text.ADC_IntClear
+                0x00003a74       0x10 build/audio_rec.o
+ .text.ADC_IntEnable
+                0x00003a84       0x18 build/audio_rec.o
+ .text.TIMER_TopSet
+                0x00003a9c       0x10 build/audio_rec.o
+ .text.INT_Disable
+                0x00003aac       0x38 build/audio_rec.o
+ .text.INT_Enable
+                0x00003ae4       0x4c build/audio_rec.o
+ .text.ADC0_IRQHandler
+                0x00003b30       0x20 build/audio_rec.o
+                0x00003b30                ADC0_IRQHandler
+ .text.transferComplete
+                0x00003b50       0xd8 build/audio_rec.o
+                0x00003b50                transferComplete
+ .text.setupCmu
+                0x00003c28       0x54 build/audio_rec.o
+                0x00003c28                setupCmu
+ .text.setupDma
+                0x00003c7c       0xf8 build/audio_rec.o
+                0x00003c7c                setupDma
+ .text.setupAdc
+                0x00003d74      0x174 build/audio_rec.o
+                0x00003d74                setupAdc
+ .text.setupOpAmp
+                0x00003ee8       0x40 build/audio_rec.o
+                0x00003ee8                setupOpAmp
+ .text.record   0x00003f28       0x70 build/audio_rec.o
+                0x00003f28                record
+ .text          0x00003f98       0xf0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+                0x00003f98                memcpy
+ .text          0x00004088       0x8c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+                0x00004088                memset
+ .text          0x00004114       0x64 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+                0x00004114                _printf_r
+                0x00004140                printf
+ .text          0x00004178       0x84 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+                0x00004178                _puts_r
+                0x000041ec                puts
+ .text          0x000041fc      0x1dc /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+                0x000041fc                strcmp
+ .text          0x000043d8       0x60 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                0x000043d8                strlen
+ .text          0x00004438     0x1834 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+                0x00004438                _vfprintf_r
+                0x00005c50                vfprintf
+ .text          0x00005c6c       0xf8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+                0x00005c6c                __swsetup_r
+ *fill*         0x00005d64        0x4 00
+ .text          0x00005d68     0x1030 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+                0x00005eb0                _dtoa_r
+ .text          0x00006d98      0x1e0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+                0x00006d98                _fflush_r
+                0x00006f50                fflush
+ .text          0x00006f78      0x1d8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+                0x00006f80                _cleanup_r
+                0x00006fdc                __sfmoreglue
+                0x0000700c                _cleanup
+                0x0000701c                __sinit
+                0x00007078                __sfp
+                0x00007110                __sfp_lock_acquire
+                0x00007114                __sfp_lock_release
+                0x00007118                __sinit_lock_acquire
+                0x0000711c                __sinit_lock_release
+                0x00007120                __fp_lock_all
+                0x00007138                __fp_unlock_all
+ .text          0x00007150      0x234 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+                0x00007150                _malloc_trim_r
+                0x000071f4                _free_r
+ .text          0x00007384      0x32c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+                0x00007384                __sfvwrite_r
+ .text          0x000076b0       0xa0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+                0x000076b0                _fwalk
+                0x000076fc                _fwalk_reent
+ .text          0x00007750       0xa4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                0x00007750                _setlocale_r
+                0x000077ac                __locale_charset
+                0x000077b8                __locale_mb_cur_max
+                0x000077c4                __locale_msgcharset
+                0x000077cc                __locale_cjk_lang
+                0x000077d0                _localeconv_r
+                0x000077d8                setlocale
+                0x000077ec                localeconv
+ .text          0x000077f4       0xe8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+                0x000077f4                __smakebuf_r
+ .text          0x000078dc       0x20 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+                0x000078dc                malloc
+                0x000078ec                free
+ .text          0x000078fc      0x580 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                0x000078fc                _malloc_r
+ .text          0x00007e7c       0x88 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+                0x00007e7c                memchr
+ .text          0x00007f04       0xbc /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+                0x00007f04                memmove
+ .text          0x00007fc0        0x8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+                0x00007fc0                __malloc_lock
+                0x00007fc4                __malloc_unlock
+ .text          0x00007fc8      0x910 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+                0x00007fc8                _Balloc
+                0x00008034                _Bfree
+                0x0000806c                __multadd
+                0x000080f0                __s2b
+                0x00008184                __hi0bits
+                0x000081c0                __lo0bits
+                0x0000821c                __i2b
+                0x00008230                __multiply
+                0x0000836c                __pow5mult
+                0x0000840c                __lshift
+                0x000084c8                __mcmp
+                0x00008508                __mdiff
+                0x000085e8                __ulp
+                0x0000862c                __b2d
+                0x000086dc                __d2b
+                0x000087a8                __ratio
+                0x000087fc                _mprec_log10
+                0x00008830                __copybits
+                0x00008878                __any_on
+ .text          0x000088d8      0x3d8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+                0x000088d8                _realloc_r
+ .text          0x00008cb0       0x94 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+                0x00008cb0                __fpclassifyd
+ .text          0x00008d44       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+                0x00008d44                _sbrk_r
+ .text          0x00008d6c       0x8c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+                0x00008d6c                __sread
+                0x00008d90                __seofread
+                0x00008d94                __swrite
+                0x00008dcc                __sseek
+                0x00008df0                __sclose
+ .text          0x00008df8      0xd14 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+                0x00008df8                __sprint_r
+                0x00008e78                _vfiprintf_r
+                0x00009af0                vfiprintf
+ .text          0x00009b0c       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+                0x00009b0c                _write_r
+ .text          0x00009b38       0x60 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+                0x00009b38                _calloc_r
+ .text          0x00009b98       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+                0x00009b98                _close_r
+ .text          0x00009bc0       0xc4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+                0x00009bc0                _fclose_r
+                0x00009c74                fclose
+ .text          0x00009c84      0x13c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+                0x00009c84                _fputwc_r
+                0x00009d68                fputwc
+ .text          0x00009dc0       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+                0x00009dc0                _fstat_r
+ .text          0x00009de8       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+                0x00009de8                _isatty_r
+ .text          0x00009e10       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+                0x00009e10                _lseek_r
+ .text          0x00009e3c       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+                0x00009e3c                _read_r
+ .text          0x00009e68       0xfc /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+                0x00009e68                __swbuf_r
+                0x00009f50                __swbuf
+ .text          0x00009f64       0xb0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+                0x00009f64                _wcrtomb_r
+                0x00009fb4                wcrtomb
+ .text          0x0000a014       0x4c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+                0x0000a014                __ascii_wctomb
+                0x0000a030                _wctomb_r
+ .text          0x0000a060       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+                0x0000a060                __cs3_premain
+ .text          0x0000a090      0x278 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+                0x0000a090                __udivsi3
+                0x0000a090                __aeabi_uidiv
+                0x0000a2ec                __aeabi_uidivmod
+ .text          0x0000a308        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+                0x0000a308                __aeabi_ldiv0
+                0x0000a308                __aeabi_idiv0
+ .text          0x0000a30c      0x370 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+                0x0000a30c                __aeabi_drsub
+                0x0000a314                __aeabi_dsub
+                0x0000a314                __subdf3
+                0x0000a318                __adddf3
+                0x0000a318                __aeabi_dadd
+                0x0000a590                __aeabi_ui2d
+                0x0000a590                __floatunsidf
+                0x0000a5b0                __floatsidf
+                0x0000a5b0                __aeabi_i2d
+                0x0000a5d4                __extendsfdf2
+                0x0000a5d4                __aeabi_f2d
+                0x0000a610                __aeabi_ul2d
+                0x0000a610                __floatundidf
+                0x0000a620                __floatdidf
+                0x0000a620                __aeabi_l2d
+ .text          0x0000a67c      0x424 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+                0x0000a67c                __aeabi_dmul
+                0x0000a67c                __muldf3
+                0x0000a8d0                __aeabi_ddiv
+                0x0000a8d0                __divdf3
+ .text          0x0000aaa0      0x110 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+                0x0000aaa0                __gtdf2
+                0x0000aaa0                __gedf2
+                0x0000aaa8                __ltdf2
+                0x0000aaa8                __ledf2
+                0x0000aab0                __cmpdf2
+                0x0000aab0                __eqdf2
+                0x0000aab0                __nedf2
+                0x0000ab2c                __aeabi_cdrcmple
+                0x0000ab3c                __aeabi_cdcmple
+                0x0000ab3c                __aeabi_cdcmpeq
+                0x0000ab4c                __aeabi_dcmpeq
+                0x0000ab60                __aeabi_dcmplt
+                0x0000ab74                __aeabi_dcmple
+                0x0000ab88                __aeabi_dcmpge
+                0x0000ab9c                __aeabi_dcmpgt
+ .text          0x0000abb0       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+                0x0000abb0                __fixdfsi
+                0x0000abb0                __aeabi_d2iz
+ .text          0x0000ac00       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+                0x0000ac00                __aeabi_uldivmod
+ .text          0x0000ac2c       0x5c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+                0x0000ac2c                __gnu_ldivmod_helper
+                0x0000ac5c                __gnu_uldivmod_helper
+ .text          0x0000ac88      0x364 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+                0x0000ac88                __divdi3
+ .text          0x0000afec      0x33c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+                0x0000afec                __udivdi3
+ .text          0x0000b328       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+                0x0000b328                __libc_init_array
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x0000b378        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x0000b378        0x0
+ .iplt          0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000b378        0x4
+ *(.eh_frame)
+ .eh_frame      0x0000b378        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .eh_frame      0x0000b378        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+                0x0000b37c                PROVIDE (__exidx_start, .)
+
+.ARM.exidx      0x0000b37c        0x8
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x0000b37c        0x8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x0000b384        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+                                  0x8 (size before relaxing)
+                0x0000b384                PROVIDE (__exidx_end, .)
+
+.rel.dyn        0x0000b384        0x0
+ .rel.iplt      0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+
+.rodata         0x0000b388      0x3a0
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.i2cNSum
+                0x0000b388        0x4 build/efm32_i2c.o
+ .rodata        0x0000b38c        0x8 build/radio.o
+ .rodata        0x0000b394       0x58 build/config.o
+ .rodata.refclk.6261
+                0x0000b3ec        0x4 build/config.o
+ .rodata.ovs.6260
+                0x0000b3f0        0x4 build/config.o
+ .rodata.baud.6259
+                0x0000b3f4        0x4 build/config.o
+ .rodata        0x0000b3f8       0x20 build/dac.o
+ .rodata        0x0000b418       0x3c build/main.o
+ .rodata        0x0000b454       0x64 build/audio_rec.o
+ .rodata.str1.4
+                0x0000b4b8        0x2 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+                                  0x4 (size before relaxing)
+ *fill*         0x0000b4ba        0x2 00
+ .rodata        0x0000b4bc       0x20 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ .rodata.str1.4
+                0x0000b4dc       0x42 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+                                 0x44 (size before relaxing)
+ *fill*         0x0000b51e        0x2 00
+ .rodata.str1.4
+                0x0000b520       0x10 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+                                 0x14 (size before relaxing)
+ .rodata        0x0000b530       0x60 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+                0x0000b530                __sf_fake_stderr
+                0x0000b550                __sf_fake_stdout
+                0x0000b570                __sf_fake_stdin
+ .rodata        0x0000b590        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                0x0000b590                _global_impure_ptr
+ .rodata.str1.4
+                0x0000b594        0x2 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                                  0x4 (size before relaxing)
+ *fill*         0x0000b596        0x2 00
+ .rodata.str1.4
+                0x0000b598        0xc /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                                 0x14 (size before relaxing)
+ *fill*         0x0000b5a4        0x4 00
+ .rodata        0x0000b5a8      0x128 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+                0x0000b5b8                __mprec_tens
+                0x0000b680                __mprec_tinytens
+                0x0000b6a8                __mprec_bigtens
+ .rodata        0x0000b6d0       0x20 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .rodata.str1.4
+                0x00000000       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+                0x0000b6f0                . = ALIGN (0x4)
+ *(.init)
+ .init          0x0000b6f0        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+                0x0000b6f0                _init
+ .init          0x0000b6f4        0x8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+                0x0000b6fc                . = ALIGN (0x4)
+                0x0000b6fc                __preinit_array_start = .
+ *(.preinit_array)
+                0x0000b6fc                __preinit_array_end = .
+                0x0000b6fc                . = ALIGN (0x4)
+                0x0000b6fc                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x0000b6fc        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+                0x0000b700                __init_array_end = .
+                0x0000b700                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x0000b700        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+                0x0000b700                _fini
+ .fini          0x0000b704        0x8 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+                0x0000b70c                . = ALIGN (0x4)
+                0x0000b70c                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x0000b70c        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x0000b710                __fini_array_end = .
+                0x0000b710                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x0000b710                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x0000b710                . = ALIGN (0x4)
+                0x0000b710                __cs3_regions = .
+                0x0000b710        0x4 LONG 0x0
+                0x0000b714        0x4 LONG 0xb728 __cs3_region_init_ram
+                0x0000b718        0x4 LONG 0x20000000 __cs3_region_start_ram
+                0x0000b71c        0x4 LONG 0x598 __cs3_region_init_size_ram
+                0x0000b720        0x4 LONG 0x6280 __cs3_region_zero_size_ram
+                0x0000b724                __cs3_regions_end = .
+                0x0000b728                . = ALIGN (0x8)
+ *fill*         0x0000b724        0x4 00
+ *(.rom)
+ *(.rom.b .bss.rom)
+                0x0000b728                _etext = .
+                0x00100000                __cs3_region_end_rom = (__cs3_region_start_rom + 0x100000)
+                0x00100000                __cs3_region_size_rom = 0x100000
+
+.data           0x20000000      0x598 load address 0x0000b728
+                0x20000000                __cs3_region_start_ram = .
+ *(.cs3.region-head.ram)
+ *(.jcr)
+ .jcr           0x20000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .jcr           0x20000000        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data.SystemHFXOClock
+                0x20000004        0x4 build/system_efm32.o
+ .data.SystemLFXOClock
+                0x20000008        0x4 build/system_efm32.o
+ .data.p.6855   0x2000000c        0x4 build/audio_rec.o
+ .data          0x20000010       0xf4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+                0x20000010                _impure_ptr
+ .data          0x20000104       0x7c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+                0x20000124                __mb_cur_max
+ .data          0x20000180      0x410 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                0x20000180                __malloc_av_
+                0x20000588                __malloc_sbrk_base
+                0x2000058c                __malloc_trim_threshold
+ .data          0x20000590        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+                0x20000590                __wctomb
+ *(.ram)
+                0x20000598                . = ALIGN (0x8)
+ *fill*         0x20000594        0x4 00
+                0x20000598                _edata = .
+
+.igot.plt       0x20000598        0x0 load address 0x0000bcc0
+ .igot.plt      0x00000000        0x0 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+
+.bss            0x20000600     0x6218 load address 0x0000be00
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x20000600       0x1c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .bss.INT_LockCnt
+                0x2000061c        0x4 build/efm32_int.o
+                0x2000061c                INT_LockCnt
+ .bss.packet_received
+                0x20000620        0x4 build/radio.o
+                0x20000620                packet_received
+ .bss.enable_receive
+                0x20000624        0x4 build/radio.o
+                0x20000624                enable_receive
+ .bss.packet_wait
+                0x20000628        0x4 build/radio.o
+                0x20000628                packet_wait
+ .bss.NRF_Interrupt
+                0x2000062c        0x4 build/radio.o
+ .bss.c         0x20000630        0x4 build/serial_input.o
+                0x20000630                c
+ .bss.lock      0x20000634        0x4 build/serial_input.o
+                0x20000634                lock
+ .bss.strend    0x20000638        0x4 build/serial_input.o
+                0x20000638                strend
+ .bss.heap_end  0x2000063c        0x4 build/syscalls.o
+ .bss.iterator  0x20000640        0x4 build/dac.o
+                0x20000640                iterator
+ .bss.toPlay    0x20000644        0x4 build/dac.o
+                0x20000644                toPlay
+ .bss.pingtimer
+                0x20000648        0x4 build/main.o
+                0x20000648                pingtimer
+ .bss.transfernumber
+                0x2000064c        0x4 build/audio_rec.o
+                0x2000064c                transfernumber
+ .bss           0x20000650       0x34 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+                0x20000650                __malloc_top_pad
+                0x20000654                __malloc_current_mallinfo
+                0x2000067c                __malloc_max_sbrked_mem
+                0x20000680                __malloc_max_total_mem
+ *(COMMON)
+ COMMON         0x20000684        0x4 build/system_efm32.o
+                0x20000684                SystemCoreClock
+ COMMON         0x20000688       0x21 build/radio.o
+                0x20000688                packet
+                0x200006a8                radio_mode
+ *fill*         0x200006a9        0x3 00
+ COMMON         0x200006ac      0x11c build/codec.o
+                0x200006ac                mask
+                0x200006b0                decompressprev
+                0x200006b4                no_steps
+                0x200006b8                steps
+                0x200007b8                output_packet_size
+                0x200007bc                compressprev
+                0x200007c0                packet_size
+                0x200007c4                bps
+ COMMON         0x200007c8     0x5dc0 build/dac.o
+                0x200007c8                buff
+ *fill*         0x20006588       0x78 00
+ COMMON         0x20006600      0x200 build/dmactrl.o
+                0x20006600                dmaControlBlock
+ COMMON         0x20006800        0xd build/audio_rec.o
+                0x20006800                cb
+                0x2000680c                transferActive
+ *fill*         0x2000680d        0x3 00
+ COMMON         0x20006810        0x4 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+                0x20006810                errno
+                0x20006818                . = ALIGN (0x8)
+ *fill*         0x20006814        0x4 00
+ *(.ram.b .bss.ram)
+                0x20006818                _end = .
+                0x20006818                __end = .
+                0x20020000                __cs3_region_end_ram = (__cs3_region_start_ram + 0x20000)
+                0x00020000                __cs3_region_size_ram = 0x20000
+                0x0000b728                __cs3_region_init_ram = LOADADDR (.data)
+                0x00000598                __cs3_region_init_size_ram = (_edata - ADDR (.data))
+                0x00006280                __cs3_region_zero_size_ram = (_end - _edata)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x9c0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x60 build/system_efm32.o
+ .debug_aranges
+                0x00000060       0x28 build/efm32_system.o
+ .debug_aranges
+                0x00000088       0x98 build/efm32_gpio.o
+ .debug_aranges
+                0x00000120      0x118 build/efm32_cmu.o
+ .debug_aranges
+                0x00000238       0xb0 build/efm32_usart.o
+ .debug_aranges
+                0x000002e8       0x58 build/efm32_i2c.o
+ .debug_aranges
+                0x00000340       0xb0 build/efm32_dma.o
+ .debug_aranges
+                0x000003f0       0x48 build/efm32_timer.o
+ .debug_aranges
+                0x00000438       0x28 build/efm32_opamp.o
+ .debug_aranges
+                0x00000460       0x80 build/efm32_emu.o
+ .debug_aranges
+                0x000004e0       0x58 build/efm32_adc.o
+ .debug_aranges
+                0x00000538       0x58 build/efm32_rtc.o
+ .debug_aranges
+                0x00000590       0x28 build/efm32_prs.o
+ .debug_aranges
+                0x000005b8       0x28 build/i2cdrv.o
+ .debug_aranges
+                0x000005e0       0x98 build/NRF24.o
+ .debug_aranges
+                0x00000678       0x68 build/radio.o
+ .debug_aranges
+                0x000006e0       0x30 build/serial_input.o
+ .debug_aranges
+                0x00000710       0x58 build/syscalls.o
+ .debug_aranges
+                0x00000768       0x70 build/config.o
+ .debug_aranges
+                0x000007d8       0x30 build/codec.o
+ .debug_aranges
+                0x00000808       0x48 build/protcol.o
+ .debug_aranges
+                0x00000850       0x60 build/dac.o
+ .debug_aranges
+                0x000008b0       0x28 build/acksys.o
+ .debug_aranges
+                0x000008d8       0x60 build/main.o
+ .debug_aranges
+                0x00000938       0x88 build/audio_rec.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xd594
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000       0x70 build/core_cm3.o
+ .debug_info    0x00000070      0x423 build/system_efm32.o
+ .debug_info    0x00000493       0x29 build/efm32_assert.o
+ .debug_info    0x000004bc      0x241 build/efm32_system.o
+ .debug_info    0x000006fd      0x75c build/efm32_gpio.o
+ .debug_info    0x00000e59      0xfe9 build/efm32_cmu.o
+ .debug_info    0x00001e42      0xe19 build/efm32_usart.o
+ .debug_info    0x00002c5b      0x7d5 build/efm32_i2c.o
+ .debug_info    0x00003430     0x1234 build/efm32_dma.o
+ .debug_info    0x00004664      0x720 build/efm32_timer.o
+ .debug_info    0x00004d84      0x4e0 build/efm32_opamp.o
+ .debug_info    0x00005264       0xab build/efm32_int.o
+ .debug_info    0x0000530f      0xa08 build/efm32_emu.o
+ .debug_info    0x00005d17      0xa6c build/efm32_adc.o
+ .debug_info    0x00006783      0x32b build/efm32_rtc.o
+ .debug_info    0x00006aae      0x210 build/efm32_prs.o
+ .debug_info    0x00006cbe      0x560 build/i2cdrv.o
+ .debug_info    0x0000721e      0x77b build/NRF24.o
+ .debug_info    0x00007999      0x556 build/radio.o
+ .debug_info    0x00007eef      0x382 build/serial_input.o
+ .debug_info    0x00008271      0x628 build/syscalls.o
+ .debug_info    0x00008899     0x16ea build/config.o
+ .debug_info    0x00009f83      0x26f build/codec.o
+ .debug_info    0x0000a1f2      0x3fd build/protcol.o
+ .debug_info    0x0000a5ef      0xc07 build/dac.o
+ .debug_info    0x0000b1f6      0x27d build/acksys.o
+ .debug_info    0x0000b473      0x83f build/main.o
+ .debug_info    0x0000bcb2      0x12c build/dmactrl.o
+ .debug_info    0x0000bdde     0x17b6 build/audio_rec.o
+
+.debug_abbrev   0x00000000     0x28e8
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x2c build/core_cm3.o
+ .debug_abbrev  0x0000002c      0x17b build/system_efm32.o
+ .debug_abbrev  0x000001a7       0x16 build/efm32_assert.o
+ .debug_abbrev  0x000001bd      0x114 build/efm32_system.o
+ .debug_abbrev  0x000002d1      0x190 build/efm32_gpio.o
+ .debug_abbrev  0x00000461      0x23e build/efm32_cmu.o
+ .debug_abbrev  0x0000069f      0x196 build/efm32_usart.o
+ .debug_abbrev  0x00000835      0x1ef build/efm32_i2c.o
+ .debug_abbrev  0x00000a24      0x20e build/efm32_dma.o
+ .debug_abbrev  0x00000c32      0x158 build/efm32_timer.o
+ .debug_abbrev  0x00000d8a      0x123 build/efm32_opamp.o
+ .debug_abbrev  0x00000ead       0x62 build/efm32_int.o
+ .debug_abbrev  0x00000f0f      0x202 build/efm32_emu.o
+ .debug_abbrev  0x00001111      0x195 build/efm32_adc.o
+ .debug_abbrev  0x000012a6      0x197 build/efm32_rtc.o
+ .debug_abbrev  0x0000143d       0xe8 build/efm32_prs.o
+ .debug_abbrev  0x00001525      0x13c build/i2cdrv.o
+ .debug_abbrev  0x00001661      0x179 build/NRF24.o
+ .debug_abbrev  0x000017da      0x1f4 build/radio.o
+ .debug_abbrev  0x000019ce      0x16a build/serial_input.o
+ .debug_abbrev  0x00001b38      0x122 build/syscalls.o
+ .debug_abbrev  0x00001c5a      0x1ac build/config.o
+ .debug_abbrev  0x00001e06       0xc7 build/codec.o
+ .debug_abbrev  0x00001ecd      0x1ae build/protcol.o
+ .debug_abbrev  0x0000207b      0x1dd build/dac.o
+ .debug_abbrev  0x00002258      0x168 build/acksys.o
+ .debug_abbrev  0x000023c0      0x1e7 build/main.o
+ .debug_abbrev  0x000025a7       0xab build/dmactrl.o
+ .debug_abbrev  0x00002652      0x296 build/audio_rec.o
+
+.debug_line     0x00000000     0x6b60
+ *(.debug_line)
+ .debug_line    0x00000000      0x159 build/core_cm3.o
+ .debug_line    0x00000159      0x2ac build/system_efm32.o
+ .debug_line    0x00000405       0x5b build/efm32_assert.o
+ .debug_line    0x00000460      0x26d build/efm32_system.o
+ .debug_line    0x000006cd      0x3b5 build/efm32_gpio.o
+ .debug_line    0x00000a82      0x768 build/efm32_cmu.o
+ .debug_line    0x000011ea      0x4c9 build/efm32_usart.o
+ .debug_line    0x000016b3      0x3f6 build/efm32_i2c.o
+ .debug_line    0x00001aa9      0x6b6 build/efm32_dma.o
+ .debug_line    0x0000215f      0x3aa build/efm32_timer.o
+ .debug_line    0x00002509      0x446 build/efm32_opamp.o
+ .debug_line    0x0000294f      0x210 build/efm32_int.o
+ .debug_line    0x00002b5f      0x3e9 build/efm32_emu.o
+ .debug_line    0x00002f48      0x388 build/efm32_adc.o
+ .debug_line    0x000032d0      0x301 build/efm32_rtc.o
+ .debug_line    0x000035d1      0x262 build/efm32_prs.o
+ .debug_line    0x00003833      0x2b4 build/i2cdrv.o
+ .debug_line    0x00003ae7      0x49c build/NRF24.o
+ .debug_line    0x00003f83      0x38d build/radio.o
+ .debug_line    0x00004310      0x2b5 build/serial_input.o
+ .debug_line    0x000045c5      0x494 build/syscalls.o
+ .debug_line    0x00004a59      0x439 build/config.o
+ .debug_line    0x00004e92      0x3b9 build/codec.o
+ .debug_line    0x0000524b      0x2d3 build/protcol.o
+ .debug_line    0x0000551e      0x319 build/dac.o
+ .debug_line    0x00005837      0x267 build/acksys.o
+ .debug_line    0x00005a9e      0x674 build/main.o
+ .debug_line    0x00006112      0x40f build/dmactrl.o
+ .debug_line    0x00006521      0x63f build/audio_rec.o
+
+.debug_frame    0x00000000     0x23a0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xbc build/system_efm32.o
+ .debug_frame   0x000000bc       0x38 build/efm32_system.o
+ .debug_frame   0x000000f4      0x154 build/efm32_gpio.o
+ .debug_frame   0x00000248      0x2b0 build/efm32_cmu.o
+ .debug_frame   0x000004f8      0x1a8 build/efm32_usart.o
+ .debug_frame   0x000006a0       0xc4 build/efm32_i2c.o
+ .debug_frame   0x00000764      0x1a8 build/efm32_dma.o
+ .debug_frame   0x0000090c       0x88 build/efm32_timer.o
+ .debug_frame   0x00000994       0x3c build/efm32_opamp.o
+ .debug_frame   0x000009d0      0x120 build/efm32_emu.o
+ .debug_frame   0x00000af0       0xc0 build/efm32_adc.o
+ .debug_frame   0x00000bb0       0xb4 build/efm32_rtc.o
+ .debug_frame   0x00000c64       0x38 build/efm32_prs.o
+ .debug_frame   0x00000c9c       0x40 build/i2cdrv.o
+ .debug_frame   0x00000cdc      0x184 build/NRF24.o
+ .debug_frame   0x00000e60       0xe8 build/radio.o
+ .debug_frame   0x00000f48       0x54 build/serial_input.o
+ .debug_frame   0x00000f9c       0xb0 build/syscalls.o
+ .debug_frame   0x0000104c       0xfc build/config.o
+ .debug_frame   0x00001148       0x50 build/codec.o
+ .debug_frame   0x00001198       0xa4 build/protcol.o
+ .debug_frame   0x0000123c       0xd4 build/dac.o
+ .debug_frame   0x00001310       0x4c build/acksys.o
+ .debug_frame   0x0000135c       0xe0 build/main.o
+ .debug_frame   0x0000143c      0x140 build/audio_rec.o
+ .debug_frame   0x0000157c       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .debug_frame   0x000015ac       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+ .debug_frame   0x000015d8       0x5c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+ .debug_frame   0x00001634       0x3c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+ .debug_frame   0x00001670       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+ .debug_frame   0x000016a0       0x20 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ .debug_frame   0x000016c0       0x58 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ .debug_frame   0x00001718       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+ .debug_frame   0x00001744       0x64 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+ .debug_frame   0x000017a8       0x40 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+ .debug_frame   0x000017e8      0x11c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+ .debug_frame   0x00001904       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+ .debug_frame   0x00001954       0x38 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+ .debug_frame   0x0000198c       0x54 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+ .debug_frame   0x000019e0       0x98 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+ .debug_frame   0x00001a78       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+ .debug_frame   0x00001aa8       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+ .debug_frame   0x00001ad8       0x38 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+ .debug_frame   0x00001b10       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+ .debug_frame   0x00001b3c       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+ .debug_frame   0x00001b68       0x30 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+ .debug_frame   0x00001b98      0x23c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+ .debug_frame   0x00001dd4       0x38 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+ .debug_frame   0x00001e0c       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+ .debug_frame   0x00001e34       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+ .debug_frame   0x00001e60       0x80 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+ .debug_frame   0x00001ee0       0x7c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .debug_frame   0x00001f5c       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+ .debug_frame   0x00001f88       0x28 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+ .debug_frame   0x00001fb0       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+ .debug_frame   0x00001fdc       0x3c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+ .debug_frame   0x00002018       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+ .debug_frame   0x00002068       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+ .debug_frame   0x00002094       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+ .debug_frame   0x000020c0       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+ .debug_frame   0x000020ec       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+ .debug_frame   0x00002118       0x64 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .debug_frame   0x0000217c       0x3c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+ .debug_frame   0x000021b8       0x58 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+ .debug_frame   0x00002210       0x44 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+ .debug_frame   0x00002254       0x40 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .debug_frame   0x00002294       0x20 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+ .debug_frame   0x000022b4       0x50 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+ .debug_frame   0x00002304       0x38 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .debug_frame   0x0000233c       0x38 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .debug_frame   0x00002374       0x2c /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+
+.debug_str      0x00000000     0x42b4
+ *(.debug_str)
+ .debug_str     0x00000000       0xb3 build/core_cm3.o
+                                 0xe7 (size before relaxing)
+ .debug_str     0x000000b3      0x21f build/system_efm32.o
+                                0x308 (size before relaxing)
+ .debug_str     0x000002d2       0x1c build/efm32_assert.o
+                                 0x5e (size before relaxing)
+ .debug_str     0x000002ee       0xf0 build/efm32_system.o
+                                0x1d4 (size before relaxing)
+ .debug_str     0x000003de      0x424 build/efm32_gpio.o
+                                0x52c (size before relaxing)
+ .debug_str     0x00000802      0x8b4 build/efm32_cmu.o
+                                0xb06 (size before relaxing)
+ .debug_str     0x000010b6      0x94d build/efm32_usart.o
+                                0xcd1 (size before relaxing)
+ .debug_str     0x00001a03      0x2fb build/efm32_i2c.o
+                                0x6c1 (size before relaxing)
+ .debug_str     0x00001cfe      0x855 build/efm32_dma.o
+                                0xc46 (size before relaxing)
+ .debug_str     0x00002553      0x568 build/efm32_timer.o
+                                0x694 (size before relaxing)
+ .debug_str     0x00002abb      0x399 build/efm32_opamp.o
+                                0x4a5 (size before relaxing)
+ .debug_str     0x00002e54       0x25 build/efm32_int.o
+                                0x109 (size before relaxing)
+ .debug_str     0x00002e79      0x385 build/efm32_emu.o
+                                0x5e5 (size before relaxing)
+ .debug_str     0x000031fe      0x652 build/efm32_adc.o
+                                0xa69 (size before relaxing)
+ .debug_str     0x00003850       0xb6 build/efm32_rtc.o
+                                0x1e8 (size before relaxing)
+ .debug_str     0x00003906       0xbd build/efm32_prs.o
+                                0x1bb (size before relaxing)
+ .debug_str     0x000039c3       0x25 build/i2cdrv.o
+                                0x6b4 (size before relaxing)
+ .debug_str     0x000039e8      0x111 build/NRF24.o
+                                0x352 (size before relaxing)
+ .debug_str     0x00003af9      0x139 build/radio.o
+                                0x318 (size before relaxing)
+ .debug_str     0x00003c32       0x5b build/serial_input.o
+                                0x20b (size before relaxing)
+ .debug_str     0x00003c8d      0x15b build/syscalls.o
+                                0x318 (size before relaxing)
+ .debug_str     0x00003de8       0xde build/config.o
+                               0x1505 (size before relaxing)
+ .debug_str     0x00003ec6       0xa7 build/codec.o
+                                0x1a5 (size before relaxing)
+ .debug_str     0x00003f6d      0x103 build/protcol.o
+                                0x21d (size before relaxing)
+ .debug_str     0x00004070       0x4c build/dac.o
+                                0xc1a (size before relaxing)
+ .debug_str     0x000040bc       0x41 build/acksys.o
+                                0x179 (size before relaxing)
+ .debug_str     0x000040fd       0x92 build/main.o
+                                0x5bc (size before relaxing)
+ .debug_str     0x0000418f       0x1a build/dmactrl.o
+                                0x138 (size before relaxing)
+ .debug_str     0x000041a9      0x10b build/audio_rec.o
+                               0x163b (size before relaxing)
+
+.debug_loc      0x00000000     0x1f06
+ *(.debug_loc)
+ .debug_loc     0x00000000       0xa4 build/system_efm32.o
+ .debug_loc     0x000000a4       0x40 build/efm32_system.o
+ .debug_loc     0x000000e4      0x20c build/efm32_gpio.o
+ .debug_loc     0x000002f0      0x410 build/efm32_cmu.o
+ .debug_loc     0x00000700      0x2b4 build/efm32_usart.o
+ .debug_loc     0x000009b4      0x13c build/efm32_i2c.o
+ .debug_loc     0x00000af0      0x2b4 build/efm32_dma.o
+ .debug_loc     0x00000da4       0xc0 build/efm32_timer.o
+ .debug_loc     0x00000e64       0x4c build/efm32_opamp.o
+ .debug_loc     0x00000eb0      0x17c build/efm32_emu.o
+ .debug_loc     0x0000102c      0x130 build/efm32_adc.o
+ .debug_loc     0x0000115c       0xec build/efm32_rtc.o
+ .debug_loc     0x00001248       0x40 build/efm32_prs.o
+ .debug_loc     0x00001288       0x58 build/i2cdrv.o
+ .debug_loc     0x000012e0      0x264 build/NRF24.o
+ .debug_loc     0x00001544      0x110 build/radio.o
+ .debug_loc     0x00001654       0x78 build/serial_input.o
+ .debug_loc     0x000016cc      0x100 build/syscalls.o
+ .debug_loc     0x000017cc      0x166 build/config.o
+ .debug_loc     0x00001932       0x6c build/codec.o
+ .debug_loc     0x0000199e       0xf0 build/protcol.o
+ .debug_loc     0x00001a8e      0x145 build/dac.o
+ .debug_loc     0x00001bd3       0x58 build/acksys.o
+ .debug_loc     0x00001c2b      0x11c build/main.o
+ .debug_loc     0x00001d47      0x1bf build/audio_rec.o
+
+.debug_macinfo  0x00000000  0x16c5a83
+ *(.debug_macinfo)
+ .debug_macinfo
+                0x00000000     0x2bdd build/core_cm3.o
+ .debug_macinfo
+                0x00002bdd    0xdef16 build/system_efm32.o
+ .debug_macinfo
+                0x000e1af3     0x231c build/efm32_assert.o
+ .debug_macinfo
+                0x000e3e0f    0xdef39 build/efm32_system.o
+ .debug_macinfo
+                0x001c2d48    0xdefd4 build/efm32_gpio.o
+ .debug_macinfo
+                0x002a1d1c    0xdf5c6 build/efm32_cmu.o
+ .debug_macinfo
+                0x003812e2    0xdf822 build/efm32_usart.o
+ .debug_macinfo
+                0x00460b04    0xdf644 build/efm32_i2c.o
+ .debug_macinfo
+                0x00540148    0xe1ee0 build/efm32_dma.o
+ .debug_macinfo
+                0x00622028    0xdf6a2 build/efm32_timer.o
+ .debug_macinfo
+                0x007016ca    0xe0141 build/efm32_opamp.o
+ .debug_macinfo
+                0x007e180b    0xdeead build/efm32_int.o
+ .debug_macinfo
+                0x008c06b8    0xdf572 build/efm32_emu.o
+ .debug_macinfo
+                0x0099fc2a    0xdf66d build/efm32_adc.o
+ .debug_macinfo
+                0x00a7f297    0xdefa1 build/efm32_rtc.o
+ .debug_macinfo
+                0x00b5e238    0xdeefb build/efm32_prs.o
+ .debug_macinfo
+                0x00c3d133    0xdf990 build/i2cdrv.o
+ .debug_macinfo
+                0x00d1cac3    0xdfc43 build/NRF24.o
+ .debug_macinfo
+                0x00dfc706    0xdf4b6 build/radio.o
+ .debug_macinfo
+                0x00edbbbc    0xdf19f build/serial_input.o
+ .debug_macinfo
+                0x00fbad5b    0xe1856 build/syscalls.o
+ .debug_macinfo
+                0x0109c5b1    0xe031d build/config.o
+ .debug_macinfo
+                0x0117c8ce     0x40da build/codec.o
+ .debug_macinfo
+                0x011809a8    0xdef4c build/protcol.o
+ .debug_macinfo
+                0x0125f8f4    0xdf601 build/dac.o
+ .debug_macinfo
+                0x0133eef5    0xdef7a build/acksys.o
+ .debug_macinfo
+                0x0141de6f    0xe2db3 build/main.o
+ .debug_macinfo
+                0x01500c22    0xe194a build/dmactrl.o
+ .debug_macinfo
+                0x015e256c    0xe3517 build/audio_rec.o
+
+.debug_ranges   0x00000000      0x848
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x50 build/system_efm32.o
+ .debug_ranges  0x00000050       0x18 build/efm32_system.o
+ .debug_ranges  0x00000068       0x88 build/efm32_gpio.o
+ .debug_ranges  0x000000f0      0x108 build/efm32_cmu.o
+ .debug_ranges  0x000001f8       0xa0 build/efm32_usart.o
+ .debug_ranges  0x00000298       0x60 build/efm32_i2c.o
+ .debug_ranges  0x000002f8       0xa0 build/efm32_dma.o
+ .debug_ranges  0x00000398       0x38 build/efm32_timer.o
+ .debug_ranges  0x000003d0       0x18 build/efm32_opamp.o
+ .debug_ranges  0x000003e8       0x70 build/efm32_emu.o
+ .debug_ranges  0x00000458       0x48 build/efm32_adc.o
+ .debug_ranges  0x000004a0       0x48 build/efm32_rtc.o
+ .debug_ranges  0x000004e8       0x18 build/efm32_prs.o
+ .debug_ranges  0x00000500       0x18 build/i2cdrv.o
+ .debug_ranges  0x00000518       0x88 build/NRF24.o
+ .debug_ranges  0x000005a0       0x58 build/radio.o
+ .debug_ranges  0x000005f8       0x20 build/serial_input.o
+ .debug_ranges  0x00000618       0x48 build/syscalls.o
+ .debug_ranges  0x00000660       0x60 build/config.o
+ .debug_ranges  0x000006c0       0x20 build/codec.o
+ .debug_ranges  0x000006e0       0x38 build/protcol.o
+ .debug_ranges  0x00000718       0x50 build/dac.o
+ .debug_ranges  0x00000768       0x18 build/acksys.o
+ .debug_ranges  0x00000780       0x50 build/main.o
+ .debug_ranges  0x000007d0       0x78 build/audio_rec.o
+
+.comment        0x00000000       0x30
+ .comment       0x00000000       0x30 build/core_cm3.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 build/system_efm32.o
+ .comment       0x00000000       0x31 build/efm32_assert.o
+ .comment       0x00000000       0x31 build/efm32_system.o
+ .comment       0x00000000       0x31 build/efm32_gpio.o
+ .comment       0x00000000       0x31 build/efm32_cmu.o
+ .comment       0x00000000       0x31 build/efm32_usart.o
+ .comment       0x00000000       0x31 build/efm32_i2c.o
+ .comment       0x00000000       0x31 build/efm32_dma.o
+ .comment       0x00000000       0x31 build/efm32_timer.o
+ .comment       0x00000000       0x31 build/efm32_opamp.o
+ .comment       0x00000000       0x31 build/efm32_int.o
+ .comment       0x00000000       0x31 build/efm32_emu.o
+ .comment       0x00000000       0x31 build/efm32_adc.o
+ .comment       0x00000000       0x31 build/efm32_rtc.o
+ .comment       0x00000000       0x31 build/efm32_prs.o
+ .comment       0x00000000       0x31 build/i2cdrv.o
+ .comment       0x00000000       0x31 build/NRF24.o
+ .comment       0x00000000       0x31 build/radio.o
+ .comment       0x00000000       0x31 build/serial_input.o
+ .comment       0x00000000       0x31 build/syscalls.o
+ .comment       0x00000000       0x31 build/config.o
+ .comment       0x00000000       0x31 build/codec.o
+ .comment       0x00000000       0x31 build/protcol.o
+ .comment       0x00000000       0x31 build/dac.o
+ .comment       0x00000000       0x31 build/acksys.o
+ .comment       0x00000000       0x31 build/main.o
+ .comment       0x00000000       0x31 build/dmactrl.o
+ .comment       0x00000000       0x31 build/audio_rec.o
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x27
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crti.o
+ .ARM.attributes
+                0x0000001b       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtbegin.o
+ .ARM.attributes
+                0x00000046       0x33 build/core_cm3.o
+ .ARM.attributes
+                0x00000079       0x33 build/system_efm32.o
+ .ARM.attributes
+                0x000000ac       0x33 build/efm32_assert.o
+ .ARM.attributes
+                0x000000df       0x33 build/efm32_system.o
+ .ARM.attributes
+                0x00000112       0x33 build/efm32_gpio.o
+ .ARM.attributes
+                0x00000145       0x33 build/efm32_cmu.o
+ .ARM.attributes
+                0x00000178       0x33 build/efm32_usart.o
+ .ARM.attributes
+                0x000001ab       0x33 build/efm32_i2c.o
+ .ARM.attributes
+                0x000001de       0x33 build/efm32_dma.o
+ .ARM.attributes
+                0x00000211       0x33 build/efm32_timer.o
+ .ARM.attributes
+                0x00000244       0x33 build/efm32_opamp.o
+ .ARM.attributes
+                0x00000277       0x33 build/efm32_int.o
+ .ARM.attributes
+                0x000002aa       0x33 build/efm32_emu.o
+ .ARM.attributes
+                0x000002dd       0x33 build/efm32_adc.o
+ .ARM.attributes
+                0x00000310       0x33 build/efm32_rtc.o
+ .ARM.attributes
+                0x00000343       0x33 build/efm32_prs.o
+ .ARM.attributes
+                0x00000376       0x33 build/i2cdrv.o
+ .ARM.attributes
+                0x000003a9       0x33 build/NRF24.o
+ .ARM.attributes
+                0x000003dc       0x33 build/radio.o
+ .ARM.attributes
+                0x0000040f       0x33 build/serial_input.o
+ .ARM.attributes
+                0x00000442       0x33 build/syscalls.o
+ .ARM.attributes
+                0x00000475       0x33 build/config.o
+ .ARM.attributes
+                0x000004a8       0x33 build/codec.o
+ .ARM.attributes
+                0x000004db       0x33 build/protcol.o
+ .ARM.attributes
+                0x0000050e       0x33 build/dac.o
+ .ARM.attributes
+                0x00000541       0x33 build/acksys.o
+ .ARM.attributes
+                0x00000574       0x33 build/main.o
+ .ARM.attributes
+                0x000005a7       0x33 build/dmactrl.o
+ .ARM.attributes
+                0x000005da       0x33 build/audio_rec.o
+ .ARM.attributes
+                0x0000060d       0x16 build/startup_efm32gg.o
+ .ARM.attributes
+                0x00000623       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x0000064e       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000679       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-printf.o)
+ .ARM.attributes
+                0x000006a4       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-puts.o)
+ .ARM.attributes
+                0x000006cf       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strcmp.o)
+ .ARM.attributes
+                0x000006fa       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x00000725       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfprintf.o)
+ .ARM.attributes
+                0x00000750       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wsetup.o)
+ .ARM.attributes
+                0x0000077b       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-dtoa.o)
+ .ARM.attributes
+                0x000007a6       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fflush.o)
+ .ARM.attributes
+                0x000007d1       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-findfp.o)
+ .ARM.attributes
+                0x000007fc       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-freer.o)
+ .ARM.attributes
+                0x00000827       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fvwrite.o)
+ .ARM.attributes
+                0x00000852       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fwalk.o)
+ .ARM.attributes
+                0x0000087d       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-impure.o)
+ .ARM.attributes
+                0x000008a8       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-locale.o)
+ .ARM.attributes
+                0x000008d3       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-makebuf.o)
+ .ARM.attributes
+                0x000008fe       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-malloc.o)
+ .ARM.attributes
+                0x00000929       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mallocr.o)
+ .ARM.attributes
+                0x00000954       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memchr.o)
+ .ARM.attributes
+                0x0000097f       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memmove.o)
+ .ARM.attributes
+                0x000009aa       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x000009d5       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-mprec.o)
+ .ARM.attributes
+                0x00000a00       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reallocr.o)
+ .ARM.attributes
+                0x00000a2b       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-s_fpclassify.o)
+ .ARM.attributes
+                0x00000a56       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x00000a81       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-stdio.o)
+ .ARM.attributes
+                0x00000aac       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-vfiprintf.o)
+ .ARM.attributes
+                0x00000ad7       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-writer.o)
+ .ARM.attributes
+                0x00000b02       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-callocr.o)
+ .ARM.attributes
+                0x00000b2d       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-closer.o)
+ .ARM.attributes
+                0x00000b58       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fclose.o)
+ .ARM.attributes
+                0x00000b83       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fputwc.o)
+ .ARM.attributes
+                0x00000bae       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-fstatr.o)
+ .ARM.attributes
+                0x00000bd9       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-isattyr.o)
+ .ARM.attributes
+                0x00000c04       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-lseekr.o)
+ .ARM.attributes
+                0x00000c2f       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-readr.o)
+ .ARM.attributes
+                0x00000c5a       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-reent.o)
+ .ARM.attributes
+                0x00000c85       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wbuf.o)
+ .ARM.attributes
+                0x00000cb0       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wcrtomb.o)
+ .ARM.attributes
+                0x00000cdb       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-wctomb_r.o)
+ .ARM.attributes
+                0x00000d06       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3.a(start_c.o)
+ .ARM.attributes
+                0x00000d31       0x19 /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libcs3unhosted.a(unhosted-start.o)
+ .ARM.attributes
+                0x00000d4a       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000d65       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000d80       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x00000d9b       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x00000db6       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x00000dd1       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000dec       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x00000e07       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x00000e32       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x00000e5d       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/libgcc.a(_udivdi3.o)
+ .ARM.attributes
+                0x00000e88       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000eb3       0x2b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtend.o
+ .ARM.attributes
+                0x00000ede       0x1b /home/director-ubuntu/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI/bin/../lib/gcc/arm-none-eabi/4.6.3/thumb2/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(exe/slip.elf elf32-littlearm)

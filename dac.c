@@ -2,7 +2,7 @@
 #include "efm32_timer.h"
 #include "dac.h"
 
-#define INPUT_BUF_SIZE (10200)
+#define INPUT_BUF_SIZE (3*8000)
 
 char buff[INPUT_BUF_SIZE];
 
@@ -13,7 +13,7 @@ int toPlay = 0;
 
 int next(int val)
 {
-    if(val == (INPUT_BUF_SIZE-1))
+    if(val >= (INPUT_BUF_SIZE-1))
         val=0;
     else
         val++;
@@ -58,11 +58,11 @@ void InitAudioPWM(void)
 
   TIMER1->ROUTE = TIMER_ROUTE_CC0PEN | TIMER_ROUTE_CC1PEN | TIMER_ROUTE_LOCATION_LOC1;
   /* Set Top Value */
-  TIMER_TopSet(TIMER1, 384);//384
+  TIMER_TopSet(TIMER1, 255);//384
 
   /* Set compare value starting at top - it will be incremented in the interrupt handler */
-  TIMER_CompareBufSet(TIMER1, 0, 385);//385
-  TIMER_CompareBufSet(TIMER1, 1, 385);//385
+  TIMER_CompareBufSet(TIMER1, 0, 256);//385
+  TIMER_CompareBufSet(TIMER1, 1, 256);//385
   //TIMER_CompareBufSet(TIMER3, 2, RGB_PWM_TIMER_TOP + 1);
 
   /* Select timer parameters */
@@ -70,7 +70,7 @@ void InitAudioPWM(void)
   {
     .enable     = true,
     .debugRun   = false,
-    .prescale   = timerPrescale16,
+    .prescale   = timerPrescale8,
     .clkSel     = timerClkSelHFPerClk,
     .fallAction = timerInputActionNone,
     .riseAction = timerInputActionNone,
@@ -108,7 +108,7 @@ void TIMER1_IRQHandler(void)
     {
         audio_Sample = 0;
     }
-    TIMER_CompareBufSet(TIMER1, 0, ((audio_Sample * 98304)>>16));
-        
+    TIMER_CompareBufSet(TIMER1, 0, (audio_Sample));
+
     TIMER_IntClear(TIMER1, TIMER_IF_OF);
 }

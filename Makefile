@@ -27,6 +27,7 @@ LINUXCS   = /cad/codesourcery/arm-none-eabi/arm-2010q1
 GCCVERSION = $(shell $(CC) -dumpversion)
 
 TOOLDIR = ~/CodeSourcery/Sourcery_CodeBench_Lite_for_ARM_EABI
+-include Makefile.settings
 RM = rm -rf
 
 CC      = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-gcc$(QUOTE)
@@ -46,7 +47,7 @@ GDB     = $(QUOTE)$(TOOLDIR)/bin/arm-none-eabi-gdb$(QUOTE)
 DEPFLAGS = -MMD -MP -MF $(@:.o=.d)
 
 # Add -Wa,-ahld=$(LST_DIR)/$(@F:.o=.lst) to CFLAGS to produce assembly list files
-CFLAGS += -std=c99 -D$(DEVICE) -mcpu=cortex-m3 -mthumb -ffunction-sections -fno-short-enums -fdata-sections \
+CFLAGS += -std=c99 -D$(DEVICE) -DOPAMP_PRESENT -DOPAMP_COUNT=1 -mcpu=cortex-m3 -mthumb -ffunction-sections -fno-short-enums -fdata-sections \
 -mfix-cortex-m3-ldrd -fomit-frame-pointer -Wall -fwide-exec-charset=UTF-16LE -fshort-wchar $(DEPFLAGS)
 
 ASMFLAGS += -Ttext 0x0
@@ -83,19 +84,25 @@ efm32lib/src/efm32_usart.c \
 efm32lib/src/efm32_i2c.c \
 efm32lib/src/efm32_dma.c \
 efm32lib/src/efm32_timer.c \
+efm32lib/src/efm32_opamp.c \
 efm32lib/src/efm32_int.c \
 efm32lib/src/efm32_emu.c \
 efm32lib/src/efm32_adc.c \
 efm32lib/src/efm32_rtc.c \
+efm32lib/src/efm32_prs.c \
+i2cdrv.c \
 NRF24.c \
 radio.c \
 serial_input.c \
 syscalls.c \
 config.c \
+codec.c \
 protcol.c \
 dac.c \
-main.c
-#i2cdrv.c \
+acksys.c \
+main.c \
+dmactrl.c \
+audio_rec.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \
