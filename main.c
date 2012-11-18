@@ -132,9 +132,9 @@ int main(void)
 
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
-    printf("send...\n");
-    for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
 
+    for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
+		printf("send...\n");
         protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
         protocol_loop();
     }
