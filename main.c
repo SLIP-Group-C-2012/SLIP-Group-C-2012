@@ -17,6 +17,9 @@
 #include "config.h"
 #include "radio.h"
 
+#include "protcol.h"
+
+
 #include "acksys.h"
 
 #include <math.h>
@@ -57,7 +60,7 @@ int init_config(void)
 	/* Ensure core frequency has been updated */
 	//SystemCoreClockUpdate();
 
-	printf("hello5");
+	//printf("hello5");
 
 
 	//CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
@@ -66,7 +69,7 @@ int init_config(void)
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
-	printf("hello3");
+	//printf("hello3");
 
 
 	IO_Init();
@@ -93,9 +96,9 @@ int init_config(void)
 	//	uint32_t serial2;
 	//	serial2 =  (*(uint32_t*)0x0FE081F4); //UNIQUE_1 contains a facility ID
 
-	printf("hello");
+	//printf("hello");
 	InitAudioPWM();
-	printf("hello2");
+	//printf("hello2");
 
 }
 
@@ -104,7 +107,8 @@ int init_config(void)
  *****************************************************************************/
 //133761
 
-#define SENDER (1)
+#define SENDER (0)
+#define RECVINGADDRESS (62)
 
 #define COMPRESSED_SIZE (32)
 #define AUDIO_PACK_SIZE (28)
@@ -123,10 +127,14 @@ int main(void)
 
 	printf("I'm %s\n", SENDER ? "sender" : "receiver");
 
+	//uint8_t myaddress = protocol_getaddr();
+	printf("%d\n", protocol_getaddr());
+
+
     uint8_t cyclic_buf[BUFFER_SIZE] = {};
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(2, BANDW_2MB, POW_MAX, 0);
+	radio_setup(2, BANDW_2MB, POW_MAX, 1);
 
     set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
 
@@ -135,13 +143,14 @@ int main(void)
 #if SENDER
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
     for (id = 0; id < BUFFER_SIZE - 32; id+=28) {
-        radio_sendPacket32((uint8_t *) &cyclic_buf[id]);
-        radio_loop();
+    	protocol_send((uint8_t *) &cyclic_buf[id], RECVINGADDRESS);
+    	//radio_sendPacket32((uint8_t *) &cyclic_buf[id]);
+		protocol_loop();
     }
     //play((char *) cyclic_buf, BUFFER_SIZE);
     printf("Hello there\n");
 #else
-    if (radio_receivePacket32(data)) {
+    if (protocol_recive(data)) {
 
         if (id > sizeof(playback)-32) {
             play((char *) playback, sizeof(playback));
@@ -154,7 +163,7 @@ int main(void)
 #endif
 
 		// we should have this in our main loop always. It helps radio service itself.
-		radio_loop();
+		protocol_loop();
 	}
 }
 
