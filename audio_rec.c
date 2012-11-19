@@ -341,6 +341,9 @@ void stop_recording(void)
 	DMA_Reset();	// clean up after DMA transfers
 }
 
+// TODO: implement this...
+void read_chunk(uint8_t *chunk);
+
 // cept p isn't global :-(
 uint8_t *get_latest_chunk(Dma *dma)
 {
