@@ -29,7 +29,7 @@ int main(void)
     play((char *) cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
   }*/
   
-  start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
+  start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
   
   uint8_t *chunk;  
   uint8_t buf[SAMPLES_PER_SECOND * record_time_in_s];

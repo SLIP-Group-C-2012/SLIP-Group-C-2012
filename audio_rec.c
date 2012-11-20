@@ -17,7 +17,6 @@
 typedef struct {
 	uint8_t *pcm_buf;
 	unsigned int pcm_bufsize;
-	unsigned int numof_pingpong_transfers;
 } Dma;
 
 Dma dma;
@@ -276,6 +275,7 @@ void setupOpAmp(void)
  * the HFCORECLK used by the DMA. The DMA transfers the data to a RAM buffer
  * using ping-pong transfer.
  *****************************************************************************/
+// TODO: rewrite this using start_recording and stop_recording....
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
 	transfernumber = 0;
@@ -286,7 +286,6 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 	Dma dma;
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
-	dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
 
 	//printf("BUFSIZ: %d\n", BUFSIZ);
 	//printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
@@ -317,7 +316,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 }
 
 // TODO: test this actually works...
-void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
+void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
 {
 	enable_transfer = true;
 
@@ -325,7 +324,6 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
-	dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
 	
 	read_pointer = pcm_buf;
 	end_of_data = pcm_buf;
