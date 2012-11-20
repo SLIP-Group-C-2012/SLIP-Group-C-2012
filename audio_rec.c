@@ -94,12 +94,12 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 	}
 
 	p += NUMOF_ADC_SAMPLES;
-	
+
 	if (p >= dma->pcm_bufsize)
 		end_of_data = cyclic_buf;
 	else
 		end_of_data = &cyclic_buf[p];
-	
+
 	if (read_pointer == end_of_data) {
 		printf("warning: about to overwrite data that has not been read! :-(\n");
 		enable_transfer = false;
@@ -124,35 +124,136 @@ void setupCmu(void)
 	CMU_ClockEnable(cmuClock_DAC0, true);
 }
 
+/* Introducing the Digital Microphone of Joy and Wonder! */
+static void I2S_Setup(void)
+{
+	USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
 
+	CMU_ClockEnable(cmuClock_USART1, true);
+
+	/* Use location 1: TX  - Pin D0, (RX - Pin D1) */
+	/*                 CLK - Pin D2, CS - Pin D3   */
+
+	GPIO_PinModeSet(gpioPortD, 0, gpioModePushPull, 0);
+	GPIO_PinModeSet(gpioPortD, 2, gpioModePushPull, 0);
+	GPIO_PinModeSet(gpioPortD, 3, gpioModePushPull, 0);
+
+	/* Configure USART for basic I2S operation */
+	init.sync.baudrate = wavHeader.frequency * 32;
+	USART_InitI2s(USART1, &init);
+
+	/* Enable pins at location 1 */
+	USART1->ROUTE = USART_ROUTE_TXPEN |
+	                USART_ROUTE_CSPEN |
+	                USART_ROUTE_CLKPEN |
+	                USART_ROUTE_LOCATION_LOC1;
+}
+
+/**************************************************************************//**
+ * @brief
+ *   Setup DMA in ping pong mode
+ * @details
+ *   The DMA is set up to transfer data from memory to the DAC, triggered by
+ *   PRS (which in turn is triggered by the TIMER). When the DMA finishes,
+ *   it will trigger the callback (PingPongTransferComplete).
+ *****************************************************************************/
+void setupDma(Dma *dma)
+{
+	/* DMA configuration structs */
+	DMA_Init_TypeDef       dmaInit;
+	DMA_CfgChannel_TypeDef chnlCfg;
+	DMA_CfgDescr_TypeDef   descrCfg;
+
+	/* Initializing the DMA */
+	dmaInit.hprot        = 0;
+	dmaInit.controlBlock = dmaControlBlock;
+	DMA_Init(&dmaInit);
+
+	/* Set the interrupt callback routine */
+	DMAcallBack.cbFunc = transferComplete;
+
+	/* Callback doesn't need userpointer */
+	DMAcallBack.userPtr = dma;
+
+	/* Setting up channel */
+	chnlCfg.highPri   = false; /* Can't use with peripherals */
+	chnlCfg.enableInt = true;  /* Interrupt needed when buffers are used */
+
+	/* channel 0 and 1 will need data at the same time,
+	 * can use channel 0 as trigger */
+
+	chnlCfg.select = DMAREQ_USART1_TXBL;
+
+	chnlCfg.cb = &DMAcallBack;
+	DMA_CfgChannel(0, &chnlCfg);
+
+	/* Setting up channel descriptor */
+	/* Destination is DAC/USART register and doesn't move */
+	descrCfg.dstInc = dmaDataIncNone;
+
+	/* Transfer 32/16 bit each time to DAC_COMBDATA/USART_TXDOUBLE register*/
+	//descrCfg.srcInc = dmaDataInc2;
+	//descrCfg.size   = dmaDataSize2;
+	
+	// I figure for the moment we can just transfer single bytes?
+	descrCfg.srcInc = dmaDataInc1;
+	descrCfg.size = dmaDataSize1;
+
+	/* We have time to arbitrate again for each sample */
+	descrCfg.arbRate = dmaArbitrate1;
+	descrCfg.hprot   = 0;
+
+	/* Configure both primary and secondary descriptor alike */
+	DMA_CfgDescr(0, true, &descrCfg);
+	DMA_CfgDescr(0, false, &descrCfg);
+
+	/* Enabling PingPong Transfer*/
+	/*DMA_ActivatePingPong(0,
+	                     false,
+	                     (void *) & (USART1->TXDOUBLE),
+	                     (void *) &ramBufferDacData0Stereo,
+	                     (2 * BUFFERSIZE) - 1,
+	                     (void *) &(USART1->TXDOUBLE),
+	                     (void *) &ramBufferDacData1Stereo,
+	                     (2 * BUFFERSIZE) - 1);*/
+
+	DMA_ActivatePingPong(0,
+	                   false,
+	                   (void *) cyclic_buf,
+	                   (void *) &(USART1->TXDOUBLE),
+	                   NUMOF_ADC_SAMPLES - 1,
+	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
+	                   (void *) &(USART1->TXDOUBLE),
+	                   NUMOF_ADC_SAMPLES - 1;
+}
 
 /**************************************************************************//**
  * @brief Configure DMA for Ping-pong ADC to RAM Transfer
  *****************************************************************************/
-void setupDma(Dma *dma)
+/*void setupDma(Dma *dma)
 {
 	DMA_Init_TypeDef        dmaInit;
 	DMA_CfgChannel_TypeDef  chnlCfg;
 	DMA_CfgDescr_TypeDef    descrCfg;
 
-	/* Initializing the DMA */
+	// Initializing the DMA
 	dmaInit.hprot        = 0;
 	dmaInit.controlBlock = dmaControlBlock;
 
 	DMA_Init(&dmaInit);
 
-	/* Setup call-back function */
+	// Setup call-back function
 	cb.cbFunc  = transferComplete;
 	cb.userPtr = dma;
 
-	/* Setting up channel */
+	// Setting up channel
 	chnlCfg.highPri   = false;
 	chnlCfg.enableInt = true;
 	chnlCfg.select    = DMAREQ_ADC0_SINGLE;
 	chnlCfg.cb        = &cb;
 	DMA_CfgChannel(DMA_CHANNEL_ADC, &chnlCfg);
 
-	/* Setting up channel descriptor */
+	// Setting up channel descriptor
 	descrCfg.dstInc  = dmaDataInc1;	// tell dma to increment by a byte
 	descrCfg.srcInc  = dmaDataIncNone;
 	descrCfg.size    = dmaDataSize1;	// tell dma to read just one byte
@@ -163,13 +264,13 @@ void setupDma(Dma *dma)
 	DMA_CfgDescr(DMA_CHANNEL_ADC, true, &descrCfg); // configure primary descriptor
 	DMA_CfgDescr(DMA_CHANNEL_ADC, false, &descrCfg);  // configure alternate descriptor
 
-	/* Setting flag to indicate that transfer is in progress
-	  will be cleared by call-back function */
+	// Setting flag to indicate that transfer is in progress
+	//  will be cleared by call-back function
 	transferActive = true;
 
 	uint8_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 
-	/* Enabling PingPong Transfer*/
+	// Enabling PingPong Transfer
 	DMA_ActivatePingPong(DMA_CHANNEL_ADC,
 	                     false,
 	                     (void *) cyclic_buf,
@@ -178,7 +279,7 @@ void setupDma(Dma *dma)
 	                     (void *)&cyclic_buf[NUMOF_ADC_SAMPLES],
 	                     (void *)&(ADC0->SINGLEDATA),
 	                     NUMOF_ADC_SAMPLES - 1);
-}
+}*/
 
 
 /**************************************************************************//**
@@ -280,12 +381,12 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 	int transfer_limit = (SAMPLE_RATE / NUMOF_ADC_SAMPLES) * numof_secs;
 
 	start_recording(pcm_buf, pcm_bufsize);
-	
+
 	printf("transfer_limit: %d\n", transfer_limit);
-	
+
 	while (transfernumber < transfer_limit)
 		;
-	
+
 	stop_recording();
 }
 
@@ -298,7 +399,7 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
 
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
-	
+
 	read_pointer = pcm_buf;
 	end_of_data = pcm_buf;
 
@@ -313,7 +414,7 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
 void stop_recording(void)
 {
 	enable_transfer = false;
-	
+
 	while (transferActive)
 		;		// wait till transfer halted
 
@@ -326,10 +427,10 @@ bool read_chunk(uint8_t **chunk)
 	if (read_pointer != end_of_data) {
 		*chunk = read_pointer;
 		read_pointer += NUMOF_ADC_SAMPLES;
-		
+
 		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize)
 			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
-		
+
 		return true;
 	}
 	else
