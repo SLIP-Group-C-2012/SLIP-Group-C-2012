@@ -365,7 +365,7 @@ bool read_chunk(uint8_t **chunk)
 		
 		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize) {
 			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
-			return false;
+			//return false;
 		}
 		
 		return true;

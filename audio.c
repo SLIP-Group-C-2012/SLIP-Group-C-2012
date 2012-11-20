@@ -5,10 +5,6 @@
 
 #define record_time_in_s 1
 
-int init(void)
-{
-	;
-}
 
 int main(void)
 {
@@ -49,15 +45,6 @@ int main(void)
   		s = buf;
   	}
   }
-  	
-
-
-  //printf("pcm_buf: ");
-  //int i;
-  //for (i = 0; i < SAMPLES_PER_SECOND * record_time_in_s; i++) {
-  //  printf("%c", cyclic_buf[i]);
-  //}
-  //printf("\n");
   
   return 0;
 }
