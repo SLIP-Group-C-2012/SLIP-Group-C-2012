@@ -1,6 +1,6 @@
 #include "efm32_int.h"
 
-#define ADCSAMPLES 100	// TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
+#define NUMOF_ADC_SAMPLES 100
 #define SAMPLES_PER_SECOND 8000
 
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs);

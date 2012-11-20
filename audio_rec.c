@@ -62,7 +62,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 
 	uint8_t *cyclic_buf = dma->pcm_buf;
 
-	static int p = 2 * ADCSAMPLES;
+	static int p = 2 * NUMOF_ADC_SAMPLES;
 
 	/* Keeping track of the number of transfers */
 	transfernumber++;
@@ -80,7 +80,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 		                    false,
 		                    &cyclic_buf[p],
 		                    NULL,
-		                    ADCSAMPLES - 1,
+		                    NUMOF_ADC_SAMPLES - 1,
 		                    false);
 	}
 	else {
@@ -93,7 +93,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 		printf("transfer complete!\n");
 	}
 
-	p += ADCSAMPLES;
+	p += NUMOF_ADC_SAMPLES;
 	
 	if (p >= dma->pcm_bufsize)
 		end_of_data = cyclic_buf;
@@ -174,10 +174,10 @@ void setupDma(Dma *dma)
 	                     false,
 	                     (void *) cyclic_buf,
 	                     (void *)&(ADC0->SINGLEDATA),
-	                     ADCSAMPLES - 1,
-	                     (void *)&cyclic_buf[ADCSAMPLES],
+	                     NUMOF_ADC_SAMPLES - 1,
+	                     (void *)&cyclic_buf[NUMOF_ADC_SAMPLES],
 	                     (void *)&(ADC0->SINGLEDATA),
-	                     ADCSAMPLES - 1);
+	                     NUMOF_ADC_SAMPLES - 1);
 }
 
 
@@ -276,9 +276,13 @@ void setupOpAmp(void)
 // TODO: rewrite this using start_recording and stop_recording....
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
-	start_recording(pcm_buf, pcm_bufsize)
+	// the number of ping pong transfers that will occur in numof_secs time
+	int transfer_limit = (SAMPLE_RATE / NUMOF_ADC_SAMPLES) * numof_secs;
+
+	start_recording(pcm_buf, pcm_bufsize);
 	
-	
+	while (transfernumber < transfer_limit)
+		;
 	
 	stop_recording();
 }
@@ -319,7 +323,7 @@ bool read_chunk(uint8_t **chunk)
 {
 	if (read_pointer != end_of_data) {
 		*chunk = read_pointer;
-		read_pointer += ADCSAMPLES;
+		read_pointer += NUMOF_ADC_SAMPLES;
 		
 		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize)
 			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
