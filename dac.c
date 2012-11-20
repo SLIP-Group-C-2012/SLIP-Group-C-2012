@@ -93,8 +93,10 @@ void InitAudioPWM(void)
   TIMER_Init(TIMER1, &timerInit);
 }
 
-
-
+bool is_playing(void)
+{
+	return toPlay > 0;
+}
 
 void TIMER1_IRQHandler(void)
 {

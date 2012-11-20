@@ -10,6 +10,7 @@
 #include "efm32_int.h"
 #include "dmactrl.h"
 #include "dac.h"
+#include "audio_rec.h"
 
 #define DMA_CHANNEL_ADC 0
 
@@ -17,9 +18,9 @@ typedef struct {
 	uint8_t *pcm_buf;
 	unsigned int pcm_bufsize;
 	unsigned int numof_pingpong_transfers;
-	
-	uint8_t *latest_chunk;	// points to the latest set of audio samples
 } Dma;
+
+Dma dma;
 
 /* DMA callback structure */
 DMA_CB_TypeDef cb;
@@ -28,8 +29,10 @@ DMA_CB_TypeDef cb;
 volatile bool transferActive;	// TODO: why is this volatile?
 bool enable_transfer = false;
 
+uint8_t *end_of_data;
+uint8_t *read_pointer;	// a pointer to the chunk which should be read next
+
 #define SAMPLE_RATE 8000  // 8000 hz sample rate
-#define ADCSAMPLES 20 // TODO: ADCSAMPLES should be NUMOF_SAMPLES... probably
 
 /**************************************************************************//**
  * @brief  ADC Interrupt handler
@@ -90,12 +93,20 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 		/* Clearing Flag */
 		transferActive = false;
 
-		//printf("transfer complete!\n");
+		printf("transfer complete!\n");
 	}
 
-	dma->latest_chunk = &cyclic_buf[p - ADCSAMPLES];
-
 	p += ADCSAMPLES;
+	
+	if (p >= dma->pcm_bufsize)
+		end_of_data = cyclic_buf;
+	else
+		end_of_data = &cyclic_buf[p];
+	
+	if (read_pointer == end_of_data) {
+		printf("warning: about to overwrite data that has not been read! :-(\n");
+		enable_transfer = false;
+	}
 }
 
 
@@ -312,7 +323,6 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 
 	setupCmu();	// configure clocks in Clock Management Unit
 
-	Dma dma;
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
 	dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
@@ -328,6 +338,8 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 	setupOpAmp();
 
 	setupAdc();
+	
+	//INT_Disable();
 }
 
 // TODO: test this actually works...
@@ -339,13 +351,22 @@ void stop_recording(void)
 		;		// wait till transfer halted
 
 	DMA_Reset();	// clean up after DMA transfers
+	
+	//INT_Enable();
 }
 
 // TODO: implement this...
-void read_chunk(uint8_t *chunk);
-
-// cept p isn't global :-(
-uint8_t *get_latest_chunk(Dma *dma)
+bool read_chunk(uint8_t **chunk)
 {
-	return dma->latest_chunk;
+	if (read_pointer != end_of_data) {
+		*chunk = read_pointer;
+		read_pointer += ADCSAMPLES;
+		
+		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize)
+			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
+		
+		return true;
+	}
+	else
+		return false;
 }

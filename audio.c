@@ -7,7 +7,7 @@
 
 int init(void)
 {
-
+	;
 }
 
 int main(void)
@@ -24,10 +24,35 @@ int main(void)
   InitAudioPWM();
 
   uint8_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
-  while (1) {
+  /*while (1) {
     record(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
     play((char *) cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+  }*/
+  
+  start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
+  
+  uint8_t *chunk;  
+  uint8_t buf[SAMPLES_PER_SECOND * record_time_in_s];
+  uint8_t *s = buf;
+  
+  int t = 0;
+  for (;;) {
+  	if (read_chunk(&chunk)) {
+  		//printf("chunk: %d\n", chunk);
+  		memcpy(s, chunk, ADCSAMPLES * sizeof (uint8_t));
+  		s += ADCSAMPLES;
+  	}
+  	
+  	if (s == buf + sizeof(buf)) {
+  	//if (s - buf >= sizeof(buf)) {
+  		printf("play second %d\n", t++);
+  		play(buf, SAMPLES_PER_SECOND * record_time_in_s);
+  		s = buf;
+  	}
   }
+  	
+  	//while (is_playing())
+  	//	;	// wait till we've finished playing
 
   //printf("pcm_buf: ");
   //int i;

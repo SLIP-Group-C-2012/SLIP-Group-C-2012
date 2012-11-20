@@ -6,6 +6,8 @@ void play(char * data, int size);
 
 void TIMER1_IRQHandler(void);
 
+bool is_playing(void);
+
 #endif
 
 /*
