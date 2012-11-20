@@ -21,6 +21,8 @@ int main(void)
 	uint8_t *chunk;
 
 	// Asynchronous
+	//
+	// Here be delays...
 	/*start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
 	for (;;) {

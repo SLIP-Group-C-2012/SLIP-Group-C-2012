@@ -281,6 +281,8 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 
 	start_recording(pcm_buf, pcm_bufsize);
 	
+	printf("transfer_limit: %d\n", transfer_limit);
+	
 	while (transfernumber < transfer_limit)
 		;
 	
