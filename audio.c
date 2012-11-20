@@ -43,7 +43,7 @@ int main(void)
 	}
   	
   	if (s == buf + sizeof(buf)) {
-  		printf("play second %d\n", t++);
+  		//printf("play second %d\n", t++);
   		play(buf, SAMPLES_PER_SECOND * record_time_in_s);
   		
   		s = buf;
