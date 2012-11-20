@@ -64,8 +64,6 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 
 	static int p = 2 * ADCSAMPLES;
 
-	//play((char *) &cyclic_buf[transfernumber * ADCSAMPLES], ADCSAMPLES);
-
 	/* Keeping track of the number of transfers */
 	transfernumber++;
 
@@ -279,17 +277,12 @@ void setupOpAmp(void)
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
 	transfernumber = 0;
-	//printf("started recording...\n");
 
 	setupCmu();	// configure clocks in Clock Management Unit
 
 	Dma dma;
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
-
-	//printf("BUFSIZ: %d\n", BUFSIZ);
-	//printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
-	//printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
 
 	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
 
@@ -328,19 +321,11 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
 	read_pointer = pcm_buf;
 	end_of_data = pcm_buf;
 
-	//printf("BUFSIZ: %d\n", BUFSIZ);
-	//printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
-	//printf("dma.numof_pingpong_transfers: %d\n", dma.numof_pingpong_transfers);
-	
-	// TODO: deal with interrupts?
-
 	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
 
 	setupOpAmp();
 
 	setupAdc();
-	
-	//INT_Disable();
 }
 
 // TODO: test this actually works...
@@ -352,8 +337,6 @@ void stop_recording(void)
 		;		// wait till transfer halted
 
 	DMA_Reset();	// clean up after DMA transfers
-	
-	//INT_Enable();
 }
 
 // TODO: implement this...
@@ -363,10 +346,8 @@ bool read_chunk(uint8_t **chunk)
 		*chunk = read_pointer;
 		read_pointer += ADCSAMPLES;
 		
-		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize) {
+		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize)
 			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
-			//return false;
-		}
 		
 		return true;
 	}
