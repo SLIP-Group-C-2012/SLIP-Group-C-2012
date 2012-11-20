@@ -38,21 +38,19 @@ int main(void)
   int t = 0;
   for (;;) {
   	if (read_chunk(&chunk)) {
-  		//printf("chunk: %d\n", chunk);
   		memcpy(s, chunk, ADCSAMPLES * sizeof (uint8_t));
   		s += ADCSAMPLES;
-  	}
+	}
   	
   	if (s == buf + sizeof(buf)) {
-  	//if (s - buf >= sizeof(buf)) {
   		printf("play second %d\n", t++);
   		play(buf, SAMPLES_PER_SECOND * record_time_in_s);
+  		
   		s = buf;
   	}
   }
   	
-  	//while (is_playing())
-  	//	;	// wait till we've finished playing
+
 
   //printf("pcm_buf: ");
   //int i;

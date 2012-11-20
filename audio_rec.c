@@ -326,6 +326,9 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int nu
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
 	dma.numof_pingpong_transfers = (SAMPLE_RATE / ADCSAMPLES) * numof_secs;
+	
+	read_pointer = pcm_buf;
+	end_of_data = pcm_buf;
 
 	//printf("BUFSIZ: %d\n", BUFSIZ);
 	//printf("dma.pcm_bufsize: %d\n", dma.pcm_bufsize);
@@ -362,8 +365,10 @@ bool read_chunk(uint8_t **chunk)
 		*chunk = read_pointer;
 		read_pointer += ADCSAMPLES;
 		
-		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize)
+		if (read_pointer >= dma.pcm_buf + dma.pcm_bufsize) {
 			read_pointer = dma.pcm_buf;  // move back to the beginning of the buffer
+			return false;
+		}
 		
 		return true;
 	}
