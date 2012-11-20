@@ -276,36 +276,11 @@ void setupOpAmp(void)
 // TODO: rewrite this using start_recording and stop_recording....
 void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
-	transfernumber = 0;
-
-	setupCmu();	// configure clocks in Clock Management Unit
-
-	Dma dma;
-	dma.pcm_buf = pcm_buf;
-	dma.pcm_bufsize = pcm_bufsize;
-
-	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
-
-	setupOpAmp();
-
-	setupAdc();
-	/* Wait in EM1 in until DMA is finished and callback is called */
-	/* Disable interrupts until flag is checked in case DMA finishes after flag
-	* check but before sleep command. Device will still wake up on any set IRQ
-	* and any pending interrupts will be handled after interrupts are enabled
-	* again. */
-	INT_Disable();
-	while(transferActive)
-	{
-		EMU_EnterEM1();
-		INT_Enable();
-		INT_Disable();
-	}
-	INT_Enable();
-
-	DMA_Reset();	// clean up after DMA transfers
-
-	//printf("finished recording!\n");
+	start_recording(pcm_buf, pcm_bufsize)
+	
+	
+	
+	stop_recording();
 }
 
 // TODO: test this actually works...

@@ -31,20 +31,7 @@ int main(void)
   uint8_t buf[SAMPLES_PER_SECOND * record_time_in_s];
   uint8_t *s = buf;
   
-  int t = 0;
   for (;;) {
-  	/*if (read_chunk(&chunk)) {
-  		memcpy(s, chunk, ADCSAMPLES * sizeof (uint8_t));
-  		s += ADCSAMPLES;
-	}*/
-  	
-  	/*if (s == buf + sizeof(buf)) {
-  		//printf("play second %d\n", t++);
-  		play(buf, SAMPLES_PER_SECOND * record_time_in_s);
-  		
-  		s = buf;
-  	}*/
-  	
   	if (read_chunk(&chunk))
   		play(chunk, ADCSAMPLES);
   }
