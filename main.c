@@ -81,7 +81,7 @@ int init_config(void)
  *****************************************************************************/
 //133761
 // Please change SENDER to 0 for the speaker board
-#define SENDER (0)
+#define SENDER (1)
 #define RECEIVINGADDRESS (2)
 
 #define COMPRESSED_SIZE (29)
@@ -107,17 +107,22 @@ int main(void)
 	radio_setup(2, BANDW_2MB, POW_MAX, 1);
 
 	//set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
-
+#if SENDER
+	uint8_t **chunk;
+	start_recording(cyclic_buf, BUFFER_SIZE);
+#endif
+	int i = 0;
 	while (1) {
 
 #if SENDER
 
-		record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 
-		for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-			//printf("sending...\n");
-			proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
-			radio_loop();
+		//record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+		if (read_chunk(&chunk)) {
+			//if (i++ % 100 == 0)
+			//	printf("proto send now %d\n", i);
+				
+			proto_send(chunk, RECEIVINGADDRESS);
 		}
 
 #else
@@ -127,17 +132,14 @@ int main(void)
 
 				play((char *) playback, sizeof(playback));
 				id = 0;
-				//printf("Received\n");
+				printf("Received\n");
 			}
 			memcpy(&playback[id], data, AUDIO_PACK_SIZE);
 			id = id + AUDIO_PACK_SIZE;
-
 		}
-		radio_loop();
 #endif
-
 		// we should have this in our main loop always. It helps radio service itself.
-		//radio_loop();
+		radio_loop();
 	}
 }
 
