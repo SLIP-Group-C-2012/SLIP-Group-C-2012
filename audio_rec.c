@@ -8,6 +8,7 @@
 #include "efm32_opamp.h"
 #include "efm32_timer.h"
 #include "efm32_int.h"
+#include "efm32_usart.h"
 #include "dmactrl.h"
 #include "dac.h"
 #include "audio_rec.h"
@@ -128,22 +129,35 @@ void setupCmu(void)
 static void I2S_Setup(void)
 {
 	USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
+	init.sync.autoTx = true;
+	init.format = usartI2sFormatW32D32;
 
-	CMU_ClockEnable(cmuClock_USART1, true);
+	CMU_ClockEnable(cmuClock_USART0, true);
 
 	/* Use location 1: TX  - Pin D0, (RX - Pin D1) */
 	/*                 CLK - Pin D2, CS - Pin D3   */
 
-	GPIO_PinModeSet(gpioPortD, 0, gpioModePushPull, 0);
-	GPIO_PinModeSet(gpioPortD, 2, gpioModePushPull, 0);
-	GPIO_PinModeSet(gpioPortD, 3, gpioModePushPull, 0);
+	GPIO_PinModeSet(gpioPortE, 4, gpioModePushPull, 1);	// ws
+	GPIO_PinModeSet(gpioPortE, 5, gpioModePushPull, 1);	// clock
+	GPIO_PinModeSet(gpioPortE, 6, gpioModeInput, 0);	// rx
+	GPIO_PinModeSet(gpioPortE, 7, gpioModePushPull, 0);	// tx
+	
+	// Turn the microphone on
+	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1);
+	
 
 	/* Configure USART for basic I2S operation */
-	init.sync.baudrate = wavHeader.frequency * 32;
-	USART_InitI2s(USART1, &init);
+	//init.sync.baudrate = wavHeader.frequency * 32;
+	
+	// what should the baud rate be?
+	init.sync.baudrate = 512000;	// for 8k samples per sec
+	
+	USART_InitI2s(USART0, &init);
+
+	USART0->TXDOUBLE = 0;	// start transmission
 
 	/* Enable pins at location 1 */
-	USART1->ROUTE = USART_ROUTE_TXPEN |
+	USART0->ROUTE = USART_ROUTE_TXPEN |
 	                USART_ROUTE_CSPEN |
 	                USART_ROUTE_CLKPEN |
 	                USART_ROUTE_LOCATION_LOC1;
@@ -182,7 +196,7 @@ void setupDma(Dma *dma)
 	/* channel 0 and 1 will need data at the same time,
 	 * can use channel 0 as trigger */
 
-	chnlCfg.select = DMAREQ_USART1_TXBL;
+	chnlCfg.select = DMAREQ_USART0_RXDATAV;	// receive from usart
 
 	chnlCfg.cb = &DMAcallBack;
 	DMA_CfgChannel(0, &chnlCfg);
@@ -216,10 +230,10 @@ void setupDma(Dma *dma)
 	DMA_ActivatePingPong(0,
 	                   false,
 	                   (void *) cyclic_buf,
-	                   (void *) &(USART1->TXDOUBLE),
+	                   (void *) &(USART0->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1,
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
-	                   (void *) &(USART1->TXDOUBLE),
+	                   (void *) &(USART0->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1;
 }
 
