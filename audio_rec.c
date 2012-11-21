@@ -188,16 +188,12 @@ void setupDma(Dma *dma)
 	DMA_CfgChannel(0, &chnlCfg);
 
 	/* Setting up channel descriptor */
-	/* Destination is DAC/USART register and doesn't move */
-	descrCfg.dstInc = dmaDataIncNone;
+	/* Source is USART register and doesn't move */
+	descrCfg.srcInc = dmaDataIncNone;
 
-	/* Transfer 32/16 bit each time to DAC_COMBDATA/USART_TXDOUBLE register*/
-	//descrCfg.srcInc = dmaDataInc2;
-	//descrCfg.size   = dmaDataSize2;
-	
-	// I figure for the moment we can just transfer single bytes?
-	descrCfg.srcInc = dmaDataInc1;
-	descrCfg.size = dmaDataSize1;
+	/* Transfer 32/16 bit each time to RAM */
+	descrCfg.dstInc = dmaDataInc2;
+	descrCfg.size   = dmaDataSize2;
 
 	/* We have time to arbitrate again for each sample */
 	descrCfg.arbRate = dmaArbitrate1;
