@@ -3,19 +3,19 @@
 
 #define ABS(a) (((a) < 0) ? -(a) : (a))
 
-int packet_size; /* incoming packet size */
-int output_packet_size; /* outgoing packet size */
-int bps; /* how may bits does one sample contain */
-char steps[256]; /* storing the differences lookup table. TODO! 256 is only neeeded if packet_size==output_packet_size which may not happen! */
-int no_steps; /* no of actual values in the array steps */
-int mask; /* bit mask for sieving bits from a byte */
-int compressprev; /* running sum for the compression */
-int decompressprev; /* running sum for the decompression */
+int32_t packet_size; /* incoming packet size */
+int32_t output_packet_size; /* outgoing packet size */
+int32_t bps; /* how may bits does one sample contain */
+int8_t  steps[256]; /* storing the differences lookup table. TODO! 256 is only neeeded if packet_size==output_packet_size which may not happen! */
+int32_t no_steps; /* no of actual values in the array steps */
+int32_t mask; /* bit mask for sieving bits from a byte */
+int32_t compressprev; /* running sum for the compression */
+int32_t decompressprev; /* running sum for the decompression */
 
-void set_up_compression(int src_packet_size, int compressed_packet_size)
+void set_up_compression(uint8_t src_packet_size, uint8_t compressed_packet_size)
 {
-    int i;
-    int stepso2;
+    int32_t i;
+    int32_t stepso2;
 
     compressprev = 0;
     decompressprev = 0;
@@ -53,16 +53,15 @@ void set_up_compression(int src_packet_size, int compressed_packet_size)
     else
         for (i = 0; i < no_steps; i++)
             steps[i] = i - stepso2;
-
 }
 
-void compress(unsigned char * src, unsigned char * dst)
+void compress(uint8_t  * src, uint8_t  * dst)
 {
-    int i;
-    int delta;
-    unsigned int jid;
-    int dstpos;
-    int bitpadding;
+    int32_t i;
+    int32_t delta;
+    uint32_t jid;
+    int32_t dstpos;
+    int32_t bitpadding;
 
     /* set the control byte */
     dst[output_packet_size] = compressprev;
@@ -101,9 +100,9 @@ void compress(unsigned char * src, unsigned char * dst)
     }
 }
 
-void uncompress(unsigned char * src, unsigned char * dst)
+void uncompress(uint8_t  * src, uint8_t  * dst)
 {
-    int i;
+    int32_t i;
 
     /* read the control byte. Helps in case of packet loss */
     decompressprev = src[output_packet_size];
@@ -113,9 +112,9 @@ void uncompress(unsigned char * src, unsigned char * dst)
     {
 
         /* Find position in the tightly packet incoming stream */
-        int srcpos = bps * i / 8;
-        int bitpadding = 8 - bps * i + srcpos * 8 - bps;
-        int deltaid;
+        uint8_t srcpos = bps * i / 8;
+        uint8_t bitpadding = 8 - bps * i + srcpos * 8 - bps;
+        uint8_t deltaid;
 
         if (bitpadding > 0)
             deltaid = ( src[srcpos] >> bitpadding ) & mask;
@@ -123,7 +122,7 @@ void uncompress(unsigned char * src, unsigned char * dst)
             deltaid=((src[srcpos] << (-bitpadding)) | (src[srcpos+1] >> (8+bitpadding)) ) & mask;
 
         /* Calculate the expected value */
-        int value = decompressprev + steps[deltaid];
+        uint8_t value = decompressprev + steps[deltaid];
         if (value > 255) value = 255;
         if (value < 0) value = 0;
 

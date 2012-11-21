@@ -85,7 +85,7 @@ int init_config(void)
 #define RECEIVINGADDRESS (2)
 
 #define COMPRESSED_SIZE (29)
-#define AUDIO_PACK_SIZE (28)
+#define AUDIO_PACK_SIZE (29)
 
 
 

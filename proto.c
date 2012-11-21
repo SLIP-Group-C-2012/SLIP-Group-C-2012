@@ -10,7 +10,7 @@ typedef struct
 	uint8_t src;
 	uint8_t dest;
 	uint8_t packetID;
-	uint8_t data[28];
+	uint8_t data[29];
 } Packet_Type __attribute__ ((packed));
 
 Packet_Type packet;
