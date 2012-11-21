@@ -5,6 +5,7 @@
 #include "efm32_emu.h"
 #include "efm32_adc.h"
 #include "efm32_prs.h"
+#include "efm32_gpio.h"
 #include "efm32_opamp.h"
 #include "efm32_timer.h"
 #include "efm32_int.h"
@@ -128,7 +129,8 @@ void setupCmu(void)
 /* Introducing the Digital Microphone of Joy and Wonder! */
 static void I2S_Setup(void)
 {
-	USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
+	//USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
+	USART_InitI2s_TypeDef init;
 	init.sync.autoTx = true;
 	init.format = usartI2sFormatW32D32;
 
@@ -184,10 +186,10 @@ void setupDma(Dma *dma)
 	DMA_Init(&dmaInit);
 
 	/* Set the interrupt callback routine */
-	DMAcallBack.cbFunc = transferComplete;
+	cb.cbFunc = transferComplete;
 
 	/* Callback doesn't need userpointer */
-	DMAcallBack.userPtr = dma;
+	cb.userPtr = dma;
 
 	/* Setting up channel */
 	chnlCfg.highPri   = false; /* Can't use with peripherals */
@@ -198,7 +200,7 @@ void setupDma(Dma *dma)
 
 	chnlCfg.select = DMAREQ_USART0_RXDATAV;	// receive from usart
 
-	chnlCfg.cb = &DMAcallBack;
+	chnlCfg.cb = &cb;
 	DMA_CfgChannel(0, &chnlCfg);
 
 	/* Setting up channel descriptor */
@@ -217,6 +219,9 @@ void setupDma(Dma *dma)
 	DMA_CfgDescr(0, true, &descrCfg);
 	DMA_CfgDescr(0, false, &descrCfg);
 
+	uint8_t *cyclic_buf = dma->pcm_buf; // temporary work-around
+	
+	
 	/* Enabling PingPong Transfer*/
 	/*DMA_ActivatePingPong(0,
 	                     false,
@@ -234,7 +239,7 @@ void setupDma(Dma *dma)
 	                   NUMOF_ADC_SAMPLES - 1,
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
 	                   (void *) &(USART0->RXDOUBLE),
-	                   NUMOF_ADC_SAMPLES - 1;
+	                   NUMOF_ADC_SAMPLES - 1);
 }
 
 /**************************************************************************//**
