@@ -26,18 +26,19 @@ int main(void)
 	/*start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
 	for (;;) {
+		// There is a delay between reading and playing, why is this?
 		if (read_chunk(&chunk))
 			play(chunk, NUMOF_ADC_SAMPLES);
 	}*/
 	
-	printf("Recording...\n");
+	/*printf("Recording...\n");
 	
 	// Synchronous
 	record(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
 	
 	printf("Playing...\n");
 	
-	play(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	play(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);*/
 
 	return 0;
 }
