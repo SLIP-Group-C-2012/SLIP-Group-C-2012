@@ -16,7 +16,7 @@
 
 #include "config.h"
 #include "radio.h"
-#include "protcol.h"
+#include "proto.h"
 
 #include "acksys.h"
 
@@ -56,12 +56,7 @@ int init_config(void)
 	/* Chip errata */
 	CHIP_Init();
 	/* Ensure core frequency has been updated */
-	//SystemCoreClockUpdate();
-
-
-	//CMU_OscillatorEnable(cmuOsc_HFXO, true, true);
-	//CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-	//CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
+	
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
@@ -70,27 +65,11 @@ int init_config(void)
 	UART1->ROUTE = UART_ROUTE_LOCATION_LOC3
 			| UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
 
-//	TIMER_IntClear(TIMER0, TIMER_IF_OF);
-//	InitRGBLEDPWM();
-//	TIMER_IntClear(TIMER0, TIMER_IF_OF);
-//
-//	TIMER_IntClear(TIMER2, TIMER_IF_OF);
-//	InitTimoutTimer();
-//	TIMER_IntClear(TIMER2, TIMER_IF_OF);
-
-
 	uart_init(UART1); // for printf
 
 	// for interrupts
 	UART1->IEN = UART_IEN_RXDATAV;
 	NVIC_EnableIRQ(UART1_RX_IRQn);
-
-	//	uint32_t serial1;
-	//	serial1 =  (*(uint32_t*)0x0FE081F0); //UNIQUE_0 is a timestamp (in Unix time) set in production,
-
-	//	uint32_t serial2;
-	//	serial2 =  (*(uint32_t*)0x0FE081F4); //UNIQUE_1 contains a facility ID
-
 
 	InitAudioPWM();
 
@@ -101,13 +80,14 @@ int init_config(void)
  * @brief  Main function
  *****************************************************************************/
 //133761
-
+// Please change SENDER to 0 for the speaker board
 #define SENDER (1)
+#define RECEIVINGADDRESS (2)
 
 #define COMPRESSED_SIZE (29)
-#define AUDIO_PACK_SIZE (29)
+#define AUDIO_PACK_SIZE (28)
 
-#define RECEIVINGADDRESS (120)
+
 
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
@@ -119,9 +99,6 @@ int main(void)
 	uint8_t playback[BUFFER_SIZE];
 	uint8_t data[AUDIO_PACK_SIZE];
 	
-	printf("I'm %s\n", SENDER ? "sender" : "receiver");
-	printf("%d\n", protocol_getaddr());
-
 	init_config(); // init things for printf, interrupts, etc
 
     uint8_t cyclic_buf[BUFFER_SIZE] = {};
@@ -130,21 +107,21 @@ int main(void)
 	radio_setup(2, BANDW_2MB, POW_MAX, 1);
 
     //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
-
+    
     while (1) {
 
 #if SENDER
+	
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 
     for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-		//printf("send...\n");
-        protocol_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
-        protocol_loop();
+		//printf("sending...\n");
+        proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
+        radio_loop();
     }
-
-
+    
 #else
-    if (protocol_recive(data)) {
+    if (proto_receive(data)) {
 
         if (id > sizeof(playback)-32) {
 
@@ -152,13 +129,15 @@ int main(void)
             id = 0;
             //printf("Received\n");
         }
-        memcpy(&playback[id], data, 29);
-        id = id + 29;
+        memcpy(&playback[id], data, AUDIO_PACK_SIZE);
+        id = id + AUDIO_PACK_SIZE;
+
     }
+    radio_loop();
 #endif
 
-		// we should have this in our main loop always. It helps radio service itself.
-		protocol_loop();
+	// we should have this in our main loop always. It helps radio service itself.
+	//radio_loop();
 	}
 }
 

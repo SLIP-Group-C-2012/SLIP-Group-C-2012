@@ -11,14 +11,14 @@
 #define MY_ADDR (1)
 
 
-uint8_t packetbuff[29];
+uint8_t packetbuff[28];
 int packetpending = 0;
 
 typedef struct {
 	uint8_t src;
 	uint8_t dest;
 	uint8_t packetID;
-	uint8_t data[29];
+	uint8_t data[28];
 } Packet_Type __attribute__ ((packed));
 
 Packet_Type packet;

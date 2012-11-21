@@ -97,7 +97,7 @@ serial_input.c \
 syscalls.c \
 config.c \
 codec.c \
-protcol.c \
+proto.c \
 dac.c \
 acksys.c \
 main.c \
