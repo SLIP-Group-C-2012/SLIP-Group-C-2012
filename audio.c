@@ -20,24 +20,34 @@ int main(void)
 	uint8_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
 	uint8_t *chunk;
 
+	printf("o/\n");
+
 	// Asynchronous
 	//
 	// Here be delays...
 	/*start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
 	for (;;) {
-		if (read_chunk(&chunk))
-			play(chunk, NUMOF_ADC_SAMPLES);
-	}*/
+		printf("chunk: {");
+		int i;
+		for (i = 0; i < NUMOF_ADC_SAMPLES - 1; i++)
+			printf("%d, ", chunk[i]);
+		printf("%d}\n", chunk[NUMOF_ADC_SAMPLES - 1]);
 	
-	printf("Recording...\n");
+		if (read_chunk(&chunk)) {
+			//play(chunk, NUMOF_ADC_SAMPLES);
+			;
+		}
+	}
+	
+	/*printf("Recording...\n");
 	
 	// Synchronous
 	record(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, record_time_in_s);
 	
 	printf("Playing...\n");
 	
-	play(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	play(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);*/
 
 	return 0;
 }

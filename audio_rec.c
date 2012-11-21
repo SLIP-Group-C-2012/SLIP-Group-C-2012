@@ -43,7 +43,7 @@ void ADC0_IRQHandler(void)
 	/* Clear interrupt flag */
 	ADC_IntClear(ADC0, ADC_IFC_SINGLEOF);
 
-	printf("ADC IRQ: DMA couldn't keep up with ADC sample rate :(\n");
+	printf("ADC IRQ: DMA couldn't keep up with sample rate :(\n");
 
 	while(1) {
 		/* ERROR: ADC Result overflow has occured
@@ -120,7 +120,7 @@ void setupCmu(void)
 
 	/* Enabling clocks */
 	CMU_ClockEnable(cmuClock_DMA,  true);
-	CMU_ClockEnable(cmuClock_ADC0, true);
+	//CMU_ClockEnable(cmuClock_ADC0, true);
 
 	// Try enabling DAC (experimental)
 	CMU_ClockEnable(cmuClock_DAC0, true);
@@ -134,7 +134,7 @@ static void I2S_Setup(void)
 	init.sync.autoTx = true;
 	init.format = usartI2sFormatW32D32;
 
-	CMU_ClockEnable(cmuClock_USART0, true);
+	CMU_ClockEnable(cmuClock_USART2, true);
 
 	/* Use location 1: TX  - Pin D0, (RX - Pin D1) */
 	/*                 CLK - Pin D2, CS - Pin D3   */
@@ -154,9 +154,9 @@ static void I2S_Setup(void)
 	// what should the baud rate be?
 	init.sync.baudrate = 512000;	// for 8k samples per sec
 	
-	USART_InitI2s(USART0, &init);
+	USART_InitI2s(USART2, &init);
 
-	USART0->TXDOUBLE = 0;	// start transmission
+	USART2->TXDOUBLE = 0;	// start transmission
 
 	/* Enable pins at location 1 */
 	USART0->ROUTE = USART_ROUTE_TXPEN |
@@ -198,7 +198,7 @@ void setupDma(Dma *dma)
 	/* channel 0 and 1 will need data at the same time,
 	 * can use channel 0 as trigger */
 
-	chnlCfg.select = DMAREQ_USART0_RXDATAV;	// receive from usart
+	chnlCfg.select = DMAREQ_USART2_RXDATAV;	// receive from usart
 
 	chnlCfg.cb = &cb;
 	DMA_CfgChannel(0, &chnlCfg);
@@ -235,10 +235,10 @@ void setupDma(Dma *dma)
 	DMA_ActivatePingPong(0,
 	                   false,
 	                   (void *) cyclic_buf,
-	                   (void *) &(USART0->RXDOUBLE),
+	                   (void *) &(USART2->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1,
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
-	                   (void *) &(USART0->RXDOUBLE),
+	                   (void *) &(USART2->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1);
 }
 
@@ -418,11 +418,9 @@ void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
 	read_pointer = pcm_buf;
 	end_of_data = pcm_buf;
 
+	I2S_Setup();
+
 	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
-
-	setupOpAmp();
-
-	setupAdc();
 }
 
 // TODO: test this actually works...
