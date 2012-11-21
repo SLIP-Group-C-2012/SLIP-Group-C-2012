@@ -56,14 +56,14 @@ int init_config(void)
 	/* Chip errata */
 	CHIP_Init();
 	/* Ensure core frequency has been updated */
-	
+
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
 
 	IO_Init();
 	UART1->ROUTE = UART_ROUTE_LOCATION_LOC3
-			| UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
+	               | UART_ROUTE_TXPEN | UART_ROUTE_RXPEN;
 
 	uart_init(UART1); // for printf
 
@@ -98,46 +98,46 @@ int main(void)
 	volatile unsigned long id = 0; // for counting loop
 	uint8_t playback[BUFFER_SIZE];
 	uint8_t data[AUDIO_PACK_SIZE];
-	
+
 	init_config(); // init things for printf, interrupts, etc
 
-    uint8_t cyclic_buf[BUFFER_SIZE] = {};
+	uint8_t cyclic_buf[BUFFER_SIZE] = {};
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
 	radio_setup(2, BANDW_2MB, POW_MAX, 1);
 
-    //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
-    
-    while (1) {
+	//set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
+
+	while (1) {
 
 #if SENDER
-	
-    record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 
-    for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-		//printf("sending...\n");
-        proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
-        radio_loop();
-    }
-    
+		record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+
+		for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
+			//printf("sending...\n");
+			proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
+			radio_loop();
+		}
+
 #else
-    if (proto_receive(data)) {
+		if (proto_receive(data)) {
 
-        if (id > sizeof(playback)-32) {
+			if (id > sizeof(playback)-32) {
 
-            play((char *) playback, sizeof(playback));
-            id = 0;
-            //printf("Received\n");
-        }
-        memcpy(&playback[id], data, AUDIO_PACK_SIZE);
-        id = id + AUDIO_PACK_SIZE;
+				play((char *) playback, sizeof(playback));
+				id = 0;
+				//printf("Received\n");
+			}
+			memcpy(&playback[id], data, AUDIO_PACK_SIZE);
+			id = id + AUDIO_PACK_SIZE;
 
-    }
-    radio_loop();
+		}
+		radio_loop();
 #endif
 
-	// we should have this in our main loop always. It helps radio service itself.
-	//radio_loop();
+		// we should have this in our main loop always. It helps radio service itself.
+		//radio_loop();
 	}
 }
 

@@ -102,8 +102,8 @@ dac.c \
 acksys.c \
 dmactrl.c \
 audio_rec.c \
-audio.c
-#main.c \
+main.c
+#audio.c
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \
