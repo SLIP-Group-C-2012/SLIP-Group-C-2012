@@ -97,12 +97,13 @@ serial_input.c \
 syscalls.c \
 config.c \
 codec.c \
-protcol.c \
+proto.c \
 dac.c \
 acksys.c \
-audio.c \
 dmactrl.c \
 audio_rec.c \
+audio.c
+#main.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \

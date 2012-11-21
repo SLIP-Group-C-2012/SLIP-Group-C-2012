@@ -8,47 +8,35 @@
 
 #define DISABLE_REBROADCAST (1)
 
+#define MY_ADDR (1)
 
-uint8_t packetbuff[32];
+uint8_t packetbuff[28];
 int packetpending = 0;
-uint8_t addressbook[10];
-uint8_t pingdata[32] = "PING";
-
 
 typedef struct {
-	uint8_t opcode; // opcode 1 = text, 2 = audio 3, = rip
 	uint8_t src;
 	uint8_t dest;
 	uint8_t packetID;
-	uint8_t hops;
-	uint8_t data[32-5];
+	uint8_t data[28];
 } Packet_Type __attribute__ ((packed));
 
 Packet_Type packet;
-int recivedupto = 0;
+
+int id = 1;
 
 void protocol_send(uint8_t* buff, uint8_t dest) {
-	packet.opcode = 1; // opcode 1 = text, 2 = audio 3, = rip
 	packet.src = protocol_getaddr();
-	packet.dest = 0;
-	recivedupto ++;
-	packet.packetID = recivedupto;
-	packet.hops = 0;
+	packet.dest = dest;
+	packet.packetID = ++id;
 	memcpy(packet.data,buff,sizeof(packet.data));
 	radio_sendPacket32((uint8_t *)&packet);
 }
 
-int protocol_recive(uint8_t* buff){
+int protocol_recive(uint8_t* buff){	
+
 	if (packetpending){
-		//printf("String1 %s\n",packetbuff);
-
-		//printf("String2 %s\n",test);
-		if(!strcmp(packetbuff,pingdata)){
-			//printf("yes");
-			protocol_updateaddr(packet.src);
-		}
-
-		memcpy(packetbuff,buff,sizeof(packetbuff));
+		//printf("Copiyng %d bytes ->>> buff\n", sizeof(packetbuff));
+		memcpy(buff,packetbuff,sizeof(packetbuff));
 		packetpending = 0;
 		return 1;
 	}
@@ -59,23 +47,24 @@ int protocol_recive(uint8_t* buff){
 int protocol_loop(){
 	radio_loop();
 	int forus = 0;
+	int lastReceived = 0;
 	if(radio_receivePacket32((uint8_t *)&packet))
 	{
-
-		if(recivedupto<packet.packetID){
-			recivedupto = packet.packetID;
-
-			memcpy(packetbuff,packet.data,sizeof(packet.data));
+		//printf("SRC: %d DEST: %d ID: %d \n" , packet.src, packet.dest, packet.packetID);
+		if(packet.dest == protocol_getaddr())
+		{
+			//printf("12");
 			forus = 1;
 			packetpending = 1;
-
-        if (!DISABLE_REBROADCAST) {
-			if (packet.hops<=4){
-				packet.hops++;
-				radio_sendPacket32((uint8_t *)&packet);
-				printf("Rebroadcast");
-			}
-		}
+			lastReceived = packet.packetID;
+			//printf("Received %d bytes ->>> packetbuff\n", sizeof(packet.data));
+			memcpy(packetbuff,packet.data,sizeof(packet.data));
+		} else if(!DISABLE_REBROADCAST) {
+			forus = 0;
+			packetpending = 0;
+			//printf("Retransimit\n");
+			packet.src = protocol_getaddr();
+			radio_sendPacket32((uint8_t *)&packet);
 		}
 	}
 	return forus;
@@ -87,42 +76,3 @@ uint8_t protocol_getaddr(){
 	uint8_t * addr = &serial1;
 	return addr[0] ^ addr[1] ^ addr[2] ^ addr[3];
 }
-
-void protocol_updateaddr(uint8_t address){
-
-	//printf("update, %i \n",address);
-
-	//addressbook[2] = address;
-
-	int alreadyinbook = 0;
-	for(int i = 0; i < 10; i++)
-	{
-		if(addressbook[i]==address){
-			alreadyinbook = 1;
-			//printf("foundat:%i\n",i);
-			break;
-		}
-	}
-	if(!alreadyinbook){
-		//printf("!already");
-		for(int i = 0; i < 10; i++){
-			if(addressbook[i]==0){
-				addressbook[i] = address;
-				alreadyinbook  = 0;
-				break;
-			}
-		}
-
-	}
-
-}
-
-void protocol_printalladdr(void){
-	for(int i = 0; i < 10; i++)
-	{
-		if(!strcmp(addressbook[i],0)){
-			printf("Address %d\n",addressbook[i]);
-		}
-	}
-}
-

@@ -4,7 +4,7 @@
 
 #define INPUT_BUF_SIZE (3*8000)
 
-char buff[INPUT_BUF_SIZE];
+uint8_t buff[INPUT_BUF_SIZE];
 
 int set=0;
 int iterator = 0;
@@ -20,7 +20,7 @@ int next(int val)
     return val;
 }
 
-void play(char * data, int size)
+void play(uint8_t * data, int size)
 {
     for(int i = 0; i < size; i++ ) //
     {
@@ -98,12 +98,15 @@ bool is_playing(void)
 	return toPlay > 0;
 }
 
+#define ABS(x) ((x < 0) ? (-x) : (x))
+
 void TIMER1_IRQHandler(void)
 {
-    int audio_Sample = 0;
+    uint8_t audio_Sample = 0;
     if(toPlay > 0)
     {
         audio_Sample = buff[(iterator = next(iterator))];
+        //audio_Sample = (uint8_t) ABS((uint32_t) audio_Sample-128);
         toPlay--;
     }
     else
