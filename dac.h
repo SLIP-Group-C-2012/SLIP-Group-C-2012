@@ -2,7 +2,7 @@
 
 void InitAudioPWM(void);
 
-void play(char * data, int size);
+void play(uint8_t * data, int size);
 
 void TIMER1_IRQHandler(void);
 

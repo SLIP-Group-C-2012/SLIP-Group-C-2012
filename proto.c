@@ -3,7 +3,7 @@
 #include "protcol.h"
 
 // Please set MY_ADDR to 2 for the speaker board
-#define MY_ADDR (1)
+#define MY_ADDR (2)
 
 typedef struct 
 {

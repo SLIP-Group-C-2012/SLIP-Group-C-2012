@@ -81,7 +81,7 @@ int init_config(void)
  *****************************************************************************/
 //133761
 // Please change SENDER to 0 for the speaker board
-#define SENDER (1)
+#define SENDER (0)
 #define RECEIVINGADDRESS (2)
 
 #define COMPRESSED_SIZE (29)
