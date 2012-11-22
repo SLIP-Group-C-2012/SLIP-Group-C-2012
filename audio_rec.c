@@ -159,7 +159,7 @@ static void I2S_Setup(void)
 	USART2->TXDOUBLE = 0;	// start transmission
 
 	/* Enable pins at location 1 */
-	USART0->ROUTE = USART_ROUTE_TXPEN |
+	USART2->ROUTE = USART_ROUTE_TXPEN |
 	                USART_ROUTE_CSPEN |
 	                USART_ROUTE_CLKPEN |
 	                USART_ROUTE_LOCATION_LOC1;

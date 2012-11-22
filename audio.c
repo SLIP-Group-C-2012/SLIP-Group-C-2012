@@ -40,14 +40,15 @@ int main(void)
 		}
 	}*/
 	
-	int i = 0;
-	
-	for (;;) {
+	int i;
+	for (i = 0; i < 10000000; i++) {
 		if (i++ % 1000000 == 0)
 			printf("%d cyclic_buf: {%d, %d, %d, ... %d}\n", i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], cyclic_buf[sizeof (cyclic_buf) - 1]);
 	}
 	
 	printf("\\o/\n");
+	
+	stop_recording();
 	
 	/*printf("Recording...\n");
 	
