@@ -25,9 +25,9 @@ int main(void)
 	// Asynchronous
 	//
 	// Here be delays...
-	/*start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
-	for (;;) {
+	/*for (;;) {
 		printf("chunk: {");
 		int i;
 		for (i = 0; i < NUMOF_ADC_SAMPLES - 1; i++)
@@ -37,6 +37,14 @@ int main(void)
 		if (read_chunk(&chunk)) {
 			//play(chunk, NUMOF_ADC_SAMPLES);
 			;
+		}
+	}*/
+	
+	int i = 0;
+	for (;;) {
+		if (i++ % 1000000 == 0) {
+			printf("%d\t cyclic_buf: {%d, %d, %d, ... %d}\n",
+			i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], cyclic_buf[sizeof(cyclic_buf) - 1]);
 		}
 	}
 	
