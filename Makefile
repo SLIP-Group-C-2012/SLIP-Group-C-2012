@@ -100,10 +100,9 @@ codec.c \
 protcol.c \
 dac.c \
 acksys.c \
-timer.c
-#audio.c \
-#dmactrl.c \
-#audio_rec.c \
+audio.c \
+dmactrl.c \
+audio_rec.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \
