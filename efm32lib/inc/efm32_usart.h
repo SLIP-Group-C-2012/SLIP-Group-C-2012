@@ -457,9 +457,9 @@ typedef struct
       0,                  /* Use current configured reference clock for configuring baudrate. */ \
       1000000,            /* Baudrate 1M bits/s. */                                              \
       usartDatabits16,    /* 16 databits. */                                                     \
-      true,               /* Operate as I2S master. */	// change                                           \
+      true,               /* Operate as I2S master. */                                           \
       true,               /* Most significant bit first. */                                      \
-      usartClockMode0,    /* Clock idle low, sample on rising edge. */  //change                         \
+      usartClockMode0,    /* Clock idle low, sample on rising edge. */                      \
       false,              /* Don't enable USARTRx via PRS. */                                    \
       usartPrsRxCh0,      /* PRS channel selection (dummy). */                                   \
       false               /* Disable AUTOTX mode. */                                             \
