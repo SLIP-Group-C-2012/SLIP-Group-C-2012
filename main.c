@@ -98,8 +98,10 @@ int main(void)
 	volatile unsigned long id = 0; // for counting loop
 	uint8_t playback[BUFFER_SIZE];
 	uint8_t data[AUDIO_PACK_SIZE];
-
+	
 	init_config(); // init things for printf, interrupts, etc
+
+	printf("o/\n");
 
 	uint8_t cyclic_buf[BUFFER_SIZE] = {};
 
