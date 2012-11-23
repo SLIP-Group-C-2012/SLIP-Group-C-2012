@@ -17,7 +17,7 @@
 #define DMA_CHANNEL_ADC 0
 
 typedef struct {
-	uint8_t *pcm_buf;
+	uint32_t *pcm_buf;
 	unsigned int pcm_bufsize;
 } Dma;
 
@@ -30,8 +30,8 @@ DMA_CB_TypeDef cb;
 volatile bool transferActive;	// TODO: why is this volatile?
 bool enable_transfer = false;
 
-uint8_t *end_of_data;
-uint8_t *read_pointer;	// a pointer to the chunk which should be read next
+uint32_t *end_of_data;
+uint32_t *read_pointer;	// a pointer to the chunk which should be read next
 
 #define SAMPLE_RATE 8000  // 8000 hz sample rate
 
@@ -60,9 +60,11 @@ int transfernumber = 0;
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
+	printf("\\o/\n");
+
 	Dma *dma = (Dma *) user;
 
-	uint8_t *cyclic_buf = dma->pcm_buf;
+	uint32_t *cyclic_buf = dma->pcm_buf;
 
 	static int p = 2 * NUMOF_ADC_SAMPLES;
 
@@ -86,9 +88,6 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 		                    false);
 	}
 	else {
-		/* Stopping ADC */
-		ADC_Reset(ADC0);
-
 		/* Clearing Flag */
 		transferActive = false;
 
@@ -225,7 +224,7 @@ void setupDma(Dma *dma)
 	DMA_CfgDescr(0, true, &descrCfg);
 	DMA_CfgDescr(0, false, &descrCfg);
 
-	uint8_t *cyclic_buf = dma->pcm_buf; // temporary work-around
+	uint32_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 	
 	
 	/* Enabling PingPong Transfer*/
@@ -238,6 +237,8 @@ void setupDma(Dma *dma)
 	                     (void *) &ramBufferDacData1Stereo,
 	                     (2 * BUFFERSIZE) - 1);*/
 
+	printf("activate ping pong!\n");
+
 	DMA_ActivatePingPong(0,
 	                   false,
 	                   (void *) cyclic_buf,
@@ -246,6 +247,8 @@ void setupDma(Dma *dma)
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
 	                   (void *) &(USART2->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1);
+	                   
+	printf("ping pong appears to be activated!\n");
 }
 
 /**************************************************************************//**
@@ -289,7 +292,7 @@ void setupDma(Dma *dma)
 	//  will be cleared by call-back function
 	transferActive = true;
 
-	uint8_t *cyclic_buf = dma->pcm_buf; // temporary work-around
+	uint32_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 
 	// Enabling PingPong Transfer
 	DMA_ActivatePingPong(DMA_CHANNEL_ADC,
@@ -396,7 +399,7 @@ void setupOpAmp(void)
  * using ping-pong transfer.
  *****************************************************************************/
 // TODO: rewrite this using start_recording and stop_recording....
-void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
+void record(uint32_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
 	// the number of ping pong transfers that will occur in numof_secs time
 	int transfer_limit = (SAMPLE_RATE / NUMOF_ADC_SAMPLES) * numof_secs;
@@ -412,7 +415,7 @@ void record(uint8_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 }
 
 // TODO: test this actually works...
-void start_recording(uint8_t *pcm_buf, unsigned int pcm_bufsize)
+void start_recording(uint32_t *pcm_buf, unsigned int pcm_bufsize)
 {
 	enable_transfer = true;
 
@@ -441,7 +444,7 @@ void stop_recording(void)
 }
 
 // TODO: implement this...
-bool read_chunk(uint8_t **chunk)
+bool read_chunk(uint32_t **chunk)
 {
 	if (read_pointer != end_of_data) {
 		*chunk = read_pointer;
