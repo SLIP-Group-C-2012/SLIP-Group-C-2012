@@ -3,7 +3,9 @@
 #include "audio_rec.h"
 #include "dac.h"
 
-#define record_time_in_s 5
+#define record_time_in_s 1
+
+uint32_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
 
 int main(void)
 {
@@ -17,7 +19,6 @@ int main(void)
 
 	InitAudioPWM();
 
-	uint32_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
 	uint32_t *chunk;
 
 	printf("o/\n");
@@ -25,7 +26,7 @@ int main(void)
 	// Asynchronous
 	//
 	// Here be delays...
-	//start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
 	/*for (;;) {
 		printf("chunk: {");
