@@ -17,15 +17,15 @@ int main(void)
 
 	InitAudioPWM();
 
-	uint8_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
-	uint8_t *chunk;
+	uint32_t cyclic_buf[SAMPLES_PER_SECOND * record_time_in_s] = {};
+	uint32_t *chunk;
 
 	printf("o/\n");
 
 	// Asynchronous
 	//
 	// Here be delays...
-	start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	//start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
 
 	/*for (;;) {
 		printf("chunk: {");
@@ -43,7 +43,7 @@ int main(void)
 	int i = 0;
 	for (;;) {
 		if (i++ % 1000000 == 0) {
-			printf("%d cyclic_buf: {%d, %d, %d, ... %d}\n",
+			printf("%d cyclic_buf: {%u, %u, %u, ... %u}\n",
 			i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], cyclic_buf[sizeof(cyclic_buf) - 1]);
 		}
 	}
