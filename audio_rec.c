@@ -16,6 +16,10 @@
 
 #define DMA_CHANNEL_ADC 0
 
+#define DMA_CHANNEL_TX   0
+#define DMA_CHANNEL_RX   1
+#define DMA_CHANNELS     2
+
 typedef struct {
 	uint32_t *pcm_buf;
 	unsigned int pcm_bufsize;
@@ -60,7 +64,7 @@ int transfernumber = 0;
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-	printf("\\o/\n");
+	printf("got dma interrupt!\n");
 
 	Dma *dma = (Dma *) user;
 
@@ -206,7 +210,9 @@ void setupDma(Dma *dma)
 	chnlCfg.select = DMAREQ_USART2_RXDATAV;	// receive from usart
 
 	chnlCfg.cb = &cb;
-	DMA_CfgChannel(0, &chnlCfg);
+	DMA_CfgChannel(DMA_CHANNEL_RX, &chnlCfg);
+	
+	//DMA_CfgChannel(DMAREQ_USART2_RXDATAV, &chnlCfg);
 
 	/* Setting up channel descriptor */
 	/* Source is USART register and doesn't move */
