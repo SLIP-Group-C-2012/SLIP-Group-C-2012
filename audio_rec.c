@@ -119,7 +119,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 void setupCmu(void)
 {
 	CMU_ClockEnable(cmuClock_TIMER0, true);
-	CMU_ClockEnable(cmuClock_PRS, true);
+	//CMU_ClockEnable(cmuClock_PRS, true);
 
 	/* Enabling clocks */
 	CMU_ClockEnable(cmuClock_DMA,  true);
@@ -192,27 +192,23 @@ void setupDma(Dma *dma)
 	/* Initializing the DMA */
 	dmaInit.hprot        = 0;
 	dmaInit.controlBlock = dmaControlBlock;
+	
 	DMA_Init(&dmaInit);
 
 	/* Set the interrupt callback routine */
 	cb.cbFunc = transferComplete;
-
-	/* Callback doesn't need userpointer */
 	cb.userPtr = dma;
-
-	/* Setting up channel */
-	chnlCfg.highPri   = false; /* Can't use with peripherals */
-	chnlCfg.enableInt = true;  /* Interrupt needed when buffers are used */
 
 	/* channel 0 and 1 will need data at the same time,
 	 * can use channel 0 as trigger */
 
+	/* Setting up channel */
+	chnlCfg.highPri   = false; /* Can't use with peripherals */
+	chnlCfg.enableInt = true;  /* Interrupt needed when buffers are used */
 	chnlCfg.select = DMAREQ_USART2_RXDATAV;	// receive from usart
-
 	chnlCfg.cb = &cb;
 	DMA_CfgChannel(DMA_CHANNEL_RX, &chnlCfg);
 	
-	//DMA_CfgChannel(DMAREQ_USART2_RXDATAV, &chnlCfg);
 
 	/* Setting up channel descriptor */
 	/* Source is USART register and doesn't move */
@@ -227,8 +223,8 @@ void setupDma(Dma *dma)
 	descrCfg.hprot   = 0;
 
 	/* Configure both primary and secondary descriptor alike */
-	DMA_CfgDescr(0, true, &descrCfg);
-	DMA_CfgDescr(0, false, &descrCfg);
+	DMA_CfgDescr(DMA_CHANNEL_RX, true, &descrCfg);
+	DMA_CfgDescr(DMA_CHANNEL_RX, false, &descrCfg);
 
 	uint32_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 	
