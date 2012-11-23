@@ -57,6 +57,31 @@ void ADC0_IRQHandler(void)
 	}
 }
 
+void USART2_RX_IRQHandler(void)
+{
+  // Check for RX data valid interrupt
+  if (USART2->STATUS & UART_STATUS_RXDATAV) {
+  	printf("happy days!\n");
+  }
+  
+  /*if (uart->STATUS & UART_STATUS_RXDATAV)
+  {
+    // Copy data into RX Buffer
+    uint8_t rxData = USART_Rx(uart);
+    rxBuf.data[rxBuf.wrI] = rxData;
+    rxBuf.wrI             = (rxBuf.wrI + 1) % BUFFERSIZE;
+    rxBuf.pendingBytes++;
+
+    // Flag Rx overflow
+    if (rxBuf.pendingBytes > BUFFERSIZE)
+    {
+      rxBuf.overflow = true;
+    }
+
+    // Clear RXDATAV interrupt
+    USART_IntClear(UART1, UART_IF_RXDATAV);
+  }*/
+}
 
 int transfernumber = 0;
 /**************************************************************************//**

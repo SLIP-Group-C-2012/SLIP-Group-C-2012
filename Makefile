@@ -93,7 +93,6 @@ efm32lib/src/efm32_prs.c \
 i2cdrv.c \
 NRF24.c \
 radio.c \
-serial_input.c \
 syscalls.c \
 config.c \
 codec.c \
@@ -101,8 +100,9 @@ protcol.c \
 dac.c \
 acksys.c \
 dmactrl.c \
-audio_rec.c\
-audio.c
+usart.c
+#audio_rec.c\
+#audio.c \
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \
