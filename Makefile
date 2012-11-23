@@ -100,9 +100,8 @@ protcol.c \
 dac.c \
 acksys.c \
 dmactrl.c \
-usart.c
-#audio_rec.c\
-#audio.c \
+audio_rec.c\
+audio.c
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\
 #microsd.c \

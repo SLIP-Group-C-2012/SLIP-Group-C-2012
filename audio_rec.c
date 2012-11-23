@@ -197,6 +197,21 @@ static void I2S_Setup(void)
 	                USART_ROUTE_CSPEN |
 	                USART_ROUTE_CLKPEN |
 	                USART_ROUTE_LOCATION_LOC1;
+	                
+	// Extra things for helping us debug...
+	  /* Prepare UART Rx and Tx interrupts */
+  USART_IntClear(USART2, _USART_IF_MASK);
+  USART_IntEnable(USART2, USART_IF_RXDATAV);
+  NVIC_ClearPendingIRQ(USART2_RX_IRQn);
+  NVIC_ClearPendingIRQ(USART2_TX_IRQn);
+  NVIC_EnableIRQ(USART2_RX_IRQn);
+  NVIC_EnableIRQ(USART2_TX_IRQn);
+
+  /* Enable I/O pins at UART1 location #2 */
+  //uart->ROUTE = UART_ROUTE_RXPEN | UART_ROUTE_TXPEN | UART_ROUTE_LOCATION_LOC2;
+
+  /* Enable UART */
+  USART_Enable(USART2, usartEnable);
 }
 
 /**************************************************************************//**
@@ -456,7 +471,7 @@ void start_recording(uint32_t *pcm_buf, unsigned int pcm_bufsize)
 
 	I2S_Setup();
 
-	setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
+	//setupDma(&dma);	// configure dma to transfer from ADC to RAM using ping-pong
 }
 
 // TODO: test this actually works...
