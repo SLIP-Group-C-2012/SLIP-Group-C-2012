@@ -23,6 +23,7 @@
 typedef struct {
 	uint32_t *pcm_buf;
 	unsigned int pcm_bufsize;
+	unsigned int transfer_no;
 } Dma;
 
 Dma dma;
@@ -71,14 +72,14 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 	static int p = 2 * NUMOF_ADC_SAMPLES;
 
 	/* Keeping track of the number of transfers */
-	transfernumber++;
+	dma->transfer_no++;
 
 
 	if (p >= dma->pcm_bufsize)
 		p = 0;  // move back to the beginning of the cycle
 
 	/* Let the transfer be repeated a few times to illustrate re-activation */
-	//if (dma->numof_pingpong_transfers == 0 || transfernumber < (dma->numof_pingpong_transfers)) {
+	//if (dma->numof_pingpong_transfers == 0 || transfer_no < (dma->numof_pingpong_transfers)) {
 	if (enable_transfer) {
 		/* Re-activate the DMA */
 		DMA_RefreshPingPong(channel,
@@ -117,7 +118,7 @@ void transferComplete(unsigned int channel, bool primary, void *user)
 void setupCmu(void)
 {
 	CMU_ClockEnable(cmuClock_TIMER0, true);
-	//CMU_ClockEnable(cmuClock_PRS, true);
+	CMU_ClockEnable(cmuClock_PRS, true);
 
 	/* Enabling clocks */
 	CMU_ClockEnable(cmuClock_DMA,  true);
@@ -153,13 +154,15 @@ static void I2S_Setup(void)
 	// 8000 * 64 = 512000
 	init.sync.baudrate = 512000;	// for 8k samples per sec
 	init.sync.databits = usartDatabits16;
+	init.sync.prsRxEnable = true;
+	init.sync.prsRxCh = usartPrsRxCh0;
 	
 	
 	init.format = usartI2sFormatW32D24;
-	
 	init.dmaSplit = false;
 	//init.delay = true;
 	init.mono = false;
+;
 
 	CMU_ClockEnable(cmuClock_USART2, true);
 	
@@ -170,6 +173,10 @@ static void I2S_Setup(void)
 	USART2->TXDOUBLE = 0;	// start transmission
 }
 
+void USART2_RX_IRQHandler(void)
+{
+	printf("howdy USART2!: %d\n", USART_Rx(USART2));
+}
 
 void setupDma(Dma *dma)
 {
@@ -217,6 +224,13 @@ void setupDma(Dma *dma)
 
 	uint32_t *cyclic_buf = dma->pcm_buf; // temporary work-around
 	
+	/* Prepare UART Rx and Tx interrupts */
+  USART_IntClear(USART2, _UART_IF_MASK);
+  USART_IntEnable(USART2, UART_IF_RXDATAV);
+  NVIC_ClearPendingIRQ(USART2_RX_IRQn);
+  //NVIC_ClearPendingIRQ(USART2_TX_IRQn);
+  NVIC_EnableIRQ(USART2_RX_IRQn);
+  //NVIC_EnableIRQ(USART2_TX_IRQn);
 	
 	/* Enabling PingPong Transfer*/
 	/*DMA_ActivatePingPong(0,
@@ -229,6 +243,8 @@ void setupDma(Dma *dma)
 	                     (2 * BUFFERSIZE) - 1);*/
 
 	printf("activate ping pong!\n");
+	
+	USART2->TXDOUBLE = 42;	// start transmission
 
 	DMA_ActivatePingPong(0,
 	                   false,
@@ -238,6 +254,8 @@ void setupDma(Dma *dma)
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
 	                   (void *) &(USART2->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1);
+	                   
+	USART2->TXDOUBLE = 0;	// start transmission
 	                   
 	printf("ping pong appears to be activated!\n");
 }
@@ -296,6 +314,55 @@ void setupDma(Dma *dma)
 	                     NUMOF_ADC_SAMPLES - 1);
 }*/
 
+void setupPRS(void)
+{
+	// Connect PRS channel 0 to TIMER overflow
+	PRS_SourceSignalSet(0, PRS_CH_CTRL_SOURCESEL_TIMER0, PRS_CH_CTRL_SIGSEL_TIMER0OF, prsEdgeOff);
+
+	//printf("CMU_ClockFreqGet(cmuClock_TIMER0): %d\n", CMU_ClockFreqGet(cmuClock_TIMER0));
+
+	// Select TIMER0 parameters
+	TIMER_Init_TypeDef timerInit =
+	{
+		.enable     = true,
+		.debugRun   = true,
+		.prescale   = timerPrescale1,
+		.clkSel     = timerClkSelHFPerClk,
+		.fallAction = timerInputActionNone,
+		.riseAction = timerInputActionNone,
+		.mode       = timerModeUp,
+		.dmaClrAct  = false,
+		.quadModeX4 = false,
+		.oneShot    = false,
+		.sync       = false,
+	};
+
+	/* For an 8000 Hz sample rate we need 8000 overflows per second
+	 * with a 14Mhz clock we can get 8000 overflows per second by setting the
+	 * 'top' value to 1750
+	 *
+	 * clock_frequency / sample rate = 1750
+	 *
+	 * Or...
+	 *
+	 * f = 1/t, f - frequency, t - time period
+	 *
+	 * t = 1 / 14 * 10^6
+	 * (1 / 14 * 10^6) * 1750 = 1 / 8000 seconds
+	 *
+	 * So there will be 8000 overflows per second.
+	 */
+	TIMER_TopSet(TIMER0, 1750);
+	TIMER_Enable(TIMER0, true);
+
+	/* Enable ADC single overflow interrupt to indicate lost samples */
+	//ADC_IntEnable(ADC0, ADC_IEN_SINGLEOF);
+	//NVIC_EnableIRQ(ADC0_IRQn);
+
+	/* Start repetitive ADC single conversions */
+	//ADC_Start(ADC0, adcStartSingle);
+	//printf("adc setup [done]\n");
+}	
 
 /**************************************************************************//**
  * @brief Configure ADC to sample Vref/2 repeatedly at 10.5/13 Msamples/s
@@ -390,7 +457,7 @@ void setupOpAmp(void)
  * using ping-pong transfer.
  *****************************************************************************/
 // TODO: rewrite this using start_recording and stop_recording....
-void record(uint32_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
+/*void record(uint32_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs)
 {
 	// the number of ping pong transfers that will occur in numof_secs time
 	int transfer_limit = (SAMPLE_RATE / NUMOF_ADC_SAMPLES) * numof_secs;
@@ -399,14 +466,14 @@ void record(uint32_t *pcm_buf, unsigned int pcm_bufsize, unsigned int numof_secs
 
 	printf("transfer_limit: %d\n", transfer_limit);
 
-	while (transfernumber < transfer_limit)
+	while (transfer_no < transfer_limit)
 		;
 
 	stop_recording();
-}
+}*/
 
 // TODO: test this actually works...
-void start_recording(uint32_t *pcm_buf, unsigned int pcm_bufsize)
+void start_recording(uint32_t *pcm_buf, unsigned int pcm_bufsize, unsigned int transfer_no)
 {
 	enable_transfer = true;
 
@@ -414,9 +481,12 @@ void start_recording(uint32_t *pcm_buf, unsigned int pcm_bufsize)
 
 	dma.pcm_buf = pcm_buf;
 	dma.pcm_bufsize = pcm_bufsize;
+	dma.transfer_no = transfer_no;
 
 	read_pointer = pcm_buf;
 	end_of_data = pcm_buf;
+
+	setupPRS();
 
 	I2S_Setup();
 

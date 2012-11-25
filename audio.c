@@ -21,12 +21,20 @@ int main(void)
 
 	uint32_t *chunk;
 
+	unsigned int transfer_no = 0;
+
 	printf("o/\n");
+	
+	int i = 0;
+	printf("transfer_no: %d\n", transfer_no);
+	printf("%d cyclic_buf: {%u, %u, %u, ... %u, %u, %u}\n",
+		i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], 
+		cyclic_buf[sizeof(cyclic_buf) - 3], cyclic_buf[sizeof(cyclic_buf) - 2], cyclic_buf[sizeof(cyclic_buf) - 1]);
 
 	// Asynchronous
 	//
 	// Here be delays...
-	start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s);
+	start_recording(cyclic_buf, SAMPLES_PER_SECOND * record_time_in_s, &transfer_no);
 
 	/*for (;;) {
 		printf("chunk: {");
@@ -40,13 +48,13 @@ int main(void)
 			;
 		}
 	}*/
-	
-	int i = 0;
+
 	for (;;) {
 		if (i++ % 1000000 == 0) {
-			printf("transfernumber: %d\n", transfernumber);
-			printf("%d cyclic_buf: {%u, %u, %u, ... %u}\n",
-			i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], cyclic_buf[sizeof(cyclic_buf) - 1]);
+			printf("transfer_no: %d\n", transfer_no);
+			printf("%d cyclic_buf: {%u, %u, %u, ... %u, %u, %u}\n",
+			i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], 
+			cyclic_buf[sizeof(cyclic_buf) - 3], cyclic_buf[sizeof(cyclic_buf) - 2], cyclic_buf[sizeof(cyclic_buf) - 1]);
 		}
 	}
 	
