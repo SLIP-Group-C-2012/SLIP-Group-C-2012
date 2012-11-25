@@ -44,6 +44,7 @@ int main(void)
 	int i = 0;
 	for (;;) {
 		if (i++ % 1000000 == 0) {
+			printf("transfernumber: %d\n", transfernumber);
 			printf("%d cyclic_buf: {%u, %u, %u, ... %u}\n",
 			i, cyclic_buf[0], cyclic_buf[1], cyclic_buf[2], cyclic_buf[sizeof(cyclic_buf) - 1]);
 		}

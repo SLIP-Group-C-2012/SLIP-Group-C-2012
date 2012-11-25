@@ -101,7 +101,7 @@ protcol.c \
 dac.c \
 acksys.c \
 dmactrl.c \
-audio_rec.c\
+audio_rec.c \
 audio.c
 #fatfs/src/diskio.c \
 #fatfs/src/ff.c\

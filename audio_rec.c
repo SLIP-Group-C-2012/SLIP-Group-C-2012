@@ -57,14 +57,12 @@ void ADC0_IRQHandler(void)
 	}
 }
 
-
-int transfernumber = 0;
 /**************************************************************************//**
  * @brief  Call-back called when transfer is complete
  *****************************************************************************/
 void transferComplete(unsigned int channel, bool primary, void *user)
 {
-	printf("got dma interrupt!\n");
+	//printf("got dma interrupt!\n");
 
 	Dma *dma = (Dma *) user;
 
