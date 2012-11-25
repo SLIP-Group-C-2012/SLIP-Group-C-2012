@@ -135,13 +135,6 @@ void setupCmu(void)
 /* Introducing the Digital Microphone of Joy and Wonder! */
 static void I2S_Setup(void)
 {
-	// Enable pins at location 1
-	USART2->ROUTE = USART_ROUTE_RXPEN |
-					USART_ROUTE_TXPEN |
-	                USART_ROUTE_CSPEN |
-	                USART_ROUTE_CLKPEN |
-	                USART_ROUTE_LOCATION_LOC1;
-	                
 	GPIO_PinModeSet(gpioPortB, 3, gpioModePushPull, 0);	// tx
 	GPIO_PinModeSet(gpioPortB, 4, gpioModeInput, 0);	// rx
 	GPIO_PinModeSet(gpioPortB, 5, gpioModePushPull, 1);	// clock
@@ -174,6 +167,13 @@ static void I2S_Setup(void)
 	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1);	// turn microphone on
 	
 	USART2->TXDOUBLE = 0;	// start transmission
+	
+	// Enable pins at location 1
+	USART2->ROUTE = USART_ROUTE_RXPEN |
+					USART_ROUTE_TXPEN |
+	                USART_ROUTE_CSPEN |
+	                USART_ROUTE_CLKPEN |
+	                USART_ROUTE_LOCATION_LOC1;
 }
 
 void USART2_RX_IRQHandler(void)
