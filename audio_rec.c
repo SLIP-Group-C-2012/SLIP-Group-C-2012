@@ -132,56 +132,47 @@ void setupCmu(void)
 /* Introducing the Digital Microphone of Joy and Wonder! */
 static void I2S_Setup(void)
 {
-	USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
-	init.sync.autoTx = true;
-	init.format = usartI2sFormatW32D32;
-
-	CMU_ClockEnable(cmuClock_USART2, true);
-
-	/* Use location 1: TX  - Pin D0, (RX - Pin D1) */
-	/*                 CLK - Pin D2, CS - Pin D3   */
-
-
-	GPIO_PinModeSet(gpioPortB, 3, gpioModePushPull, 0);	// tx
-	GPIO_PinModeSet(gpioPortB, 4, gpioModeInput, 0);	// rx
-	GPIO_PinModeSet(gpioPortB, 5, gpioModePushPull, 1);	// clock
-	GPIO_PinModeSet(gpioPortB, 6, gpioModePushPull, 1);	// ws
-
-	/*GPIO_PinModeSet(gpioPortE, 4, gpioModePushPull, 1);	// ws
-	GPIO_PinModeSet(gpioPortE, 5, gpioModePushPull, 1);	// clock
-	GPIO_PinModeSet(gpioPortE, 6, gpioModeInput, 0);	// rx
-	GPIO_PinModeSet(gpioPortE, 7, gpioModePushPull, 0);	// tx*/
-	
-	// Turn the microphone on
-	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1);
-	
-
-	/* Configure USART for basic I2S operation */
-	//init.sync.baudrate = wavHeader.frequency * 32;
-	
-	// what should the baud rate be?
-	init.sync.baudrate = 512000;	// for 8k samples per sec
-	
-	USART_InitI2s(USART2, &init);
-
-	USART2->TXDOUBLE = 0;	// start transmission
-
-	/* Enable pins at location 1 */
+	// Enable pins at location 1
 	USART2->ROUTE = USART_ROUTE_RXPEN |
 					USART_ROUTE_TXPEN |
 	                USART_ROUTE_CSPEN |
 	                USART_ROUTE_CLKPEN |
 	                USART_ROUTE_LOCATION_LOC1;
+	                
+	GPIO_PinModeSet(gpioPortB, 3, gpioModePushPull, 0);	// tx
+	GPIO_PinModeSet(gpioPortB, 4, gpioModeInput, 0);	// rx
+	GPIO_PinModeSet(gpioPortB, 5, gpioModePushPull, 1);	// clock
+	GPIO_PinModeSet(gpioPortB, 6, gpioModePushPull, 1);	// ws
+
+	USART_InitI2s_TypeDef init = USART_INITI2S_DEFAULT;
+	init.sync.autoTx = true;
+	
+	// the microphone must always have 64 clock cycles 
+	// for every stereo data word
+	//
+	// so for 8000 samples per second
+	//
+	// 8000 * 64 = 512000
+	init.sync.baudrate = 512000;	// for 8k samples per sec
+	init.sync.databits = usartDatabits16;
+	
+	
+	init.format = usartI2sFormatW32D24;
+	
+	init.dmaSplit = false;
+	//init.delay = true;
+	init.mono = false;
+
+	CMU_ClockEnable(cmuClock_USART2, true);
+	
+	USART_InitI2s(USART2, &init);
+
+	GPIO_PinModeSet(gpioPortF, 5, gpioModePushPull, 1);	// turn microphone on
+	
+	USART2->TXDOUBLE = 0;	// start transmission
 }
 
-/**************************************************************************//**
- * @brief
- *   Setup DMA in ping pong mode
- * @details
- *   The DMA is set up to transfer data from memory to the DAC, triggered by
- *   PRS (which in turn is triggered by the TIMER). When the DMA finishes,
- *   it will trigger the callback (PingPongTransferComplete).
- *****************************************************************************/
+
 void setupDma(Dma *dma)
 {
 	/* DMA configuration structs */
@@ -214,7 +205,7 @@ void setupDma(Dma *dma)
 	/* Source is USART register and doesn't move */
 	descrCfg.srcInc = dmaDataIncNone;
 
-	/* Transfer 32/16 bit each time to RAM */
+	/* Transfer 16 bits each time to RAM */
 	descrCfg.dstInc = dmaDataInc2;
 	descrCfg.size   = dmaDataSize2;
 

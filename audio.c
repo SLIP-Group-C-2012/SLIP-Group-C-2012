@@ -17,7 +17,7 @@ int main(void)
 	uart_init(UART1); // for printf
 	GPIO->P[0].DOUT &= ~(1 << 0);
 
-	InitAudioPWM();
+	//InitAudioPWM();
 
 	uint32_t *chunk;
 
