@@ -117,6 +117,10 @@ void transferComplete(unsigned int channel, bool primary, void *user)
  *****************************************************************************/
 void setupCmu(void)
 {
+  /* Enable clock for HF peripherals */
+  // TODO: not sure if we need this?
+  CMU_ClockEnable(cmuClock_HFPER, true);
+
 	CMU_ClockEnable(cmuClock_TIMER0, true);
 	CMU_ClockEnable(cmuClock_PRS, true);
 
@@ -154,7 +158,7 @@ static void I2S_Setup(void)
 	// 8000 * 64 = 512000
 	init.sync.baudrate = 512000;	// for 8k samples per sec
 	init.sync.databits = usartDatabits16;
-	init.sync.prsRxEnable = true;
+	init.sync.prsRxEnable = false;
 	init.sync.prsRxCh = usartPrsRxCh0;
 	
 	
@@ -162,7 +166,6 @@ static void I2S_Setup(void)
 	init.dmaSplit = false;
 	//init.delay = true;
 	init.mono = false;
-;
 
 	CMU_ClockEnable(cmuClock_USART2, true);
 	
@@ -175,7 +178,17 @@ static void I2S_Setup(void)
 
 void USART2_RX_IRQHandler(void)
 {
-	printf("howdy USART2!: %d\n", USART_Rx(USART2));
+	static int i = 0;
+	
+	if (i++ > 100000) {
+		printf("\\o/\n");
+		//printf("howdy USART2!: %d\n", USART_Rx(USART2));
+		printf("USART2 interrupt %d    USART->STATUS: %d    USART_STATUS_RXDATAV: %d     USART2->RXDOUBLE: %d    USART2->RXDOUBLEX: %d    USART2->RXDOUBLEXP: %d    USART2->RXDATA: %d    USART2->RXDATAX: %d\n", 
+			i, USART2->STATUS, USART_STATUS_RXDATAV, USART2->RXDOUBLE, USART2->RXDOUBLEX,
+			USART2->RXDOUBLEXP, USART2->RXDATA, USART2->RXDATAX);
+	}
+	
+	USART_IntClear(USART2, UART_IF_RXDATAV);
 }
 
 void setupDma(Dma *dma)
@@ -231,6 +244,8 @@ void setupDma(Dma *dma)
   //NVIC_ClearPendingIRQ(USART2_TX_IRQn);
   NVIC_EnableIRQ(USART2_RX_IRQn);
   //NVIC_EnableIRQ(USART2_TX_IRQn);
+  
+  USART_Enable(USART2, usartEnable);
 	
 	/* Enabling PingPong Transfer*/
 	/*DMA_ActivatePingPong(0,
@@ -242,22 +257,22 @@ void setupDma(Dma *dma)
 	                     (void *) &ramBufferDacData1Stereo,
 	                     (2 * BUFFERSIZE) - 1);*/
 
-	printf("activate ping pong!\n");
+	//printf("activate ping pong!\n");
 	
 	USART2->TXDOUBLE = 42;	// start transmission
 
-	DMA_ActivatePingPong(0,
+	/*DMA_ActivatePingPong(0,
 	                   false,
 	                   (void *) cyclic_buf,
 	                   (void *) &(USART2->RXDOUBLE),
 	                   NUMOF_ADC_SAMPLES - 1,
 	                   (void *) &cyclic_buf[NUMOF_ADC_SAMPLES],
 	                   (void *) &(USART2->RXDOUBLE),
-	                   NUMOF_ADC_SAMPLES - 1);
+	                   NUMOF_ADC_SAMPLES - 1);*/
 	                   
 	USART2->TXDOUBLE = 0;	// start transmission
 	                   
-	printf("ping pong appears to be activated!\n");
+	//printf("ping pong appears to be activated!\n");
 }
 
 /**************************************************************************//**
