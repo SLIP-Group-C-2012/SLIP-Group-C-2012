@@ -58,11 +58,11 @@ void InitAudioPWM(void)
 
   TIMER1->ROUTE = TIMER_ROUTE_CC0PEN | TIMER_ROUTE_CC1PEN | TIMER_ROUTE_LOCATION_LOC1;
   /* Set Top Value */
-  TIMER_TopSet(TIMER1, 255);//384
+  TIMER_TopSet(TIMER1, 448*4);//384
 
   /* Set compare value starting at top - it will be incremented in the interrupt handler */
-  TIMER_CompareBufSet(TIMER1, 0, 256);//385
-  TIMER_CompareBufSet(TIMER1, 1, 256);//385
+  TIMER_CompareBufSet(TIMER1, 0, 448*4);//385
+  TIMER_CompareBufSet(TIMER1, 1, 448*4);//385
   //TIMER_CompareBufSet(TIMER3, 2, RGB_PWM_TIMER_TOP + 1);
 
   /* Select timer parameters */
@@ -70,7 +70,7 @@ void InitAudioPWM(void)
   {
     .enable     = true,
     .debugRun   = false,
-    .prescale   = timerPrescale8,
+    .prescale   = timerPrescale1,
     .clkSel     = timerClkSelHFPerClk,
     .fallAction = timerInputActionNone,
     .riseAction = timerInputActionNone,
@@ -109,7 +109,7 @@ void TIMER1_IRQHandler(void)
     {
         audio_Sample = 0;
     }
-    TIMER_CompareBufSet(TIMER1, 0, (audio_Sample));
+    TIMER_CompareBufSet(TIMER1, 0, (audio_Sample*114688)>>14);
 
     TIMER_IntClear(TIMER1, TIMER_IF_OF);
 }

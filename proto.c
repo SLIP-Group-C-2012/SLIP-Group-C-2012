@@ -3,7 +3,7 @@
 #include "protcol.h"
 
 // Please set MY_ADDR to 2 for the speaker board
-#define MY_ADDR (2)
+#define MY_ADDR (1)
 
 typedef struct 
 {
@@ -44,14 +44,9 @@ int proto_receive(uint8_t* buff)
 	{
 		if(packet.dest == MY_ADDR)
 		//Received packet for me
-		{
-			if(packet.packetID > lastReceived || packet.packetID == 1)
-			{
-				//printf("ID : %d\n", packet.packetID);
-				memcpy(buff,packet.data,sizeof(packet.data));
-				for_me = 1;
-			}
-		} else 
+			memcpy(buff,packet.data,sizeof(packet.data));
+			for_me = 1;
+		} else if(packet.source != MY_ADDR)
 		//Retransmission
 		{
 				radio_sendPacket32((uint8_t *)&packet);

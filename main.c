@@ -72,7 +72,7 @@ int init_config(void)
 	NVIC_EnableIRQ(UART1_RX_IRQn);
 
 	InitAudioPWM();
-
+	GPIO_PinModeSet(gpioPortD, 10, gpioModeInput, 0);
 
 }
 
@@ -81,13 +81,11 @@ int init_config(void)
  *****************************************************************************/
 //133761
 // Please change SENDER to 0 for the speaker board
-#define SENDER (0)
+#define SENDER (1)
 #define RECEIVINGADDRESS (2)
 
 #define COMPRESSED_SIZE (29)
 #define AUDIO_PACK_SIZE (29)
-
-
 
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
@@ -104,23 +102,24 @@ int main(void)
     uint8_t cyclic_buf[BUFFER_SIZE] = {};
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(2, BANDW_2MB, POW_MAX, 1);
+	radio_setup(8, BANDW_2MB, POW_MAX, 0);
 
     //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
     
     while (1) {
 
-#if SENDER
+if (GPIO_PinInGet(gpioPortD, 10) == 1) {
 	
     record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 
     for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
 		//printf("sending...\n");
         proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
+        //proto_send((uint8_t *) &array[id], RECEIVINGADDRESS);
         radio_loop();
     }
     
-#else
+} else {
     if (proto_receive(data)) {
 
         if (id > sizeof(playback)-32) {
@@ -134,8 +133,7 @@ int main(void)
 
     }
     radio_loop();
-#endif
-
+}
 	// we should have this in our main loop always. It helps radio service itself.
 	//radio_loop();
 	}
