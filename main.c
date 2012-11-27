@@ -97,6 +97,8 @@ void sendBuffer(uint8_t * buff, int size)
 int main(void)
 {
 	volatile unsigned long id = 0; // for counting loop
+    unsigned int i = 0;
+    bool need_audio_fix = false;
 	uint8_t playback[BUFFER_SIZE];
 	uint8_t data[AUDIO_PACK_SIZE];
 	
@@ -112,21 +114,35 @@ int main(void)
     //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
     
     while (1) {
+        if (need_audio_fix) {
+            i++;
+            if (i >= 1000)
+            {
+                    char tmp = "";
+                    proto_send((uint8_t *) &tmp, 2);
+		        	radio_loop();
+                    need_audio_fix = false;
+            }
+        }
 
 		if( serial_getString( (uint8_t *)input) )
 		{
 			printf("Sending from PC : %s\n", input);
 			proto_send((uint8_t *) &input, 1);
 			radio_loop();
+	        need_audio_fix = true;
+            i = 0;
 		}
 
 		if ( GPIO_PinInGet(gpioPortD, 10) == 0 ) {
-	
+	        need_audio_fix = true;
 			record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
 			sendBuffer(cyclic_buf, sizeof(cyclic_buf));
+            i = 0;
 			
 		} else {
-			if (proto_receive(data)) {
+            int ret = proto_receive(data);
+			if (ret) {
 
 				if (id > sizeof(playback)-32) {
 
@@ -135,7 +151,10 @@ int main(void)
 				}
 				memcpy(&playback[id], data, AUDIO_PACK_SIZE);
 				id = id + AUDIO_PACK_SIZE;
-
+                if (ret == 2) {
+                    need_audio_fix = true;
+                    i = 0;
+                }
 			}
 			radio_loop();
 		}

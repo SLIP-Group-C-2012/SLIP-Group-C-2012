@@ -110,7 +110,7 @@ void radio_sendPacket32(uint8_t * data)
 {
     volatile int j;
 
-    while (packet_wait) {};
+    while (packet_wait) {radio_loop(); };
 
     packet_wait = 1;
 

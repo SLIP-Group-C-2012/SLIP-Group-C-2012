@@ -20,7 +20,18 @@ void proto_send(uint8_t* buff, uint8_t type)
 	if(packet.type == 1) { packet.packetID = ++idT; printf("Sending id: %d\n", idT);}
 	if(packet.type == 0) { packet.packetID = ++idA;}
 	memcpy(packet.data,buff,sizeof(packet.data));	
-	radio_sendPacket32((uint8_t *)&packet);
+
+
+    if(packet.type == 1){
+        int id4;
+        for (id4 = 0; id4 < 10; id4+=1) {
+            radio_sendPacket32((uint8_t *)&packet);
+            radio_loop();
+            //for (volatile int i = 0; i < 10000; i++) {}
+        }
+    }else{
+    radio_sendPacket32((uint8_t *)&packet);
+}
 
 }
 
@@ -30,6 +41,7 @@ int proto_receive(uint8_t* buff)
 		
 	if(radio_receivePacket32((uint8_t *)&packet))
 	{
+       //printf("general recive");
 		if(packet.type == 0)
 		{
 			if (packet.packetID > idA || idA - packet.packetID > 100) 
@@ -38,11 +50,24 @@ int proto_receive(uint8_t* buff)
 				//radio_sendPacket32((uint8_t *)&packet);
 				idA = packet.packetID;
 				for_me = 1;
+                //printf("audio recive");
 			}
 		} else
 		{
-			idT = packet.packetID;
-			printf("PC : %s id: %d\n", packet.data, idT);
+
+			if (packet.packetID > idT || idT - packet.packetID > 100) {
+			    idT = packet.packetID;
+			    printf("PC : %s id: %d\n", packet.data, idT);
+            
+                 int id4;
+                for (id4 = 0; id4 < 10; id4+=1) {
+                    radio_sendPacket32((uint8_t *)&packet);
+                    radio_loop();
+                    //for (volatile int i = 0; i < 10000; i++) {}
+                }
+                for_me = 2;
+
+            }
 		}
 		
 	}
