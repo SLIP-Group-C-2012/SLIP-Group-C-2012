@@ -2,37 +2,24 @@
 #include "efm32_int.h"
 #include "protcol.h"
 
-// Please set MY_ADDR to 2 for the speaker board
-#define MY_ADDR (1)
-
 typedef struct 
 {
-	uint8_t src;
-	uint8_t dest;
 	uint8_t packetID;
-	uint8_t data[29];
+	uint8_t type;
+	uint8_t data[30];
 } Packet_Type __attribute__ ((packed));
 
 Packet_Type packet;
 
-int id = 1;
+uint8_t idA = 1;
+uint8_t idT = 1;
 
-int lastReceived = 0;
-//int received_count = 0;
-/*
-uint8_t test_buffer = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
-uint8_t test_end = {0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28};
-uint8_t test_receive[28];
-*/
-
-void proto_send(uint8_t* buff, int dest) 
+void proto_send(uint8_t* buff, uint8_t type) 
 {
-	//printf("Sending packet from %d to %d\n", MY_ADDR, dest);
-	packet.src = MY_ADDR;
-	packet.dest = dest;
-	packet.packetID = ++id;
-	memcpy(packet.data,buff,sizeof(packet.data));
-
+	packet.type = type;
+	if(packet.type == 1) { packet.packetID = ++idT; printf("Sending id: %d\n", idT);}
+	if(packet.type == 0) { packet.packetID = ++idA;}
+	memcpy(packet.data,buff,sizeof(packet.data));	
 	radio_sendPacket32((uint8_t *)&packet);
 
 }
@@ -40,50 +27,27 @@ void proto_send(uint8_t* buff, int dest)
 int proto_receive(uint8_t* buff) 
 {
 	int for_me = 0;
+		
 	if(radio_receivePacket32((uint8_t *)&packet))
 	{
-		if(packet.dest == MY_ADDR)
-		//Received packet for me
-			memcpy(buff,packet.data,sizeof(packet.data));
-			for_me = 1;
-		} else if(packet.source != MY_ADDR)
-		//Retransmission
+		if(packet.type == 0)
 		{
-				radio_sendPacket32((uint8_t *)&packet);
+			if (packet.packetID > idA || idA - packet.packetID > 100) 
+			{
+				memcpy(buff,packet.data,sizeof(packet.data));
+				//radio_sendPacket32((uint8_t *)&packet);
+				idA = packet.packetID;
+				for_me = 1;
+			}
+		} else
+		{
+			idT = packet.packetID;
+			printf("PC : %s id: %d\n", packet.data, idT);
 		}
+		
 	}
 	return for_me;
-}
-/*	
-void test_sender(int counter)
-{	
-	for(int i = 0; i < counter; i++)
-	{
-		printf("Sending counter = %d\n", counter);
-		proto_send(test_buffer, 2);
-	}
-	printf("Sent %d packets.\n", counter);
-}
-
-void test_receiver() 
-{
-	proto_receive(test_receive);
-	if(test_receive[0] == 0)
-	{
-		received_count++;
-		printf("END : %d", received_count);
-	} else {
-		received_count++;
-	}	
-}
-*/	
-	
-	
-	
-	
-	
-	
-	
+}	
 	
 	
 	

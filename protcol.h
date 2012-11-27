@@ -1,4 +1,4 @@
-void protocol_send(uint8_t* buff, uint8_t dest);
+void protocol_send(uint8_t* buff);
 int protocol_recive(uint8_t* buff);
 int protocol_loop();
 uint8_t protocol_getaddr();

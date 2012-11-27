@@ -30,8 +30,6 @@ void GPIO_EVEN_IRQHandler(void)
 	radio_handleInterrupt();
 }
 
-
-
 void TIMER2_IRQHandler(void)// this is called every TIMER_RESEND_TOP* seconds //curently ~1
 {
 	//printf("Timer %d\n", pingtimer);
@@ -80,16 +78,21 @@ int init_config(void)
  * @brief  Main function
  *****************************************************************************/
 //133761
-// Please change SENDER to 0 for the speaker board
-#define SENDER (1)
-#define RECEIVINGADDRESS (2)
 
-#define COMPRESSED_SIZE (29)
-#define AUDIO_PACK_SIZE (29)
+#define COMPRESSED_SIZE (30)
+#define AUDIO_PACK_SIZE (30)
 
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
 
+void sendBuffer(uint8_t * buff, int size)
+{
+	int id2;
+	for (id2 = 0; id2 < size - COMPRESSED_SIZE; id2+=COMPRESSED_SIZE) {
+        proto_send((uint8_t *) &buff[id2], 0);
+        radio_loop();
+    }
+}
 
 int main(void)
 {
@@ -100,42 +103,41 @@ int main(void)
 	init_config(); // init things for printf, interrupts, etc
 
     uint8_t cyclic_buf[BUFFER_SIZE] = {};
+    
+    char input[30];
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
-	radio_setup(8, BANDW_2MB, POW_MAX, 0);
+	radio_setup(30, BANDW_2MB, POW_MAX, 1);
 
     //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
     
     while (1) {
 
-if (GPIO_PinInGet(gpioPortD, 10) == 1) {
+		if( serial_getString( (uint8_t *)input) )
+		{
+			printf("Sending from PC : %s\n", input);
+			proto_send((uint8_t *) &input, 1);
+			radio_loop();
+		}
+
+		if ( GPIO_PinInGet(gpioPortD, 10) == 0 ) {
 	
-    record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+			record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+			sendBuffer(cyclic_buf, sizeof(cyclic_buf));
+			
+		} else {
+			if (proto_receive(data)) {
 
-    for (id = 0; id < BUFFER_SIZE - 32; id+=AUDIO_PACK_SIZE) {
-		//printf("sending...\n");
-        proto_send((uint8_t *) &cyclic_buf[id], RECEIVINGADDRESS);
-        //proto_send((uint8_t *) &array[id], RECEIVINGADDRESS);
-        radio_loop();
-    }
-    
-} else {
-    if (proto_receive(data)) {
+				if (id > sizeof(playback)-32) {
 
-        if (id > sizeof(playback)-32) {
+				    play(playback, sizeof(playback));
+				    id = 0;
+				}
+				memcpy(&playback[id], data, AUDIO_PACK_SIZE);
+				id = id + AUDIO_PACK_SIZE;
 
-            play((char *) playback, sizeof(playback));
-            id = 0;
-            //printf("Received\n");
-        }
-        memcpy(&playback[id], data, AUDIO_PACK_SIZE);
-        id = id + AUDIO_PACK_SIZE;
-
-    }
-    radio_loop();
-}
-	// we should have this in our main loop always. It helps radio service itself.
-	//radio_loop();
+			}
+			radio_loop();
+		}
 	}
 }
-
