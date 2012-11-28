@@ -2,6 +2,7 @@
 #include "nRF24L01.h"
 #include "efm32_int.h"
 #include "nrf24_config.h"
+#include "radio.h"
 
 #define MODE_RECEIVE (1)
 #define MODE_SEND (2)

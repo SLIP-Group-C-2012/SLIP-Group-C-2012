@@ -54,7 +54,7 @@ int init_config(void)
 	/* Chip errata */
 	CHIP_Init();
 	/* Ensure core frequency has been updated */
-	
+
 	SystemCoreClockUpdate();
 	//InitAudioPWM();
 
@@ -84,6 +84,7 @@ int init_config(void)
 
 #define SECONDS_TO_PLAY (1)
 #define BUFFER_SIZE ((int) (8000*SECONDS_TO_PLAY))
+#define RECEIVE_BUFF (8000)
 
 void sendBuffer(uint8_t * buff, int size)
 {
@@ -99,21 +100,30 @@ int main(void)
 	volatile unsigned long id = 0; // for counting loop
     unsigned int i = 0;
     bool need_audio_fix = false;
-	uint8_t playback[BUFFER_SIZE];
+	uint8_t playback[RECEIVE_BUFF];
 	uint8_t data[AUDIO_PACK_SIZE];
-	
+	uint8_t p[30];
+
+	for (i = 0; i < 30; i++) p[i] = i;
+	i = 0;
+
 	init_config(); // init things for printf, interrupts, etc
 
-    uint8_t cyclic_buf[BUFFER_SIZE] = {};
-    
     char input[30];
 
 	// turn on the radio on channel 2, with bandwidth 2MB and using maximum power
 	radio_setup(30, BANDW_2MB, POW_MAX, 1);
 
     //set_up_compression(AUDIO_PACK_SIZE, COMPRESSED_SIZE);
-    
+
+    uint8_t cyclic_buf[BUFFER_SIZE];
+	uint8_t *chunk;
+    start_recording(cyclic_buf, BUFFER_SIZE);
+
     while (1) {
+
+        int available = read_chunk(&chunk);
+
         if (need_audio_fix) {
             i++;
             if (i >= 1000)
@@ -127,7 +137,6 @@ int main(void)
 
 		if( serial_getString( (uint8_t *)input) )
 		{
-			printf("Sending from PC : %s\n", input);
 			proto_send((uint8_t *) &input, 1);
 			radio_loop();
 	        need_audio_fix = true;
@@ -136,15 +145,19 @@ int main(void)
 
 		if ( GPIO_PinInGet(gpioPortD, 10) == 0 ) {
 	        need_audio_fix = true;
-			record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
-			sendBuffer(cyclic_buf, sizeof(cyclic_buf));
-            i = 0;
-			
+	        if (available) {
+                proto_send(chunk, 0);
+                radio_loop();
+                i = 0;
+            }
+			//record(cyclic_buf, BUFFER_SIZE, SECONDS_TO_PLAY);
+
+
 		} else {
             int ret = proto_receive(data);
 			if (ret) {
 
-				if (id > sizeof(playback)-32) {
+				if (id > sizeof(playback) - AUDIO_PACK_SIZE) {
 
 				    play(playback, sizeof(playback));
 				    id = 0;
