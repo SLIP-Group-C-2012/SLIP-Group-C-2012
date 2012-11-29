@@ -1,4 +1,6 @@
 <?php include("includes/head.html"); ?>
+  <?php include("includes/header.html"); ?>
+  <?php include("includes/sidebar.html"); ?>
   
   <!-- Add jQuery library --> 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 

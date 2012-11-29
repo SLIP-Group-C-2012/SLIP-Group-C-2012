@@ -1,6 +1,8 @@
 
 
 <?php include("includes/head.html"); ?>
+  <?php include("includes/header.html"); ?>
+  <?php include("includes/sidebar.html"); ?>
 
 
   
