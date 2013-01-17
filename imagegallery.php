@@ -37,7 +37,7 @@ $(document).ready(function() {
 });
 </script>
   <div class="content">
-    <p>Awsome SLIPC at work </p>
+    <p>Awesome SLIPC at work </p>
     <?php
 $images = glob("images/small/{*.jpg,*.gif,*.png,*.JPG}", GLOB_BRACE);
 
