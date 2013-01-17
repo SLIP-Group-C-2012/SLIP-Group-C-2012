@@ -26,7 +26,10 @@
       <p><img src="/teaching/slipc12-13/images/picture001 (Small).jpg" width="310" height="174" /></p>
       <p>Please See our Final Presentation if you have any further questions</p>
       <p><a href="http://prezi.com/rkfznbf2cumc/slip-group-prezi/?auth_key=cdc02afa3504133695eee81aabffd49a18f9531a&amp;kw=view-rkfznbf2cumc&amp;rc=ref-12661026">Click Here to See the Final Presentation</a></p>
-    </center></p>
+      <p>Our Code is Also Avalaible on Git Hub </p>
+      <p><a href="https://github.com/SLIP-Group-C-2012/SLIP-Group-C-2012/tree/proto">Click Here to see final branch</a>    </p>
+    </center>
+    </p>
   </div>
   
   
