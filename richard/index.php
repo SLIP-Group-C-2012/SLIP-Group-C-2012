@@ -27,8 +27,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   
   
   <div class="content">
-    <h1>Place Title</h1>
-    <p>Place Content</p>
+    <?php include("report.html"); ?>
   </div>
   
   
