@@ -22,7 +22,11 @@
     <p>The Project has two main parts: text transmission using a mesh network, and half-duplex point to point audio transmission. In order to use audio transmission a Push To Talk (PTT) button must be activated. The text transmission and reception is done via any serial console and it supports mesh networking, along with all the benefits that a mesh network offers e.g. range increase and multiple delivery paths. </p>
     <p>In order to achieve the goals for the project, we split the team members up to work on separate parts of the project. This was not strict but tended to allow us to progress well while still being aware of what the other team members were doing. This group cohesion resulted in an interesting, robust and ultimately successful project.</p>
     <p>The end result of all our hard work was a software code identical base that ran on all the devices. We completed three devices seen in the above picture and one open in the below picture. We successfully demonstrated these devices working as walkie talkies. We also showed  mesh text transmission by creating an out of range situation by removing an antenna and then adding a third device in the middle to create the mesh link. </p>
-    <p><center><img src="/teaching/slipc12-13/images/picture001 (Small).jpg" width="310" height="174" /></center></p>
+    <p><center>
+      <p><img src="/teaching/slipc12-13/images/picture001 (Small).jpg" width="310" height="174" /></p>
+      <p>Please See our Final Presentation if you have any further questions</p>
+      <p><a href="http://prezi.com/rkfznbf2cumc/slip-group-prezi/?auth_key=cdc02afa3504133695eee81aabffd49a18f9531a&amp;kw=view-rkfznbf2cumc&amp;rc=ref-12661026">Click Here to See the Final Presentation</a></p>
+    </center></p>
   </div>
   
   
