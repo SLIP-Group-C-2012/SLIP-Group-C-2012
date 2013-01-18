@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -53,7 +51,7 @@ h3 {
     <p>I later investigated alternative means of audio output, since our original plan to use an I<sup>2</sup>S digital-to-analog converter proved to be impossible.</p>
     <p>I should note that, aside from A-Level phsyics, I started this project with no electronics knowledge. I learned about all of the sampling theory, basic electronics and use of the test equipment that is shown below during the course of this project.</p>
     
-    <h2>Audio Input<h2>
+    <h2>Audio Input</h2>
     <h3>Requirements</h3>
     <p>Our project is primarily aimed towards use in disaster recovery situations where there is minimal infrastructure and a quick and easy communication system is required. This use-case leads to the following requirements:</p>
     <ul>
@@ -74,7 +72,7 @@ h3 {
       <li>Offset the signal so that it was centered around 1.1V rather than 0V, since the ADC cannot read negative voltages</li>
     </ul>
     
-    <h3>Implementation</h4>
+    <h3>Implementation</h3>
     <p>Configuration of the ADC and opamps was trivial, since there are extensive <a href="http://www.energymicro.com/downloads/application-notes">application notes provided by EnergyMicro</a>. The basic steps were:</p>
     <ul>
       <li>Enable the ADC and DAC clocks</li>
@@ -99,7 +97,7 @@ h3 {
     
     <hr />
 
-    <h2>Low-pass Filtering</h4>
+    <h2>Low-pass Filtering</h2>
     <p>Since low-pass filters are quite important in several places in our project, I decided to design and test a simple RC filter that could be reused throughout the project. Also, since I don't have any electronics background, I wanted to convince myself that the theory and my understanding of the formulae were correct.</p>
     <p>For our sampling rate of 8KHz, according to the Nyquist-Shanon sampling theorem, we can reproduce frequencies up to 4KHz. So on the input and output we want to filter out any frequencies above that since they can lead to strange artifacts. Using an <a href="http://sim.okawa-denshi.jp/en/CRlowkeisan.htm">online RC-filter calculator</a>, I came up with the following filter using a 4.4KOhm resistor and a 10nF capacitor, with a theoretical -3dB attenuation at 4KHz:</p>
     <img src="images/lowpass-circuit.png" />
