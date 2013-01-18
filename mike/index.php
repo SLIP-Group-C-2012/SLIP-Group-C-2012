@@ -79,7 +79,7 @@ h3 {
       <li>Configure the appropriate opamp to output to the ADC and have a gain of 1</li>
       <li>Enable the opamp</li>
     </ul>
-    <p>I then created a simple test program that used the processor to query the ADC directly, convert values and output them over serial. Voltages could then be applied to the input pin and seen on the serial output.</p>
+    <p>I then created a <a href="https://github.com/SLIP-Group-C-2012/SLIP-Group-C-2012/commit/78354a374cd692a27b45ff614871ab70d66e73d9">simple test program</a> that used the processor to query the ADC directly, convert values and output them over serial. Voltages could then be applied to the input pin and seen on the serial output.</p>
 
     <p>I then designed a circuit around a standard differential amplifier example, with variable gain so we could tune it later.</p>
     <img src="images/amp-circuit-v1.png" />
